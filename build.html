@@ -262,7 +262,7 @@ footer a{color:var(--ink-3)}
       <div class="agent">
         <div class="agent__who"><span class="pill">Tech agent</span> Conversational-AI engineer</div>
         <p><strong>Architecture call:</strong> keep the high-stakes part deterministic. The 80% problem (legality) must never be a guess, so a real bat code is matched against the official approved-bat list in the browser, no model involved. A live LLM was flagged as the right "phase 2" for natural conversation, via a server-side proxy, never with a key in the page.</p>
-        <p><strong>What shipped is exactly that hybrid:</strong> the legality lookup runs client-side against the 3,646-bat dataset (instant, free, auditable), while a live LLM (GPT-4o-mini) handles fitting, shipping and freeform chat through a Cloudflare Worker that holds the API key as a server-side secret. <em>The model talks, the list decides.</em></p>
+        <p><strong>What shipped is exactly that hybrid:</strong> the legality lookup runs client-side against the 3,646-bat dataset (instant, free, auditable), while a live LLM handles fitting, shipping and freeform chat through a Cloudflare Worker that holds the API key as a server-side secret. The model is <em>Gemini 2.5 Flash on Google's free tier</em>, no credit card. <em>The model talks, the list decides.</em></p>
         <p><strong>The non-negotiable lesson:</strong> never hardcode an API key in front-end code. A GitHub Pages site ships every file to the browser, anyone can read it via "View Source", and the key lives in public git history forever. So the key lives only inside the Worker; the public page calls the Worker, which adds the key and forwards to the LLM.</p>
         <p><strong>Also specified:</strong> 7 intents weighted toward certification; quick-reply chips on every turn; a typing indicator; an always-visible "talk to a human"; and a cap of two failed inputs before auto-escalation so a panicked customer never hits a dead end.</p>
       </div>
@@ -318,8 +318,8 @@ footer a{color:var(--ink-3)}
         <li>Not found, it tells you, and points to a human and the full searchable list.</li>
       </ul>
       <p>Example: <code>ASPDAW25A</code> returns "Anarchy Shock and Dawe, USA Softball only, not legal here", because that is what the official data says. No guessing.</p>
-      <h3>The model talks: a real LLM, kept safe</h3>
-      <p>Anything that isn't a code (fitting advice, shipping, freeform questions) goes to a live LLM, <strong>GPT-4o-mini</strong>, through a Cloudflare Worker. The Worker holds the API key as a server-side secret and adds a Boru Bats system prompt, so the model stays in character and the key never reaches the browser. If the LLM is ever unreachable, the bot falls back to scripted answers, so it never dies.</p>
+      <h3>The model talks: a real LLM, free and kept safe</h3>
+      <p>Anything that isn't a code (fitting advice, shipping, freeform questions) goes to a live LLM, <strong>Gemini 2.5 Flash on Google's free tier</strong>, through a Cloudflare Worker. The Worker holds the API key as a server-side secret and adds a Boru Bats system prompt, so the model stays in character and the key never reaches the browser. If the free rate limit is ever hit, the bot falls back to scripted answers, so it never dies, and never produces a bill.</p>
       <h3>A code detector that won't misfire</h3>
       <p>A naive "contains a number" rule would send "I'm 60 and not very strong" to the bat list and wrongly answer "not found". The detector only treats a token as a code when it is five or more characters mixing letters and digits, so ages, weights and dates flow to the LLM instead.</p>
       <h3>Acceptance checks that had to pass</h3>
@@ -334,9 +334,67 @@ footer a{color:var(--ink-3)}
   </article>
 
   <!-- 5 -->
+  <article class="card" data-open="true" id="free">
+    <button class="card__toggle" aria-expanded="true">
+      <span class="card__n">5</span><h2 class="card__title">Build it free: an LLM with no credit card</h2>
+      <svg class="card__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="card__body"><div><div class="card__inner">
+      <p>The thing that trips up most beginners: you want <em>real</em> AI in your bot, but you don't want to hand over a card or risk a surprise bill. You don't have to. This whole chatbot runs on a free LLM with no payment details anywhere.</p>
+
+      <h3>The easy free route: Google AI Studio (Gemini)</h3>
+      <ul>
+        <li>Go to <a href="https://aistudio.google.com" target="_blank" rel="noopener">aistudio.google.com</a>, sign in with any Google account, and click <strong>Get API key</strong>. It's free and asks for <strong>no credit card</strong>.</li>
+        <li>You get a key for the Gemini models. This site uses <code>gemini-2.5-flash</code>, fast and free.</li>
+        <li>The free tier has a rate limit (a set number of requests per minute and per day). Go over it and the API simply returns an <strong>error</strong>, it never charges you. Check the current limits in AI Studio.</li>
+      </ul>
+
+      <h3>The whole thing in 12 lines</h3>
+      <p>This is the entire call. Paste your free key and it works in any page or script:</p>
+      <section class="paste-ready" aria-label="Paste-ready Gemini code">
+        <div class="paste-ready__head">
+          <span class="paste-ready__label">Paste-ready · free Gemini call (JavaScript)</span>
+          <button class="copy-btn" data-copy-target="#paste-2" type="button" title="Copy" aria-label="Copy to clipboard">
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 10 18 20 6"/></svg>
+          </button>
+        </div>
+        <div class="paste-ready__body" id="paste-2">const KEY = "PASTE_YOUR_FREE_GEMINI_KEY";   // free at aistudio.google.com, no card
+const MODEL = "gemini-2.5-flash";
+
+async function ask(message) {
+  const res = await fetch(
+    "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent?key=" + KEY,
+    { method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: message }] }] }) }
+  );
+  const data = await res.json();
+  return data.candidates[0].content.parts[0].text;
+}</div>
+      </section>
+
+      <h3>Two ways to use your free key</h3>
+      <ul>
+        <li><strong>Just you, your own project:</strong> put the key straight in your page (or store it in the browser). Zero backend, simplest possible start. Rule: never commit the key to a public repo, and never put a <em>paid</em> key in front-end code. A free, no-card key in your own browser is fine for learning.</li>
+        <li><strong>A bot anyone can use (like this one):</strong> put the key in a free <strong>Cloudflare Worker</strong> (server-side); the public page calls the Worker. Neither Cloudflare nor Gemini needs a card. This keeps the key invisible to visitors.</li>
+      </ul>
+
+      <h3>Other free, no-card options</h3>
+      <ul>
+        <li><strong>Groq</strong>, free API, very fast, runs open models.</li>
+        <li><strong>OpenRouter</strong>, offers a selection of free models.</li>
+        <li><strong>Ollama</strong>, run a model on your own laptop, no key, no internet needed, totally free.</li>
+        <li><strong>Hugging Face</strong>, a free inference tier.</li>
+      </ul>
+      <p>Limits and model names change, so check each provider for what's current. One rule never changes: <em>a key is a password.</em> Free or paid, never hardcode it in a public page or commit it to git.</p>
+    </div></div></div>
+  </article>
+
+  <!-- 6 -->
   <article class="card" data-open="true" id="share">
     <button class="card__toggle" aria-expanded="true">
-      <span class="card__n">5</span><h2 class="card__title">Share it</h2>
+      <span class="card__n">6</span><h2 class="card__title">Share it</h2>
       <svg class="card__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="card__body"><div><div class="card__inner">
@@ -354,7 +412,7 @@ footer a{color:var(--ink-3)}
 
 The 80% problem: customers import US bats with USA Softball or USSSA stamps, then get turned away at WBSC Europe bat-check. Paste a bat code (try ASPDAW25A) and it checks the real official approved-bat list (3,646 bats) and gives a verdict.
 
-Built with two strategist agents (technical + business) and the Five Innovators workflow. It uses a live LLM (GPT-4o-mini) for conversation, with the API key kept server-side in a Cloudflare Worker, never in the page. The model talks, the list decides.
+Built with two strategist agents (technical + business) and the Five Innovators workflow. It uses a live LLM (Gemini, Google's free tier, no credit card) for conversation, with the API key kept server-side in a Cloudflare Worker, never in the page. The model talks, the list decides.
 
 Live: https://victordelrosal.com/boru-bats-chatbot/
 Write-up: https://victordelrosal.com/boru-bats-chatbot/build.html</div>

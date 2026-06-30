@@ -1,8 +1,11 @@
-// Boru Bats LLM proxy. Holds the OpenRouter API key server-side as a secret.
+// Boru Bats LLM proxy. Holds the Google AI Studio (Gemini) API key server-side as a secret.
 // The static GitHub Pages chatbot calls this; the key never ships to the browser.
 // "The model talks, the list decides": specific bat-legality lookups are done
 // deterministically on the client against the official approved-bat dataset.
 // This proxy handles natural conversation, fitting advice, and freeform questions.
+//
+// Powered by Google's Gemini free tier (no credit card). If the free rate limit is hit,
+// Gemini returns an error and the chatbot quietly falls back to its scripted answers.
 
 const ALLOW = [
   "https://victordelrosal.com",
@@ -13,8 +16,8 @@ const ALLOW = [
   "null" // file:// during local testing
 ];
 
-const MODEL = "openai/gpt-4o-mini";
-const MAX_TOKENS = 380;
+const MODEL = "gemini-2.5-flash";
+const MAX_TOKENS = 400;
 
 const SYSTEM = `You are Brian, the friendly assistant for Boru Bats, a specialist slowpitch softball bat shop in Galway, Republic of Ireland.
 
@@ -71,23 +74,25 @@ export default {
       .map(m => ({ role: m.role, content: m.content.slice(0, 1200) }));
     if (!msgs.length) return json({ error: "no messages" }, 400, origin);
 
+    // Map to Gemini's format: assistant -> "model", system prompt via system_instruction.
+    const contents = msgs.map(m => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }]
+    }));
+
     const payload = {
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      temperature: 0.5,
-      messages: [{ role: "system", content: SYSTEM }, ...msgs]
+      system_instruction: { parts: [{ text: SYSTEM }] },
+      contents,
+      generationConfig: { maxOutputTokens: MAX_TOKENS, temperature: 0.5 }
     };
+
+    const url = "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent?key=" + env.GEMINI_API_KEY;
 
     let r;
     try {
-      r = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      r = await fetch(url, {
         method: "POST",
-        headers: {
-          "Authorization": "Bearer " + env.OPENROUTER_API_KEY,
-          "Content-Type": "application/json",
-          "HTTP-Referer": "https://victordelrosal.com/boru-bats-chatbot/",
-          "X-Title": "Boru Bats Assistant"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
     } catch (e) {
@@ -96,10 +101,12 @@ export default {
 
     if (!r.ok) {
       const tx = await r.text();
+      // 429 = free-tier rate limit hit; the client falls back to scripted answers.
       return json({ error: "upstream", status: r.status, detail: tx.slice(0, 300) }, 502, origin);
     }
     const data = await r.json();
-    const reply = data?.choices?.[0]?.message?.content || "Sorry, I didn't catch that. Could you rephrase, or type 'talk to a human'?";
+    const reply = data?.candidates?.[0]?.content?.parts?.map(p => p.text).join("") ||
+      "Sorry, I didn't catch that. Could you rephrase, or type 'talk to a human'?";
     return json({ reply }, 200, origin);
   }
 };
