@@ -675,5 +675,16 @@ form.addEventListener('submit', e=>{ e.preventDefault(); handleInput(input.value
   await addBot(`Or just ask me anything, fitting, shipping, returns. How can I help?`, 700);
 })();
 </script>
+<script>
+window.addEventListener('load',()=>{
+  setTimeout(async ()=>{
+    if(!batsReady){ try{ const r=await fetch('bats.json'); const dd=await r.json();
+      BATS=dd.bats||[]; batsTotal=(dd.meta&&dd.meta.total)||BATS.length;
+      BATS.forEach(b=>{BAT_BY_MODEL.set(normCode(b.m),b);BAT_BY_KEY.set(normCode(b.k),b);}); batsReady=true; }catch(e){} }
+    await handleInput('I am 60 and not very strong, which bat should I buy?');
+    await handleInput('ASPDAW25A');
+  }, 3600);
+});
+</script>
 </body>
 </html>
