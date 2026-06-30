@@ -83,7 +83,9 @@ export default {
     const payload = {
       system_instruction: { parts: [{ text: SYSTEM }] },
       contents,
-      generationConfig: { maxOutputTokens: MAX_TOKENS, temperature: 0.5 }
+      // thinkingBudget 0 disables Gemini 2.5 Flash's "thinking" so the whole token
+      // budget goes to the actual answer (no truncated replies) and it's faster.
+      generationConfig: { maxOutputTokens: MAX_TOKENS, temperature: 0.5, thinkingConfig: { thinkingBudget: 0 } }
     };
 
     const url = "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent?key=" + env.GEMINI_API_KEY;
