@@ -242,8 +242,8 @@ footer a{color:var(--amber)}
 </main>
 
 <footer>
-  Five master smiths · Gemini 2.5 Flash (free tier) + live lookup against the real approved-bat list ·
-  <a href="build.html">how this was built</a> · class demo (fictional company) · NCI CEAI 2026 · always verify legality against the official WBSC Europe list
+  Boru Bats · five expert consultants · WBSC Europe-legal slowpitch bats, sourced across Europe ·
+  wired to the live <a href="https://bats-kluxy.pages.dev/" target="_blank" rel="noopener">approved-bat checker</a> · final legality is always set by the official WBSC Europe list
 </footer>
 
 <script>
@@ -376,7 +376,7 @@ const KB = [
     reply:`<span class="tag info">TALK TO A HUMAN</span><p class="lede">Of course, our team is happy to help, especially to verify a specific bat or confirm stock:</p>
     <ul>
       <li>Email: <a href="mailto:help@borubats.ie">help@borubats.ie</a></li>
-      <li>Phone: +353 (0)91 000 000, Mon–Sat</li>
+      <li>We reply same day, Monday to Saturday.</li>
     </ul>`
   },
   {
@@ -449,7 +449,62 @@ function nomatchMsg(){
     <li>The code is slightly off, worth double-checking the barrel.</li>
     <li>It simply isn't on the WBSC Europe or USA Softball approved lists.</li>
   </ul>
-  <p>Send a clear photo of the barrel to <a href="mailto:help@borubats.ie">help@borubats.ie</a>, browse the full list at <a href="https://bats.kluxy.app" target="_blank" rel="noopener">bats.kluxy.app</a>, or type <strong>talk to a human</strong>.</p>`;
+  <p>Send a clear photo of the barrel to <a href="mailto:help@borubats.ie">help@borubats.ie</a>, browse the full searchable list on the <a href="https://bats-kluxy.pages.dev/" target="_blank" rel="noopener">approved-bat checker</a>, or type <strong>talk to a human</strong>.</p>`;
+}
+
+/* ----- live approved-list auto-check (wires the consultant to the real bat data) ----- */
+const KNOWN_BRANDS = ['louisville slugger','soldier sports','demarini','monsta','anarchy','worth','easton','miken','louisville','marucci','mizuno','rawlings','combat','suncoast','victus','boombah','stringking','pure','axe'];
+const BRAND_DISPLAY = {demarini:'DeMarini',miken:'Miken',monsta:'Monsta',anarchy:'Anarchy',worth:'Worth',easton:'Easton','louisville slugger':'Louisville Slugger',louisville:'Louisville Slugger',marucci:'Marucci',mizuno:'Mizuno',rawlings:'Rawlings',combat:'Combat',suncoast:'Suncoast',victus:'Victus',boombah:'Boombah',stringking:'StringKing',pure:'Pure',axe:'Axe','soldier sports':'Soldier Sports'};
+const STOP = new Set(['series','barrel','balanced','endloaded','end','loaded','load','the','and','with','oz','version','model','bat','bats','m5','m2','1pc','2pc','one','two','piece','usa','usssa','wbsc','asa','max','maxload','pro','for']);
+function titleCase(s){ return s.replace(/\b([a-z])/g,(_,c)=>c.toUpperCase()); }
+function searchByName(brand, phrase){
+  const cands = BATS.filter(b=>{ const mf=(b.mf||'').toLowerCase(); return mf.includes(brand)||brand.includes(mf); });
+  if(!cands.length) return {brandKnown:false};
+  const toks = phrase.toLowerCase().split(/[^a-z0-9]+/).filter(t=>t && !STOP.has(t) && !brand.includes(t) && t.length>1 && !/^\d+$/.test(t));
+  let best=null, bestScore=0;
+  for(const b of cands){ const hay=((b.m||'')+' '+(b.d||'')).toLowerCase(); let s=0; toks.forEach(t=>{ if(hay.includes(t)) s++; }); if(s>bestScore){bestScore=s;best=b;} }
+  const anyLegal = cands.some(b=>b.w);
+  let legalVariant = null;
+  if(toks.length) legalVariant = cands.find(b=>b.w && toks.every(t=>((b.m||'')+' '+(b.d||'')).toLowerCase().includes(t)));
+  return {brandKnown:true, found:bestScore>0, best, legal:best&&best.w, legalVariant, anyLegal};
+}
+const PHRASE_STOP = new Set(['the','a','an','or','are','is','also','both','for','with','to','that','which','my','your','top','best','of','in','on','series','version','model','i','d','you','it','they','them','can','could','would']);
+function extractMentions(text){
+  const t=' '+text.toLowerCase()+' '; const out=[]; const used=[];
+  for(const brand of KNOWN_BRANDS){
+    let idx=0;
+    while((idx=t.indexOf(brand, idx))!==-1){
+      // skip if this position already consumed by a longer brand (e.g. 'louisville slugger' vs 'louisville')
+      if(used.some(([a,b])=>idx>=a&&idx<b)){ idx+=brand.length; continue; }
+      used.push([idx, idx+brand.length]);
+      const after=t.slice(idx+brand.length).split(/[^a-z0-9]+/).filter(Boolean);
+      const words=[];
+      for(const w of after){ if(words.length>=3) break; if(KNOWN_BRANDS.includes(w)||PHRASE_STOP.has(w)) break; words.push(w); }
+      const phrase=words.join(' ');
+      out.push({brand, phrase, label:(BRAND_DISPLAY[brand]||titleCase(brand))+(phrase?' '+titleCase(phrase):'')});
+      idx+=brand.length;
+    }
+  }
+  return out;
+}
+function showCode(b){ return esc(b.m || b.k); }
+function checkMention(m){
+  const r=searchByName(m.brand, m.phrase);
+  if(!r.brandKnown) return null;
+  if(r.found && r.legal) return `<li><span class="tag ok" style="margin:0 6px 0 0">WBSC ✓</span><strong>${esc(m.label)}</strong> &middot; code <span class="mono">${showCode(r.best)}</span></li>`;
+  if(r.found && r.legalVariant) return `<li><span class="tag ok" style="margin:0 6px 0 0">WBSC ✓</span><strong>${esc(m.label)}</strong> &middot; legal version on the list: <span class="mono">${showCode(r.legalVariant)}</span> (avoid the USSSA version)</li>`;
+  if(r.found) return `<li><span class="tag warn" style="margin:0 6px 0 0">NOT LEGAL ✕</span><strong>${esc(m.label)}</strong> &middot; only USA/USSSA versions are on the list (e.g. <span class="mono">${showCode(r.best)}</span>), not WBSC Europe legal</li>`;
+  return `<li><span class="tag info" style="margin:0 6px 0 0">CHECK</span><strong>${esc(m.label)}</strong> &middot; ${r.anyLegal?`couldn't pin the exact model, but ${BRAND_DISPLAY[m.brand]||m.brand} has WBSC-legal options, paste the barrel code to confirm`:`${BRAND_DISPLAY[m.brand]||m.brand} has no WBSC-legal models on the approved list`}</li>`;
+}
+function autoCheck(text){
+  if(!batsReady) return false;
+  const mentions=extractMentions(text);
+  if(!mentions.length) return false;
+  const seen=new Set(); const items=[];
+  for(const m of mentions){ const key=m.brand+'|'+m.phrase; if(seen.has(key)) continue; seen.add(key); const li=checkMention(m); if(li) items.push(li); if(items.length>=6) break; }
+  if(!items.length) return false;
+  addBotNow(`<span class="tag info">LIVE CHECK · official approved-bat list</span><p class="lede">I ran those through our live approved-list. Here's where they stand for WBSC Europe play:</p><ul>${items.join('')}</ul><p>Paste any exact barrel code for a precise single check and I'll source the WBSC-legal version for you.</p>`);
+  return true;
 }
 
 /* ----- guided "check my bat" flow ----- */
@@ -529,6 +584,7 @@ function renderChips(){
 /* ----- LLM (the chosen consultant talks; the list decides legality) ----- */
 const LLM_ENDPOINT = "https://boru-bats-bot.victordelrosal.workers.dev";
 const convo = [];
+let lastBatText = '';   // text of the consultant's last reply, for "check those bats" requests
 function showConferring(){
   const others = CONSULTANTS.filter(c=>c.id!==agent.id).slice(0,4)
     .map(c=>`<img src="${c.img}" alt="${esc(c.name)}">`).join('');
@@ -587,6 +643,13 @@ async function handleInput(text){
   const res = findReply(text);
   if(res.id==='human'){ await addBot(res.reply, 500); busy=false; return; }
 
+  // 3b) "look up / check those bats" -> verify the last recommendation against the live list
+  if(lastBatText &&
+     /\b(look ?up|check|verify|legal|are (they|those|these)|which ones)\b/.test(text.toLowerCase()) &&
+     /\b(code|codes|those|these|them|all|five|5|recommend|recommended|bats|list|top|each)\b/.test(text.toLowerCase())){
+    if(autoCheck(lastBatText)){ busy=false; return; }
+  }
+
   // 4) the consultant confers with the team, then answers (LLM); graceful fallback to scripted KB
   const conf = showConferring();
   const llm = await callLLM();
@@ -594,6 +657,8 @@ async function handleInput(text){
   if(llm){
     convo.push({role:'assistant', content:llm});
     addBotNow(formatLLM(llm));
+    lastBatText = llm;
+    autoCheck(llm);          // wired to the live list: verify every bat the consultant names
   } else if(res.reply){
     await addBot(res.reply, 150);
   } else {
