@@ -215,7 +215,7 @@ footer a{color:var(--ink-3)}
   <div class="container">
     <p class="eyebrow">NCI · Customer Engagement and AI · Build a chatbot</p>
     <h1>An AI support agent that kills one <em>80% problem</em> for a niche Irish retailer.</h1>
-    <p class="lede">This is the full method behind the Boru Bats chatbot: a fictional Galway slowpitch-bat shop where 8 in 10 customer messages are the same question, "is this bat legal?". Two strategist agents shaped it, the Five Innovators workflow drove it, and it ships as a static GitHub Pages site with no server and no exposed keys.</p>
+    <p class="lede">This is the full method behind the Boru Bats chatbot: a fictional Galway slowpitch-bat shop where 8 in 10 customer messages are the same question, "is this bat legal?". Two strategist agents shaped it and the Five Innovators workflow drove it. It checks a real bat code against the official <em>3,646-bat</em> approved list, and answers everything else with a live LLM behind a secure proxy. The principle: <em>the model talks, the list decides.</em></p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://victordelrosal.com/boru-bats-chatbot/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -261,8 +261,9 @@ footer a{color:var(--ink-3)}
 
       <div class="agent">
         <div class="agent__who"><span class="pill">Tech agent</span> Conversational-AI engineer</div>
-        <p><strong>Architecture call:</strong> a <em>pure client-side intent bot</em>, not a live LLM. The 80% problem is narrow, rule-based and high-stakes for accuracy, exactly where a scripted, auditable bot beats a model that might hallucinate the one legal fact that must never be wrong. Zero hosting cost, zero secrets, perfect fit for GitHub Pages.</p>
-        <p><strong>The non-negotiable lesson:</strong> never hardcode an API key in front-end code. A GitHub Pages site ships every file to the browser, anyone can read it via "View Source", and the key lives in public git history forever. Secrets belong only on a server you control. A static bot sidesteps the problem by needing no secret at all.</p>
+        <p><strong>Architecture call:</strong> keep the high-stakes part deterministic. The 80% problem (legality) must never be a guess, so a real bat code is matched against the official approved-bat list in the browser, no model involved. A live LLM was flagged as the right "phase 2" for natural conversation, via a server-side proxy, never with a key in the page.</p>
+        <p><strong>What shipped is exactly that hybrid:</strong> the legality lookup runs client-side against the 3,646-bat dataset (instant, free, auditable), while a live LLM (GPT-4o-mini) handles fitting, shipping and freeform chat through a Cloudflare Worker that holds the API key as a server-side secret. <em>The model talks, the list decides.</em></p>
+        <p><strong>The non-negotiable lesson:</strong> never hardcode an API key in front-end code. A GitHub Pages site ships every file to the browser, anyone can read it via "View Source", and the key lives in public git history forever. So the key lives only inside the Worker; the public page calls the Worker, which adds the key and forwards to the LLM.</p>
         <p><strong>Also specified:</strong> 7 intents weighted toward certification; quick-reply chips on every turn; a typing indicator; an always-visible "talk to a human"; and a cap of two failed inputs before auto-escalation so a panicked customer never hits a dead end.</p>
       </div>
 
@@ -295,7 +296,7 @@ footer a{color:var(--ink-3)}
       <ol class="steps">
         <li><strong>Research</strong> confirmed the legal facts and the closed allow-list approach (only WBSC Europe marks pass).</li>
         <li><strong>Design</strong> locked the static-only architecture and the intent map from the two agents.</li>
-        <li><strong>Make</strong> wrote one self-contained <code>index.html</code> (inline CSS/JS, no dependencies), generated a 1200x630 share image, then <code>git push</code> to a public repo and enabled GitHub Pages.</li>
+        <li><strong>Make</strong> wrote the <code>index.html</code> app, slimmed the official 3,646-bat dataset into <code>bats.json</code>, built a Cloudflare Worker that holds the LLM key as a secret, then <code>git push</code> to a public repo and enabled GitHub Pages.</li>
         <li><strong>Market</strong> wrapped it in a positioning line and a preview card so a shared link sells itself.</li>
         <li><strong>Manage</strong> ran the acceptance checks (below), confirmed a 200 on the live URL and a correct answer to a US-import question, then signed it off.</li>
       </ol>
@@ -309,22 +310,24 @@ footer a{color:var(--ink-3)}
       <svg class="card__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="card__body"><div><div class="card__inner">
-      <h3>Intent matching</h3>
-      <p>Every message is scored against a small set of intents (certification, US imports, second-hand stamps, fitting, shipping, returns, pricing, human handoff). The best-scoring intent returns a curated, correct answer. No model, no guessing, the legal answers are deterministic.</p>
-      <h3>The "is my bat legal?" guided flow</h3>
-      <p>Typing <code>check my bat</code> starts a short branching script: it asks which mark is on the barrel, branches on the answer (WBSC = good start, USA/USSSA = not recognised here, none = identify the model), then explains the one reliable test, check the exact model against the current approved list, and offers a free human verification.</p>
-      <h3>Why static is the right call</h3>
+      <h3>The list decides: real bat-code lookup</h3>
+      <p>Type a model code from the barrel and the bot matches it against <code>bats.json</code>, a slimmed copy of the official lists (2,281 WBSC-approved, 1,888 USA Softball, 3,646 total). The verdict is exact, with the date the bat was added:</p>
       <ul>
-        <li><strong>No backend</strong> to host or break, it is just files on GitHub Pages.</li>
-        <li><strong>No secret anywhere</strong> in the shipped source, so nothing to leak.</li>
-        <li><strong>Deterministic legal answers</strong>, the one place accuracy matters most.</li>
+        <li>On the <strong>WBSC</strong> list, legal for tournament play here.</li>
+        <li>On the <strong>USA Softball</strong> list only, not recognised under WBSC Europe, refused at bat-check.</li>
+        <li>Not found, it tells you, and points to a human and the full searchable list.</li>
       </ul>
+      <p>Example: <code>ASPDAW25A</code> returns "Anarchy Shock and Dawe, USA Softball only, not legal here", because that is what the official data says. No guessing.</p>
+      <h3>The model talks: a real LLM, kept safe</h3>
+      <p>Anything that isn't a code (fitting advice, shipping, freeform questions) goes to a live LLM, <strong>GPT-4o-mini</strong>, through a Cloudflare Worker. The Worker holds the API key as a server-side secret and adds a Boru Bats system prompt, so the model stays in character and the key never reaches the browser. If the LLM is ever unreachable, the bot falls back to scripted answers, so it never dies.</p>
+      <h3>A code detector that won't misfire</h3>
+      <p>A naive "contains a number" rule would send "I'm 60 and not very strong" to the bat list and wrongly answer "not found". The detector only treats a token as a code when it is five or more characters mixing letters and digits, so ages, weights and dates flow to the LLM instead.</p>
       <h3>Acceptance checks that had to pass</h3>
       <ul>
-        <li>A non-WBSC stamp is flagged "not recognised", with the reason, every time.</li>
-        <li>The legality flow finishes in a few taps, no typing needed.</li>
-        <li>A human is reachable from any point in the chat.</li>
-        <li>No key or token appears anywhere in the source or git history.</li>
+        <li>A real USA-only code returns "not legal here" with the reason and date, verified with <code>ASPDAW25A</code>.</li>
+        <li>A real WBSC code returns "legal", verified with <code>AXEL101</code>.</li>
+        <li>A natural sentence with a number routes to the LLM, not the list.</li>
+        <li>The API key appears only in the Worker secret, never in the page or git history.</li>
         <li>The live URL returns 200 and renders the real app (verified by screenshot).</li>
       </ul>
     </div></div></div>
@@ -349,9 +352,9 @@ footer a{color:var(--ink-3)}
         </div>
         <div class="paste-ready__body" id="paste-1">My chatbot is live: Boru Bats, a fictional Galway shop selling slowpitch softball bats.
 
-The 80% problem: customers import US bats with USA Softball or USSSA stamps, then get turned away at WBSC Europe bat-check. The bot answers "is this bat legal?" and routes them to a compliant bat.
+The 80% problem: customers import US bats with USA Softball or USSSA stamps, then get turned away at WBSC Europe bat-check. Paste a bat code (try ASPDAW25A) and it checks the real official approved-bat list (3,646 bats) and gives a verdict.
 
-Built with two strategist agents (technical + business) and the Five Innovators workflow. Static site, no backend, no exposed API key.
+Built with two strategist agents (technical + business) and the Five Innovators workflow. It uses a live LLM (GPT-4o-mini) for conversation, with the API key kept server-side in a Cloudflare Worker, never in the page. The model talks, the list decides.
 
 Live: https://victordelrosal.com/boru-bats-chatbot/
 Write-up: https://victordelrosal.com/boru-bats-chatbot/build.html</div>
