@@ -4,17 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boru Bats: The High King's Armoury</title>
-<meta name="description" content="Boru Bats support assistant. Slowpitch softball bats certified legal for WBSC Europe tournament play, shipped across Ireland. Paste your bat code and find out if it's legal.">
+<meta name="description" content="The ultimate slowpitch softball bat picker for Europe. Five elite consultants find the hottest, best-value, tournament-legal bat for your swing, and source it across Ireland, the UK and mainland Europe.">
 <meta name="theme-color" content="#0f0e0c">
 
-<!-- Brand mark: one SVG = favicon + apple-touch + navbar logo (forge shield + bat) -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0c'/%3E%3Cpath d='M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z' fill='none' stroke='%23e0992f' stroke-width='2.5'/%3E%3Crect x='30' y='16' width='4.5' height='30' rx='2.2' transform='rotate(34 32 31)' fill='%23ff6a1a'/%3E%3Ccircle cx='24' cy='44' r='3' fill='%23e0992f'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0c'/%3E%3Cpath d='M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z' fill='none' stroke='%23e0992f' stroke-width='2.5'/%3E%3Crect x='30' y='16' width='4.5' height='30' rx='2.2' transform='rotate(34 32 31)' fill='%23ff6a1a'/%3E%3Ccircle cx='24' cy='44' r='3' fill='%23e0992f'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.webmanifest">
 
-<!-- Open Graph / social preview -->
-<meta property="og:title" content="Boru Bats: Is your bat tournament-legal?">
-<meta property="og:description" content="Ask the Boru Bats armourer. We stock only WBSC Europe certified slowpitch bats and ship across Ireland. Paste a bat code for an instant verdict.">
+<meta property="og:title" content="Boru Bats: The High King's Armoury">
+<meta property="og:description" content="The ultimate slowpitch bat picker for Europe. Five elite consultants find the hottest, best-value, tournament-legal bat for your swing.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="og.png">
 <meta property="og:image:width" content="1200">
@@ -39,7 +37,7 @@ html{scroll-behavior:smooth}
 body{
   margin:0; color:var(--ash); background:var(--forge);
   font-family:"Fraunces",Georgia,serif; font-optical-sizing:auto; font-size:16px; line-height:1.6;
-  -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; overflow:hidden;
+  -webkit-font-smoothing:antialiased; height:100vh; display:flex; flex-direction:column; overflow:hidden;
 }
 #forge{position:fixed; inset:0; width:100%; height:100%; z-index:0; display:block}
 .grain{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
@@ -50,7 +48,7 @@ body{
 .skip:focus{left:0}
 
 /* Navbar */
-.nav{position:sticky; top:0; z-index:100; height:64px; display:flex; align-items:center; gap:14px; padding:0 22px;
+.nav{position:sticky; top:0; z-index:100; height:64px; display:flex; align-items:center; gap:14px; padding:0 22px; flex:none;
   background:rgba(15,14,12,.72); backdrop-filter:saturate(160%) blur(18px); -webkit-backdrop-filter:saturate(160%) blur(18px);
   border-bottom:1px solid var(--line);}
 .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
@@ -63,24 +61,54 @@ body{
 .nav__ship{font-size:12px;color:var(--ash-dim);text-align:right;letter-spacing:.01em}
 .nav__ship b{color:var(--amber);font-weight:600}
 
-/* Layout */
-.wrap{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;padding:16px 16px 0;min-height:0}
-.chat-card{width:100%;max-width:780px;flex:1;display:flex;flex-direction:column;min-height:0;max-height:calc(100vh - 104px);
+/* Stage wrapper (scrolls for the picker) */
+.wrap{flex:1;min-height:0;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:18px 16px 0}
+
+/* ---------- Consultant picker ---------- */
+#picker{width:100%;max-width:1000px;margin:0 auto;padding-bottom:24px;animation:fadeUp .5s cubic-bezier(.22,1,.36,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pick-hero{text-align:center;margin:8px 0 22px}
+.pick-eyebrow{font-family:"Cinzel",serif;letter-spacing:.36em;text-transform:uppercase;font-size:10px;color:var(--amber);margin-bottom:12px}
+.pick-hero h1{font-family:"Fraunces",serif;font-weight:340;font-size:clamp(26px,4.6vw,46px);line-height:1.05;margin:0;color:var(--ash-bright);letter-spacing:-.01em}
+.pick-hero h1 em{font-style:italic;color:var(--amber)}
+.pick-hero p{max-width:60ch;margin:14px auto 0;color:var(--ash-dim);font-size:clamp(14px,1.7vw,16.5px)}
+.pick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(176px,1fr));gap:14px}
+.pick-card{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;
+  background:linear-gradient(180deg,rgba(29,26,22,.5),rgba(15,14,12,.7));text-align:left;color:inherit;font:inherit;padding:0;
+  transition:transform .2s,border-color .2s,box-shadow .2s}
+.pick-card:hover,.pick-card:focus-visible{transform:translateY(-4px);border-color:var(--amber);box-shadow:0 18px 40px -18px rgba(0,0,0,.7),0 0 26px -10px var(--amber-glow);outline:none}
+.pick-card .pf{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden}
+.pick-card .pf img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:saturate(1.02)}
+.pick-card .pf::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(15,14,12,.86))}
+.pick-card .pc{position:relative;padding:0 14px 14px;margin-top:-34px;z-index:1}
+.pc-name{font-family:"Cinzel",serif;font-weight:700;font-size:15px;color:var(--ash-bright);letter-spacing:.02em}
+.pc-role{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:5px 0 8px}
+.pc-blurb{font-size:13px;color:var(--ash-dim);line-height:1.45}
+.pc-cta{margin-top:11px;font-family:"Cinzel",serif;font-size:11px;letter-spacing:.1em;color:var(--amber);display:flex;align-items:center;gap:6px;opacity:.9}
+.pick-card:hover .pc-cta{color:#fff}
+
+/* ---------- Chat ---------- */
+.chat-card{width:100%;max-width:780px;flex:1;display:none;flex-direction:column;min-height:0;max-height:calc(100vh - 104px);
   border:1px solid var(--line); border-radius:18px; overflow:hidden; position:relative;
   background:linear-gradient(180deg,rgba(29,26,22,.6),rgba(15,14,12,.74));
   backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%);
   box-shadow:0 30px 80px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.04);}
+.chat-card.active{display:flex}
 .chat-card::before,.chat-card::after{content:"";position:absolute;width:11px;height:11px;border:1.5px solid var(--amber);opacity:.55;z-index:3}
 .chat-card::before{top:10px;left:10px;border-right:0;border-bottom:0;border-radius:3px 0 0 0}
 .chat-card::after{bottom:10px;right:10px;border-left:0;border-top:0;border-radius:0 0 3px 0}
 
-.chat-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
-.agent-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(180deg,#ffb24d,#e0992f);display:grid;place-items:center;flex:none;box-shadow:0 0 18px -4px var(--amber-glow)}
-.agent-av svg{width:22px;height:22px;stroke:#1a1206}
-.chat-head__name{font-family:"Cinzel",serif;font-weight:700;font-size:14px;letter-spacing:.04em;color:var(--ash-bright)}
+.chat-head{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.agent-av{width:42px;height:42px;border-radius:50%;flex:none;overflow:hidden;box-shadow:0 0 0 1.5px var(--amber),0 0 16px -4px var(--amber-glow)}
+.agent-av img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.chat-head__txt{display:flex;flex-direction:column;line-height:1.25;flex:1;min-width:0}
+.chat-head__name{font-family:"Cinzel",serif;font-weight:700;font-size:14px;letter-spacing:.03em;color:var(--ash-bright)}
 .chat-head__status{font-size:11.5px;color:var(--ash-dim);display:flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--ember);box-shadow:0 0 8px var(--ember);animation:pulse 2.4s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.change-btn{flex:none;font-family:"Cinzel",serif;font-size:10.5px;letter-spacing:.08em;color:var(--ash-dim);background:transparent;
+  border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;transition:.16s}
+.change-btn:hover{border-color:var(--amber);color:var(--amber)}
 
 .messages{flex:1;overflow-y:auto;padding:22px 18px 8px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
 .messages::-webkit-scrollbar{width:9px}
@@ -89,7 +117,8 @@ body{
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .msg.bot{align-self:flex-start}
 .msg.user{align-self:flex-end;flex-direction:row-reverse}
-.msg__av{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--amber-soft);color:var(--amber);border:1px solid var(--line)}
+.msg__av{width:32px;height:32px;border-radius:50%;flex:none;overflow:hidden;display:grid;place-items:center;background:var(--amber-soft);color:var(--amber);border:1px solid var(--line)}
+.msg__av img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .msg.user .msg__av{background:linear-gradient(180deg,#ffb24d,#e0992f);color:#1a1206;border-color:transparent}
 .msg__av svg{width:16px;height:16px}
 .bubble{padding:12px 15px;border-radius:14px;font-size:15px;line-height:1.55;word-wrap:break-word;
@@ -112,6 +141,16 @@ body{
 .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
 
+/* conferring with the team */
+.confer .bubble{display:flex;flex-direction:column;gap:9px}
+.confer-txt{font-style:italic;color:var(--ash-dim);font-size:14px}
+.confer-faces{display:flex;align-items:center}
+.confer-faces img{width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:center 20%;border:1.5px solid var(--forge-2);margin-left:-7px;
+  animation:bob 1.4s infinite ease-in-out}
+.confer-faces img:first-child{margin-left:0}
+.confer-faces img:nth-child(2){animation-delay:.15s}.confer-faces img:nth-child(3){animation-delay:.3s}.confer-faces img:nth-child(4){animation-delay:.45s}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(-3px);opacity:1}}
+
 .chips{display:flex;flex-wrap:wrap;gap:8px;padding:4px 18px 14px}
 .chip{font-family:"Fraunces",serif;font-size:13px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);
   background:transparent;color:var(--ash);cursor:pointer;transition:all .16s}
@@ -128,15 +167,16 @@ body{
 .send:active{transform:scale(.95)}
 .send svg{width:20px;height:20px}
 
-footer{text-align:center;padding:14px 16px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ash-dim);position:relative;z-index:2;line-height:1.7}
+footer{text-align:center;padding:12px 16px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ash-dim);position:relative;z-index:2;line-height:1.7;flex:none}
 footer a{color:var(--amber)}
 
 :focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:6px}
 
 @media (max-width:600px){
-  .chat-card{max-height:calc(100vh - 92px);border-radius:14px}
+  .chat-card{max-height:calc(100vh - 150px);border-radius:14px}
   .nav__ship{display:none}
   .msg{max-width:94%}
+  .pick-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -149,7 +189,7 @@ footer a{color:var(--amber)}
 <div class="grain" aria-hidden="true"></div>
 
 <nav class="nav">
-  <a class="brand" href="#" aria-label="Boru Bats home">
+  <a class="brand" href="#" aria-label="Boru Bats home" onclick="showPicker();return false;">
     <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
       <rect width="64" height="64" rx="14" fill="#0f0e0c"/>
       <path d="M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z" fill="none" stroke="#e0992f" stroke-width="2.5"/>
@@ -162,19 +202,30 @@ footer a{color:var(--amber)}
     </span>
   </a>
   <span class="spacer"></span>
-  <div class="nav__ship">Galway forge · ships all-Ireland<br><b>within the week</b></div>
+  <div class="nav__ship">Bat picker for all of Europe · <b>sourced to your door</b></div>
 </nav>
 
 <main class="wrap" id="main">
-  <section class="chat-card" aria-label="Boru Bats support chat">
+
+  <!-- Consultant picker -->
+  <section id="picker" aria-label="Choose your bat consultant">
+    <div class="pick-hero">
+      <div class="pick-eyebrow">The High King's Armoury</div>
+      <h1>Find the <em>hottest bat for your swing</em>, at the right price, and get it sourced.</h1>
+      <p>Five of Europe's best slowpitch bat consultants. Pick who you'd like to work with, tell them your specs, and they'll confer with the team to find your perfect, tournament-legal bat, then track it down anywhere in Europe.</p>
+    </div>
+    <div class="pick-grid" id="pickGrid"></div>
+  </section>
+
+  <!-- Chat -->
+  <section class="chat-card" id="chatCard" aria-label="Boru Bats consultant chat">
     <div class="chat-head">
-      <div class="agent-av" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      </div>
+      <div class="agent-av" id="agentAv" aria-hidden="true"></div>
       <div class="chat-head__txt">
-        <span class="chat-head__name">Brian, the armourer</span>
-        <span class="chat-head__status"><span class="dot"></span> Online · WBSC Europe certification help</span>
+        <span class="chat-head__name" id="agentName">Consultant</span>
+        <span class="chat-head__status"><span class="dot"></span> <span id="agentStatus">Online</span></span>
       </div>
+      <button class="change-btn" type="button" onclick="showPicker()">Change consultant</button>
     </div>
 
     <div class="messages" id="messages" aria-live="polite" aria-atomic="false"></div>
@@ -182,7 +233,7 @@ footer a{color:var(--amber)}
     <div class="chips" id="chips"></div>
 
     <form class="composer" id="composer" autocomplete="off">
-      <input id="composer-input" type="text" placeholder="Paste a bat code (e.g. ASPDAW25A) or ask anything…" aria-label="Type your message" />
+      <input id="composer-input" type="text" placeholder="Tell them your specs, or paste a bat code…" aria-label="Type your message" />
       <button class="send" type="submit" aria-label="Send message">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
@@ -191,19 +242,66 @@ footer a{color:var(--amber)}
 </main>
 
 <footer>
-  Boru Bats armourer · Gemini 2.5 Flash (free tier) + live lookup against the real approved-bat list ·
+  Five master smiths · Gemini 2.5 Flash (free tier) + live lookup against the real approved-bat list ·
   <a href="build.html">how this was built</a> · class demo (fictional company) · NCI CEAI 2026 · always verify legality against the official WBSC Europe list
 </footer>
 
 <script>
+/* ---------- Consultants ---------- */
+const CONSULTANTS = [
+  { id:'mateo', name:'Mateo Rivas', first:'Mateo', img:'img/mateo.jpg',
+    role:'Power & end-load',
+    blurb:'Ex-pro power hitter. End-loaded bats, big barrels, maximum pop. If you want to go yard, start here.',
+    status:'Power specialist · end-loaded, big barrels',
+    intro:[`¡Vamos! I'm <strong>Mateo</strong>. If you want to hit it a country mile, you're talking to the right guy: end-load, big barrels, pure pop. ⚒`,
+           `Tell me how heavy you swing and what you're mashing with now, and I'll find you a hammer. What's your weight and your level?`],
+    chips:['I want maximum power','27oz, over the fence','Hottest power bat right now?','Source a sold-out bat','Check my bat (legality)'] },
+
+  { id:'saoirse', name:'Saoirse Nolan', first:'Saoirse', img:'img/saoirse.jpg',
+    role:'Fit & balance',
+    blurb:'Team Ireland alumna. Matches balance, weight and swing speed to how you actually hit. Brilliant for contact hitters.',
+    status:'Fit specialist · balance, swing speed, control',
+    intro:[`Hi, I'm <strong>Saoirse</strong>. I match the bat to how you actually swing: balance, weight, bat speed. ⚒`,
+           `Quick start: are you more a control or a power hitter, and what weight feels right in your hands?`],
+    chips:['Help me pick','I\'m a contact hitter','Balanced vs end-loaded?','Best 25oz balanced bat?','Check my bat (legality)'] },
+
+  { id:'eira', name:'Eira Lindqvist', first:'Eira', img:'img/eira.jpg',
+    role:'Rankings & value',
+    blurb:'Data-driven, hype-proof. The hotness index, performance rankings and best performance per euro. They/them.',
+    status:'The numbers · rankings, hotness index, value',
+    intro:[`Eira here. I deal in numbers, not marketing. I'll tell you what's genuinely hottest and what's best per euro. ⚒`,
+           `Give me your budget and your swing weight, and I'll cut through the hype for you. What are we working with?`],
+    chips:['What\'s hottest right now?','Best value for money','Rank the top bats','Hype vs reality','Check my bat (legality)'] },
+
+  { id:'kwame', name:'Kwame Mensah', first:'Kwame', img:'img/kwame.jpg',
+    role:'Sourcing & stock',
+    blurb:'The connector. Knows which European shops actually have stock and how to get the bat that\'s sold out everywhere.',
+    status:'Sourcing · availability across Europe',
+    intro:[`Kwame here. "Sold out everywhere" is the challenge I enjoy most. ⚒`,
+           `Tell me the bat and the spec you're after, and I'll find where it's actually in stock and what it takes to get it to you. Where are you based?`],
+    chips:['Source a sold-out bat','What\'s in stock now?','Ship to Ireland / UK / EU','Best bat I can get this week','Check my bat (legality)'] },
+
+  { id:'yuki', name:'Yuki Tanaka', first:'Yuki', img:'img/yuki.jpg',
+    role:'Pro & premium tuning',
+    blurb:'Meticulous. Pro and national-team level, premium models, fine end-load and flex tuning, fastpitch crossover.',
+    status:'Pro & premium · fine tuning, top-tier models',
+    intro:[`I'm <strong>Yuki</strong>. At the top level, the details decide it: end-load grams, handle flex, break-in. ⚒`,
+           `What level do you play at, and what are you trying to tune or upgrade?`],
+    chips:['Pro-level recommendation','Fastpitch crossover','Fine-tune my end-load','Premium picks','Check my bat (legality)'] }
+];
+const byId = id => CONSULTANTS.find(c=>c.id===id);
+let agent = null;
+
 /* ---------- Chat engine ---------- */
 const messagesEl = document.getElementById('messages');
 const chipsEl = document.getElementById('chips');
 const form = document.getElementById('composer');
 const input = document.getElementById('composer-input');
+const pickerEl = document.getElementById('picker');
+const chatCard = document.getElementById('chatCard');
 
-const ICON_BOT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
 const ICON_USER = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+const botAv = () => `<img src="${agent.img}" alt="${esc(agent.name)}" loading="lazy">`;
 
 function el(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstChild; }
 function scrollDown(){ messagesEl.scrollTop = messagesEl.scrollHeight; }
@@ -215,11 +313,11 @@ function addUser(text){
 }
 function addBot(html, delay=600){
   return new Promise(res=>{
-    const t = el(`<div class="msg bot typing"><div class="msg__av">${ICON_BOT}</div><div class="bubble"><span></span><span></span><span></span></div></div>`);
+    const t = el(`<div class="msg bot typing"><div class="msg__av">${botAv()}</div><div class="bubble"><span></span><span></span><span></span></div></div>`);
     messagesEl.appendChild(t); scrollDown();
     setTimeout(()=>{
       t.remove();
-      const m = el(`<div class="msg bot"><div class="msg__av">${ICON_BOT}</div><div class="bubble"></div></div>`);
+      const m = el(`<div class="msg bot"><div class="msg__av">${botAv()}</div><div class="bubble"></div></div>`);
       m.querySelector('.bubble').innerHTML = html;
       messagesEl.appendChild(m); scrollDown();
       res();
@@ -227,92 +325,69 @@ function addBot(html, delay=600){
   });
 }
 
-/* ----- Knowledge base: intents ----- */
+/* ----- Knowledge base: intents (fallback when the LLM is unavailable) ----- */
 const KB = [
   {
     id:'legal_check', kw:['is my bat legal','legal','illegal','allowed','tournament','bat check','batcheck','rejected','turned away','approved','compliant','can i use','certify','certified','certification','stamp','mark'],
     weight:1,
-    reply:`<span class="tag info">CERTIFICATION</span><p class="lede">Great question, this is the one we get most. Here is the simple rule for Ireland:</p>
+    reply:`<span class="tag info">CERTIFICATION</span><p class="lede">Good question, here's the rule for Europe:</p>
     <ul>
-      <li>For tournament play here, a bat must be <strong>WBSC Europe certified</strong> and present on the <strong>current official approved-bat list</strong>.</li>
-      <li><strong>USA Softball</strong> and <strong>USSSA</strong> stamps (common on US-bought bats) are <strong>not</strong> recognised under WBSC Europe rules, so they get refused at bat-check.</li>
-      <li>A certification mark on the barrel is only valid if that exact model still appears on the live approved list, marks can be revoked.</li>
+      <li>For tournament play, a bat must be <strong>WBSC Europe certified</strong> and on the <strong>current official approved-bat list</strong>.</li>
+      <li><strong>USA Softball</strong> and <strong>USSSA</strong> stamps (common on US imports) are <strong>not</strong> recognised, so they get refused at bat-check.</li>
+      <li>A mark on the barrel is only valid if that exact model is still on the live list, marks can be revoked.</li>
     </ul>
-    <p>Want me to walk you through checking a specific bat? Type <strong>check my bat</strong> and I'll take it step by step.</p>`
+    <p>Want me to check a specific bat? Type <strong>check my bat</strong> and I'll take it step by step.</p>`
   },
   {
     id:'us_import', kw:['usa softball','usssa','imported','import','us site','american','asa','ebay','amazon','bought abroad','from the states','from america'],
     weight:1.2,
-    reply:`<span class="tag warn">HEADS UP</span><p class="lede">If it carries only a <strong>USA Softball</strong> or <strong>USSSA</strong> stamp, it will almost certainly be <strong>turned away at WBSC Europe bat-check</strong>, even if it's a great bat. Those are different certification systems.</p>
-    <p>Don't worry, you have not necessarily wasted the bat (it's fine for casual hitting), but for fixtures you'll need a WBSC Europe approved model. We stock only compliant bats and can match one to how the US bat felt (weight and balance). Want me to suggest a <strong>like-for-like legal swap</strong>? Just tell me the weight and whether it was end-loaded or balanced.</p>`
-  },
-  {
-    id:'secondhand', kw:['second hand','secondhand','used','worn','faded','old bat','rubbed off','cant read','can\'t read','illegible','still valid','expired'],
-    weight:1.2,
-    reply:`<span class="tag info">SECOND-HAND BATS</span><p class="lede">For a used bat with a worn stamp, here's how to be sure:</p>
-    <ul>
-      <li>Find the <strong>model name and number</strong> on the barrel (often still readable even when the cert logo isn't).</li>
-      <li>Check that exact model against the <strong>current WBSC Europe approved list</strong>. If it's listed, the model is legal regardless of how faded the printed mark is.</li>
-      <li>If you <strong>cannot identify the model</strong> at all, treat it as not tournament-legal, an umpire can't pass a bat they can't verify.</li>
-    </ul>
-    <p>Send me the model name and I'll tell you what to look for. If you're unsure, our team can verify it for you, type <strong>talk to a human</strong>.</p>`
+    reply:`<span class="tag warn">HEADS UP</span><p class="lede">If it carries only a <strong>USA Softball</strong> or <strong>USSSA</strong> stamp, it will almost certainly be <strong>turned away at WBSC Europe bat-check</strong>, even if it's a great bat.</p>
+    <p>It's still fine for casual hitting, but for fixtures you'll need a WBSC Europe approved model. Tell me the weight and whether it was end-loaded or balanced and I'll match you a legal one.</p>`
   },
   {
     id:'fitting', kw:['fit','fitting','weight','balance','end load','end-load','endloaded','balanced','barrel','length','grip','swing','recommend','which bat','heavy','light','oz','ounce'],
     weight:1,
     reply:`<span class="tag info">FITTING</span><p class="lede">Happy to help you pick. We match four things to your swing:</p>
     <ul>
-      <li><strong>Weight:</strong> lighter (26–27oz) for bat speed and control, heavier (28oz+) for power hitters.</li>
-      <li><strong>Balance:</strong> <strong>balanced</strong> = quicker through the zone, easier to control; <strong>end-loaded</strong> = more mass in the barrel for distance, needs a stronger swing.</li>
-      <li><strong>Barrel length</strong> and <strong>grip</strong> to suit your hand size and contact point.</li>
+      <li><strong>Weight:</strong> lighter (26–27oz) for bat speed and control, heavier (28oz+) for power.</li>
+      <li><strong>Balance:</strong> <strong>balanced</strong> = quicker through the zone; <strong>end-loaded</strong> = more mass in the barrel for distance.</li>
+      <li><strong>Barrel length</strong> and <strong>grip</strong> to suit your hands and contact point.</li>
     </ul>
-    <p>Tell me your rough weight preference and whether you want <strong>control</strong> or <strong>power</strong>, and I'll point you at a legal Boru Bats model.</p>`
+    <p>Tell me your weight preference and whether you want <strong>control</strong> or <strong>power</strong>.</p>`
   },
   {
-    id:'shipping', kw:['ship','shipping','delivery','deliver','post','postage','how long','when will','arrive','dublin','cork','galway','ireland','courier','track'],
+    id:'shipping', kw:['ship','shipping','delivery','deliver','post','postage','how long','when will','arrive','dublin','cork','galway','ireland','uk','europe','courier','track'],
     weight:1,
-    reply:`<span class="tag ok">SHIPPING</span><p class="lede">We ship <strong>anywhere in the Republic of Ireland, usually within the week</strong>.</p>
+    reply:`<span class="tag ok">SHIPPING & SOURCING</span><p class="lede">We source and ship <strong>across Europe</strong>, Ireland, the UK and mainland.</p>
     <ul>
-      <li>Orders are dispatched from Galway by tracked courier.</li>
-      <li>Got a fixture coming up? Tell me the date and I'll flag if you should choose express, we don't want you stuck without a legal bat.</li>
+      <li>Tracked courier; lead times depend on where the bat is in stock.</li>
+      <li>Got a fixture coming up? Tell me the date and I'll flag the fastest legal option.</li>
     </ul>`
   },
   {
-    id:'returns', kw:['return','refund','exchange','warranty','broken','crack','dead','money back','send back','faulty'],
+    id:'price', kw:['price','cost','how much','expensive','cheap','budget','euro','€','pay','range','value'],
     weight:1,
-    reply:`<span class="tag ok">RETURNS &amp; WARRANTY</span><p class="lede">Straightforward:</p>
-    <ul>
-      <li><strong>Unused bats:</strong> return within 30 days for a refund or exchange.</li>
-      <li><strong>Manufacturing fault (cracks, rattles, dead barrel):</strong> covered under warranty, we'll sort a replacement.</li>
-      <li>If a bat we sold you ever fails bat-check, contact us, that should not happen with our stock and we'll make it right.</li>
-    </ul>
-    <p>To start a return, type <strong>talk to a human</strong> with your order number.</p>`
-  },
-  {
-    id:'price', kw:['price','cost','how much','expensive','cheap','budget','euro','€','pay','range'],
-    weight:1,
-    reply:`<span class="tag info">PRICING</span><p class="lede">Our WBSC Europe certified slowpitch bats typically run <strong>€120–€320</strong> depending on the model and barrel tech.</p>
-    <p>Buying a legal bat once usually beats importing a cheaper US bat that gets refused at bat-check and has to be replaced anyway. Tell me your budget and I'll show you the best legal option in range.</p>`
+    reply:`<span class="tag info">PRICING</span><p class="lede">Top slowpitch bats typically run <strong>€150–€400</strong> depending on the model and barrel tech.</p>
+    <p>Tell me your budget and I'll show you the best-value legal option in range, the real performance per euro.</p>`
   },
   {
     id:'human', kw:['human','agent','person','staff','talk to','call','phone','email','contact','speak to someone','help me'],
     weight:1.4,
-    reply:`<span class="tag info">TALK TO A HUMAN</span><p class="lede">Of course, our Galway team is happy to help, especially for verifying a specific bat:</p>
+    reply:`<span class="tag info">TALK TO A HUMAN</span><p class="lede">Of course, our team is happy to help, especially to verify a specific bat or confirm stock:</p>
     <ul>
       <li>Email: <a href="mailto:help@borubats.ie">help@borubats.ie</a></li>
       <li>Phone: +353 (0)91 000 000, Mon–Sat</li>
-    </ul>
-    <p>If it's a "is this exact bat legal?" question, send a clear photo of the barrel and the model name and we'll confirm against the official list.</p>`
+    </ul>`
   },
   {
     id:'greeting', kw:['hi','hello','hey','howya','good morning','good afternoon','hiya','yo'],
     weight:.6,
-    reply:`Hello! 👋 I'm Brian, the Boru Bats armourer. I can help you check if a bat is <strong>tournament-legal</strong>, pick the right bat for your swing, or sort shipping and returns. What can I help with?`
+    reply:`Hello! 👋 Tell me about your swing, your specs, or your budget and I'll find your perfect bat. What are you after?`
   },
   {
     id:'thanks', kw:['thanks','thank you','cheers','grand','appreciate','nice one','class'],
     weight:.6,
-    reply:`You're very welcome, best of luck at the next fixture! ⚾ Anything else I can check for you?`
+    reply:`You're very welcome, best of luck at the next fixture! ⚾ Anything else I can find for you?`
   }
 ];
 
@@ -332,15 +407,11 @@ function lookupBat(text){
   const cands = new Set();
   raw.forEach((t,i)=>{ if(t.length>=3) cands.add(t); if(i<raw.length-1) cands.add(t+raw[i+1]); });
   cands.add(normCode(text));
-  // a genuine bat code: 5+ chars mixing letters and digits (ASPDAW25A, AXEL101, FREAK23)
   const isCode = s => s.length>=5 && /[A-Z]/.test(s) && /\d/.test(s);
-  // exact match against a real model/key (length>=4 avoids matching tiny common words)
   for(const t of cands){
     if(t.length>=4 && (BAT_BY_MODEL.has(t)||BAT_BY_KEY.has(t)))
       return {status:'match', bat:BAT_BY_MODEL.get(t)||BAT_BY_KEY.get(t)};
   }
-  // only treat as a code query when a real pasted code token is present (single tokens only,
-  // so an age or weight like "60" or "27oz" never hijacks a normal sentence)
   const codeToks = raw.filter(isCode);
   if(!codeToks.length) return null;
   for(const t of codeToks){
@@ -358,10 +429,10 @@ function batVerdict(b){
       <li>Just confirm the physical bat matches this model and the barrel isn't altered or damaged.</li>
       <li>The <strong>tournament umpire always has the final say</strong> at bat-check.</li>
     </ul>
-    <p>Anything else I can help with, fitting, shipping, or a second bat?</p>`;
+    <p>Want me to find you something with this profile, or a hotter alternative? Just say the word.</p>`;
   }
-  return `<span class="tag warn">NOT LEGAL HERE ✕</span><p class="lede"><strong>${esc(batName(b))}</strong> is on the <strong>USA Softball</strong> list only${b.ud?` (added ${esc(b.ud)})`:''}. That mark is <strong>not recognised under WBSC Europe</strong> rules, so it would be <strong>refused at bat-check</strong> in Ireland.</p>
-  <p>It's still grand for casual hitting. For fixtures you'll need a WBSC Europe approved bat, and I can match one to how this bat felt. Tell me your weight preference and whether you want <strong>control</strong> or <strong>power</strong>, or type <strong>fitting</strong>.</p>`;
+  return `<span class="tag warn">NOT LEGAL HERE ✕</span><p class="lede"><strong>${esc(batName(b))}</strong> is on the <strong>USA Softball</strong> list only${b.ud?` (added ${esc(b.ud)})`:''}. That mark is <strong>not recognised under WBSC Europe</strong> rules, so it would be <strong>refused at bat-check</strong> in Europe.</p>
+  <p>It's still grand for casual hitting. For fixtures I can match you a WBSC-legal bat with the same feel, tell me your weight and whether you want <strong>control</strong> or <strong>power</strong>.</p>`;
 }
 function partialMsg(look){
   const items = look.subs.map(b=>{
@@ -370,7 +441,7 @@ function partialMsg(look){
   }).join('');
   return `<span class="tag info">CLOSE MATCHES</span><p class="lede">I didn't find an exact match for "<strong>${esc(look.token)}</strong>", did you mean one of these?</p>
   <ul>${items}</ul>
-  <p>Type the <strong>exact code</strong> and I'll give you the verdict, or type <strong>talk to a human</strong> to have us check it.</p>`;
+  <p>Type the <strong>exact code</strong> and I'll give you the verdict.</p>`;
 }
 function nomatchMsg(){
   return `<span class="tag warn">NOT ON THE LIST</span><p class="lede">I checked all ${batsTotal.toLocaleString()} approved bats and couldn't find that code. Two possibilities:</p>
@@ -378,7 +449,7 @@ function nomatchMsg(){
     <li>The code is slightly off, worth double-checking the barrel.</li>
     <li>It simply isn't on the WBSC Europe or USA Softball approved lists.</li>
   </ul>
-  <p>Send a clear photo of the barrel to <a href="mailto:help@borubats.ie">help@borubats.ie</a>, browse the full searchable list at <a href="https://bats.kluxy.app" target="_blank" rel="noopener">bats.kluxy.app</a>, or type <strong>talk to a human</strong>.</p>`;
+  <p>Send a clear photo of the barrel to <a href="mailto:help@borubats.ie">help@borubats.ie</a>, browse the full list at <a href="https://bats.kluxy.app" target="_blank" rel="noopener">bats.kluxy.app</a>, or type <strong>talk to a human</strong>.</p>`;
 }
 
 /* ----- guided "check my bat" flow ----- */
@@ -386,11 +457,10 @@ let flow = null;
 const flowDef = {
   start(){
     flow = {step:'mark'};
-    return `<span class="tag info">BAT LEGALITY CHECK</span><p class="lede">Happy to. The quickest way: if you can read the <strong>model code</strong> on the barrel, just paste it and I'll check it against the official list right now.</p>
+    return `<span class="tag info">BAT LEGALITY CHECK</span><p class="lede">Happy to. Quickest way: if you can read the <strong>model code</strong> on the barrel, paste it and I'll check it against the official list right now.</p>
     <p>Otherwise, what <strong>certification mark</strong> is on the barrel? Type <strong>WBSC</strong>, <strong>USA</strong>, <strong>USSSA</strong>, or <strong>none</strong>.</p>`;
   },
   handle(text){
-    // a recognised bat code wins at any step
     const look = lookupBat(text);
     if(look && look.status==='match'){ flow=null; return batVerdict(look.bat); }
     if(look && look.status==='partial'){ flow=null; return partialMsg(look); }
@@ -398,27 +468,26 @@ const flowDef = {
     if(flow.step==='mark'){
       if(t.includes('wbsc')){
         flow.step='model';
-        return `Good start, a WBSC mark is the right family. The mark alone isn't the full story though (models can be revoked), so let's confirm against the list. <strong>What's the exact model code on the barrel?</strong> (e.g. <em>ASPDAW25A</em>, or "Miken Freak 23")`;
+        return `Good start, a WBSC mark is the right family. The mark alone isn't the full story (models can be revoked), so let's confirm against the list. <strong>What's the exact model code on the barrel?</strong> (e.g. <em>ASPDAW25A</em>)`;
       }
       if(t.includes('usa')||t.includes('usssa')||t.includes('asa')){
         flow.step='model';
-        return `<span class="tag warn">HEADS UP</span><p class="lede">A USA Softball or USSSA stamp is <strong>not recognised under WBSC Europe</strong>, so it'll likely be refused at bat-check. Let me confirm the exact bat though, <strong>what's the model code on the barrel?</strong> If you can't read it, type <strong>unknown</strong>.</p>`;
+        return `<span class="tag warn">HEADS UP</span><p class="lede">A USA Softball or USSSA stamp is <strong>not recognised under WBSC Europe</strong>, so it'll likely be refused. Let me confirm the exact bat, <strong>what's the model code on the barrel?</strong> If you can't read it, type <strong>unknown</strong>.</p>`;
       }
       if(t.includes('none')||t==='no'||t.includes('no mark')||t.includes('can\'t')||t.includes('cant')){
         flow.step='model';
-        return `No readable mark makes it harder, but if we can identify the <strong>model code</strong> we can still check the list. <strong>What's the model code on the barrel?</strong> If there's nothing legible, type <strong>unknown</strong>.`;
+        return `No readable mark makes it harder, but if we can identify the <strong>model code</strong> we can still check. <strong>What's the model code on the barrel?</strong> If nothing's legible, type <strong>unknown</strong>.`;
       }
-      return `No bother. If you can read the bat's <strong>model code</strong> on the barrel, paste it and I'll check it. Otherwise type <strong>WBSC</strong>, <strong>USA</strong>, <strong>USSSA</strong>, or <strong>none</strong>, or <strong>talk to a human</strong>.`;
+      return `No bother. If you can read the bat's <strong>model code</strong>, paste it. Otherwise type <strong>WBSC</strong>, <strong>USA</strong>, <strong>USSSA</strong>, or <strong>none</strong>.`;
     }
     if(flow.step==='model'){
       if(t.includes('unknown')||t.includes('no idea')||t.includes('can\'t')||t.includes('cant')||t.includes('cannot')){
         flow=null;
         return `<span class="tag warn">CANNOT VERIFY</span><p class="lede">If the model can't be identified, an umpire can't pass it, so treat it as <strong>not tournament-legal</strong>.</p>
-        <p>Email a photo of the barrel to <a href="mailto:help@borubats.ie">help@borubats.ie</a> and we'll try to ID it, or type <strong>fitting</strong> and I'll suggest a guaranteed-legal bat.</p>`;
+        <p>Email a photo of the barrel to <a href="mailto:help@borubats.ie">help@borubats.ie</a> and we'll try to ID it, or I'll suggest a guaranteed-legal bat, just say the word.</p>`;
       }
       if(look && look.status==='nomatch'){ flow=null; return nomatchMsg(); }
-      // no code-like token detected, stay in the model step and ask again
-      return `<span class="tag info">ONE MORE GO</span><p class="lede">I couldn't spot a model code in that. It's the run of letters and numbers printed on the barrel, like <em>ASPDAW25A</em>. Paste it exactly and I'll check the list, or type <strong>talk to a human</strong>.</p>`;
+      return `<span class="tag info">ONE MORE GO</span><p class="lede">I couldn't spot a model code in that. It's the run of letters and numbers on the barrel, like <em>ASPDAW25A</em>. Paste it exactly and I'll check the list.</p>`;
     }
   }
 };
@@ -438,26 +507,18 @@ function findReply(text){
   return {reply:null, id:null};
 }
 
-const FALLBACK = `<p class="lede">I want to get this right rather than guess. I can definitely help with:</p>
+const FALLBACK = `<p class="lede">I want to get this right rather than guess. I can help you with:</p>
 <ul>
+  <li>Finding your <strong>perfect bat</strong> by spec (weight, balance, budget)</li>
+  <li>What's <strong>hottest</strong> and best <strong>value</strong> right now</li>
+  <li><strong>Sourcing</strong> a sold-out bat across Europe</li>
   <li>Whether a bat is <strong>WBSC Europe legal</strong> (type <strong>check my bat</strong>)</li>
-  <li>Why <strong>US-imported</strong> bats get refused</li>
-  <li><strong>Second-hand</strong> stamp validity</li>
-  <li><strong>Fitting</strong>, <strong>shipping</strong>, <strong>returns</strong>, <strong>pricing</strong></li>
 </ul>
-<p>Or type <strong>talk to a human</strong> and our Galway team will take it from here.</p>`;
+<p>Or type <strong>talk to a human</strong> and our team will take it from here.</p>`;
 
-const CHIPS = [
-  'Is ASPDAW25A legal?',
-  'Check my bat',
-  'I bought a US bat',
-  'Help me pick a bat',
-  'Shipping in Ireland',
-  'Talk to a human'
-];
 function renderChips(){
   chipsEl.innerHTML='';
-  CHIPS.forEach(c=>{
+  (agent.chips||[]).forEach(c=>{
     const b=el(`<button class="chip" type="button"></button>`);
     b.textContent=c;
     b.addEventListener('click',()=>handleInput(c));
@@ -465,21 +526,26 @@ function renderChips(){
   });
 }
 
-/* ----- LLM (the model talks; the list decides) ----- */
+/* ----- LLM (the chosen consultant talks; the list decides legality) ----- */
 const LLM_ENDPOINT = "https://boru-bats-bot.victordelrosal.workers.dev";
-const convo = []; // running conversation for LLM context
-function showTyping(){
-  const t = el(`<div class="msg bot typing"><div class="msg__av">${ICON_BOT}</div><div class="bubble"><span></span><span></span><span></span></div></div>`);
+const convo = [];
+function showConferring(){
+  const others = CONSULTANTS.filter(c=>c.id!==agent.id).slice(0,4)
+    .map(c=>`<img src="${c.img}" alt="${esc(c.name)}">`).join('');
+  const t = el(`<div class="msg bot confer"><div class="msg__av">${botAv()}</div>
+    <div class="bubble"><span class="confer-txt">${esc(agent.first)} is checking with the team…</span>
+    <div class="confer-faces">${others}</div></div></div>`);
   messagesEl.appendChild(t); scrollDown(); return t;
 }
 function addBotNow(html){
-  const m = el(`<div class="msg bot"><div class="msg__av">${ICON_BOT}</div><div class="bubble"></div></div>`);
+  const m = el(`<div class="msg bot"><div class="msg__av">${botAv()}</div><div class="bubble"></div></div>`);
   m.querySelector('.bubble').innerHTML = html; messagesEl.appendChild(m); scrollDown();
 }
 function formatLLM(s){ return esc(s).replace(/\n{2,}/g,'<br><br>').replace(/\n/g,'<br>'); }
 async function callLLM(){
   try{
-    const r = await fetch(LLM_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({messages:convo.slice(-10)})});
+    const r = await fetch(LLM_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({consultant:agent.id, messages:convo.slice(-10)})});
     if(!r.ok) return null;
     const d = await r.json();
     return d.reply || null;
@@ -488,16 +554,15 @@ async function callLLM(){
 
 let busy=false;
 async function handleInput(text){
-  text=text.trim(); if(!text||busy) return;
+  text=text.trim(); if(!text||busy||!agent) return;
   busy=true;
   addUser(text);
   input.value='';
   convo.push({role:'user', content:text});
 
-  // in the guided flow
   if(flow){
     const r = flowDef.handle(text);
-    await addBot(r, 600);
+    await addBot(r, 500);
     busy=false; return;
   }
 
@@ -508,44 +573,74 @@ async function handleInput(text){
             : look.status==='partial' ? partialMsg(look)
             : nomatchMsg();
     convo.push({role:'assistant', content:'(checked the official approved-bat list)'});
-    await addBot(r, 600);
+    await addBot(r, 500);
     busy=false; return;
   }
 
   // 2) start the guided flow
   if(/(^|\s)(check my bat|bat legality|check a bat|check the bat|check my code)(\s|$)/.test(text.toLowerCase())){
-    await addBot(flowDef.start(), 600);
+    await addBot(flowDef.start(), 500);
     busy=false; return;
   }
 
-  // 3) deterministic human handoff (real contact card)
+  // 3) deterministic human handoff
   const res = findReply(text);
-  if(res.id==='human'){ await addBot(res.reply, 600); busy=false; return; }
+  if(res.id==='human'){ await addBot(res.reply, 500); busy=false; return; }
 
-  // 4) LLM for natural conversation; graceful fallback to scripted KB
-  const typing = showTyping();
+  // 4) the consultant confers with the team, then answers (LLM); graceful fallback to scripted KB
+  const conf = showConferring();
   const llm = await callLLM();
-  typing.remove();
+  conf.remove();
   if(llm){
     convo.push({role:'assistant', content:llm});
     addBotNow(formatLLM(llm));
   } else if(res.reply){
-    await addBot(res.reply, 200);
+    await addBot(res.reply, 150);
   } else {
-    await addBot(FALLBACK, 200);
+    await addBot(FALLBACK, 150);
   }
   busy=false;
 }
 
 form.addEventListener('submit', e=>{ e.preventDefault(); handleInput(input.value); });
 
-/* ----- boot ----- */
-(async function(){
+/* ---------- Picker + selection ---------- */
+function renderPicker(){
+  const grid = document.getElementById('pickGrid');
+  grid.innerHTML='';
+  CONSULTANTS.forEach(c=>{
+    const card = el(`<button class="pick-card" type="button" aria-label="Talk to ${esc(c.name)}, ${esc(c.role)}">
+      <div class="pf"><img src="${c.img}" alt="${esc(c.name)}" loading="lazy"></div>
+      <div class="pc">
+        <div class="pc-name">${esc(c.name)}</div>
+        <div class="pc-role">${esc(c.role)}</div>
+        <div class="pc-blurb">${esc(c.blurb)}</div>
+        <div class="pc-cta">Talk to ${esc(c.first)} →</div>
+      </div>
+    </button>`);
+    card.addEventListener('click',()=>selectConsultant(c.id));
+    grid.appendChild(card);
+  });
+}
+function showPicker(){
+  chatCard.classList.remove('active');
+  pickerEl.style.display='';
+  document.getElementById('main').scrollTop = 0;
+}
+async function selectConsultant(id){
+  agent = byId(id); if(!agent) return;
+  flow=null; convo.length=0; busy=false;
+  document.getElementById('agentAv').innerHTML = `<img src="${agent.img}" alt="${esc(agent.name)}">`;
+  document.getElementById('agentName').textContent = agent.name;
+  document.getElementById('agentStatus').textContent = agent.status;
+  input.placeholder = `Tell ${agent.first} your specs, or paste a bat code…`;
+  messagesEl.innerHTML='';
   renderChips();
-  await addBot(`Dia dhuit! I'm <strong>Brian</strong>, the Boru Bats armourer. ⚒`, 400);
-  await addBot(`Worried whether a bat is tournament-legal? <strong>Paste the model code from the barrel</strong> (like <em>ASPDAW25A</em>) and I'll check it against the official WBSC Europe and USA Softball lists, instantly.`, 850);
-  await addBot(`Or just ask me anything, fitting, shipping, returns. How can I help?`, 700);
-})();
+  pickerEl.style.display='none';
+  chatCard.classList.add('active');
+  for(const line of agent.intro){ await addBot(line, 420); }
+  input.focus();
+}
 
 /* ---------- Forge ember shader background (raw WebGL) ---------- */
 (function(){
@@ -592,6 +687,9 @@ form.addEventListener('submit', e=>{ e.preventDefault(); handleInput(input.value
   raf = requestAnimationFrame(frame);
   document.addEventListener("visibilitychange", ()=>{ if(document.hidden){ cancelAnimationFrame(raf);} else { start=performance.now()-6000; raf=requestAnimationFrame(frame);} });
 })();
+
+/* ---------- boot ---------- */
+renderPicker();
 </script>
 </body>
 </html>
