@@ -136,6 +136,13 @@ body{
 .tag.warn{background:var(--warn-soft);color:var(--warn)}
 .tag.info{background:var(--amber-soft);color:var(--amber)}
 
+.bat-cards{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.bat-card{background:var(--forge-2);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.bc-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.bc-name{font-family:"Cinzel",serif;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--ash-bright)}
+.bc-top .tag{margin:0;white-space:nowrap}
+.bc-meta{margin-top:4px;font-size:12.5px;color:var(--ash-dim);font-family:"JetBrains Mono",ui-monospace,monospace}
+
 .typing .bubble{display:inline-flex;gap:4px;padding:14px}
 .typing span{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:blink 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
@@ -604,8 +611,21 @@ async function callLLM(){
       body:JSON.stringify({consultant:agent.id, messages:convo.slice(-10)})});
     if(!r.ok) return null;
     const d = await r.json();
-    return d.reply || null;
+    if(!d.reply) return null;
+    return { reply: d.reply, bats: Array.isArray(d.bats) ? d.bats : [] };
   }catch(e){ return null; }
+}
+// Visual result cards for whatever the consultant's search_bats call actually
+// found this turn, shown under their reply instead of a separate picker page.
+function renderBatCards(bats){
+  if(!bats || !bats.length) return '';
+  const cards = bats.slice(0,4).map(b=>{
+    const tag = b.legal ? '<span class="tag ok">WBSC ✓</span>' : '<span class="tag warn">Not WBSC-legal</span>';
+    const price = String(b.price||'').replace(/\s*EUR$/,'');
+    const bits = [price?`€${esc(price)}`:'', (b.heat!=null)?`Heat ${Number(b.heat)}/100`:'', b.rating?`★${Number(b.rating)}`:''].filter(Boolean);
+    return `<div class="bat-card"><div class="bc-top"><span class="bc-name">${esc(b.model)}</span>${tag}</div><div class="bc-meta">${bits.join(' &middot; ')}</div></div>`;
+  }).join('');
+  return `<div class="bat-cards">${cards}</div>`;
 }
 
 let busy=false;
@@ -655,10 +675,10 @@ async function handleInput(text){
   const llm = await callLLM();
   conf.remove();
   if(llm){
-    convo.push({role:'assistant', content:llm});
-    addBotNow(formatLLM(llm));
-    lastBatText = llm;
-    autoCheck(llm);          // wired to the live list: verify every bat the consultant names
+    convo.push({role:'assistant', content:llm.reply});
+    addBotNow(formatLLM(llm.reply) + renderBatCards(llm.bats));
+    lastBatText = llm.reply;
+    autoCheck(llm.reply);          // wired to the live list: verify every bat the consultant names
   } else if(res.reply){
     await addBot(res.reply, 150);
   } else {

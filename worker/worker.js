@@ -327,12 +327,26 @@ Rules:
       }
       const data = await r.json();
       let reply = "";
+      let bats = [];
       for (const o of (data.output || [])) {
-        if (o.type === "message") for (const c2 of (o.content || [])) if (c2.type === "output_text") reply += c2.text;
+        if (o.type === "message") {
+          for (const c2 of (o.content || [])) if (c2.type === "output_text") reply += c2.text;
+        }
+        // Re-run search_bats ourselves rather than trust-parsing OpenAI's relayed
+        // output string, so the frontend gets a guaranteed-shaped bats array to
+        // render as cards, whatever the model did or didn't say about them in prose.
+        if (o.type === "mcp_call" && o.name === "search_bats" && !o.error) {
+          try {
+            const args = typeof o.arguments === "string" ? JSON.parse(o.arguments) : (o.arguments || {});
+            const result = await mcpCallTool("search_bats", args);
+            const parsed = JSON.parse(result.content[0].text);
+            if (Array.isArray(parsed.bats)) bats = parsed.bats;
+          } catch (_) { /* fall back to text-only reply */ }
+        }
       }
       reply = reply.trim();
       if (!reply) return json({ error: "empty" }, 502, origin);
-      return json({ reply }, 200, origin);
+      return json({ reply, bats }, 200, origin);
     }
 
     const profile = String(body.profile || "").slice(0, 800);
