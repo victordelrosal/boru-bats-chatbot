@@ -1,0 +1,1896 @@
+{
+  "meta": {
+    "built": "gpt-5.5 curated + legality cross-checked vs official approved list",
+    "count": 70
+  },
+  "bats": [
+    {
+      "brand": "Miken",
+      "model": "Freak Primo Maxload USSSA 240",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 289,
+      "price_max": 399,
+      "rating": 4.7,
+      "swing": "power",
+      "perf": 36,
+      "value": 19,
+      "avail": 16,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Maxload Primo has long been a safe European tournament pick.",
+      "wbsc_legal": true,
+      "wbsc_code": "F75XMA",
+      "legality": 15,
+      "heat": 86
+    },
+    {
+      "brand": "Easton",
+      "model": "Fire Flex 240 Loaded USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 239,
+      "price_max": 349,
+      "rating": 4.5,
+      "swing": "power",
+      "perf": 34,
+      "value": 21,
+      "avail": 15,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Modern 240 version of the Fire Flex power line.",
+      "wbsc_legal": true,
+      "wbsc_code": "EFP4FF12",
+      "legality": 15,
+      "heat": 85
+    },
+    {
+      "brand": "Miken",
+      "model": "Freak Primo Balanced USSSA 240",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 279,
+      "price_max": 389,
+      "rating": 4.6,
+      "swing": "all-round",
+      "perf": 35,
+      "value": 20,
+      "avail": 15,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Balanced Primo for players preferring speed over barrel mass.",
+      "wbsc_legal": true,
+      "wbsc_code": "F75XMA",
+      "legality": 15,
+      "heat": 85
+    },
+    {
+      "brand": "Easton",
+      "model": "Fire Flex 240 Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 229,
+      "price_max": 339,
+      "rating": 4.4,
+      "swing": "all-round",
+      "perf": 33,
+      "value": 21,
+      "avail": 15,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Balanced Fire Flex for players moving up from alloy or team bats.",
+      "wbsc_legal": true,
+      "wbsc_code": "EFP4FF12",
+      "legality": 15,
+      "heat": 84
+    },
+    {
+      "brand": "Easton",
+      "model": "Resmondo Loaded USSSA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 269,
+      "price_max": 369,
+      "rating": 4.6,
+      "swing": "power",
+      "perf": 35,
+      "value": 20,
+      "avail": 13,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Resmondo signature load with a powerful 12.75in barrel feel.",
+      "wbsc_legal": true,
+      "wbsc_code": "SP23HRLA",
+      "legality": 15,
+      "heat": 83
+    },
+    {
+      "brand": "Miken",
+      "model": "Freak KP23 Maxload USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 299,
+      "price_max": 409,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 37,
+      "value": 18,
+      "avail": 13,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Kyle Pearson signature with a 12in barrel and strong Maxload feel.",
+      "wbsc_legal": true,
+      "wbsc_code": "F75XMA",
+      "legality": 15,
+      "heat": 83
+    },
+    {
+      "brand": "Louisville Slugger",
+      "model": "Genesis Ironman USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 329,
+      "price_max": 439,
+      "rating": 4.9,
+      "swing": "power",
+      "perf": 39,
+      "value": 17,
+      "avail": 12,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Genny Ironman is a premium 240-stamped power bat.",
+      "wbsc_legal": true,
+      "wbsc_code": "SBAS24UA",
+      "legality": 15,
+      "heat": 83
+    },
+    {
+      "brand": "Worth",
+      "model": "Supercell Gold XXL USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 249,
+      "price_max": 349,
+      "rating": 4.5,
+      "swing": "power",
+      "perf": 34,
+      "value": 21,
+      "avail": 12,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Two-piece XXL load for hitters wanting extra barrel momentum.",
+      "wbsc_legal": true,
+      "wbsc_code": "WGOLD",
+      "legality": 15,
+      "heat": 82
+    },
+    {
+      "brand": "Louisville Slugger",
+      "model": "Genesis Marshburn USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 329,
+      "price_max": 439,
+      "rating": 4.8,
+      "swing": "all-round",
+      "perf": 38,
+      "value": 17,
+      "avail": 12,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Marshburn Genesis models are prized for barrel control and pop.",
+      "wbsc_legal": true,
+      "wbsc_code": "SBAS24UA",
+      "legality": 15,
+      "heat": 82
+    },
+    {
+      "brand": "Miken",
+      "model": "DC-41 Supermax USSSA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 269,
+      "price_max": 379,
+      "rating": 4.6,
+      "swing": "power",
+      "perf": 35,
+      "value": 19,
+      "avail": 12,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Legendary one-ounce Supermax load for experienced power hitters.",
+      "wbsc_legal": true,
+      "wbsc_code": "SDC41U",
+      "legality": 15,
+      "heat": 81
+    },
+    {
+      "brand": "Louisville Slugger",
+      "model": "Genesis South Beach USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 319,
+      "price_max": 429,
+      "rating": 4.7,
+      "swing": "all-round",
+      "perf": 37,
+      "value": 18,
+      "avail": 11,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Popular colourway with balanced speed and strong Genny exit speeds.",
+      "wbsc_legal": true,
+      "wbsc_code": "SBAS24UA",
+      "legality": 15,
+      "heat": 81
+    },
+    {
+      "brand": "DeMarini",
+      "model": "Nihilist Dale Brungardt USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 319,
+      "price_max": 419,
+      "rating": 4.8,
+      "swing": "contact",
+      "perf": 37,
+      "value": 17,
+      "avail": 11,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "USA-stamped Nihilist is a hot option where ASA/USA bats are allowed.",
+      "wbsc_legal": true,
+      "wbsc_code": "NIA-21",
+      "legality": 15,
+      "heat": 80
+    },
+    {
+      "brand": "Easton",
+      "model": "Brett Helmer Fire Flex Loaded",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 249,
+      "price_max": 349,
+      "rating": 4.4,
+      "swing": "power",
+      "perf": 33,
+      "value": 21,
+      "avail": 11,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Helmer signature design aimed at big hitters.",
+      "wbsc_legal": true,
+      "wbsc_code": "SCN10BH",
+      "legality": 15,
+      "heat": 80
+    },
+    {
+      "brand": "Miken",
+      "model": "Freak 23 Kyle Pearson USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 259,
+      "price_max": 359,
+      "rating": 4.5,
+      "swing": "power",
+      "perf": 34,
+      "value": 20,
+      "avail": 11,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Short-barrel Freak model with aggressive end-load performance.",
+      "wbsc_legal": true,
+      "wbsc_code": "F75XMA",
+      "legality": 15,
+      "heat": 80
+    },
+    {
+      "brand": "Louisville Slugger",
+      "model": "Genesis Everett Williams USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 339,
+      "price_max": 449,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 38,
+      "value": 16,
+      "avail": 11,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Endloaded Genesis signature with elite USSSA performance.",
+      "wbsc_legal": true,
+      "wbsc_code": "SPEWSAE-23",
+      "legality": 15,
+      "heat": 80
+    },
+    {
+      "brand": "Louisville Slugger",
+      "model": "Genesis Andy Purcell USSSA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 339,
+      "price_max": 449,
+      "rating": 4.9,
+      "swing": "power",
+      "perf": 39,
+      "value": 16,
+      "avail": 10,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Purcell Genny for players who like a serious barrel-heavy swing.",
+      "wbsc_legal": true,
+      "wbsc_code": "SBAS24UA",
+      "legality": 15,
+      "heat": 80
+    },
+    {
+      "brand": "DeMarini",
+      "model": "Juggy USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 299,
+      "price_max": 399,
+      "rating": 4.6,
+      "swing": "all-round",
+      "perf": 35,
+      "value": 18,
+      "avail": 11,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Soft barrel feel and forgiving sweet spot for controlled hitters.",
+      "wbsc_legal": true,
+      "wbsc_code": "NT3-14",
+      "legality": 15,
+      "heat": 79
+    },
+    {
+      "brand": "Easton",
+      "model": "Alpha ALX Loaded USSSA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 129,
+      "price_max": 219,
+      "rating": 3.9,
+      "swing": "all-round",
+      "perf": 23,
+      "value": 24,
+      "avail": 17,
+      "retailers": [
+        "Covee Sports",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Budget alloy option for cold weather, training or team use.",
+      "wbsc_legal": true,
+      "wbsc_code": "ESA3ALL",
+      "legality": 15,
+      "heat": 79
+    },
+    {
+      "brand": "Louisville Slugger",
+      "model": "Genesis Bubble Gum USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 329,
+      "price_max": 439,
+      "rating": 4.7,
+      "swing": "contact",
+      "perf": 37,
+      "value": 17,
+      "avail": 10,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Limited Genesis edition with quick hands and a forgiving sweet spot.",
+      "wbsc_legal": true,
+      "wbsc_code": "JFP014B",
+      "legality": 15,
+      "heat": 79
+    },
+    {
+      "brand": "Louisville Slugger",
+      "model": "Genesis Vice USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 339,
+      "price_max": 449,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 38,
+      "value": 16,
+      "avail": 10,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Vice edition suits players looking for max-distance Genny pop.",
+      "wbsc_legal": true,
+      "wbsc_code": "SBAS24UA",
+      "legality": 15,
+      "heat": 79
+    },
+    {
+      "brand": "Worth",
+      "model": "Legit Watermelon XL Reload USSSA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 229,
+      "price_max": 329,
+      "rating": 4.4,
+      "swing": "power",
+      "perf": 32,
+      "value": 21,
+      "avail": 10,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Classic Legit feel with the famous watermelon graphics.",
+      "wbsc_legal": true,
+      "wbsc_code": "FP2L10",
+      "legality": 15,
+      "heat": 78
+    },
+    {
+      "brand": "Worth",
+      "model": "Freedom Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 199,
+      "price_max": 289,
+      "rating": 4.2,
+      "swing": "all-round",
+      "perf": 30,
+      "value": 22,
+      "avail": 11,
+      "retailers": [
+        "Covee Sports",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Good-value balanced composite often found in team bags.",
+      "wbsc_legal": true,
+      "wbsc_code": "FPFREE",
+      "legality": 15,
+      "heat": 78
+    },
+    {
+      "brand": "Worth",
+      "model": "Ryan Harvey Legit XL USSSA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 239,
+      "price_max": 339,
+      "rating": 4.4,
+      "swing": "power",
+      "perf": 33,
+      "value": 21,
+      "avail": 9,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Harvey signature power profile with XL end load.",
+      "wbsc_legal": true,
+      "wbsc_code": "FP2L10",
+      "legality": 15,
+      "heat": 78
+    },
+    {
+      "brand": "DeMarini",
+      "model": "Mercy USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "balanced",
+      "price_min": 279,
+      "price_max": 379,
+      "rating": 4.5,
+      "swing": "contact",
+      "perf": 34,
+      "value": 19,
+      "avail": 10,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Light-swinging ASA/USA favourite, popular for women's and mixed squads.",
+      "wbsc_legal": true,
+      "wbsc_code": "MSP-14",
+      "legality": 15,
+      "heat": 78
+    },
+    {
+      "brand": "Easton",
+      "model": "Comic Bats WHAM! Loaded USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 249,
+      "price_max": 359,
+      "rating": 4.5,
+      "swing": "power",
+      "perf": 34,
+      "value": 20,
+      "avail": 9,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Limited comic-series Easton with bold look and loaded barrel.",
+      "wbsc_legal": true,
+      "wbsc_code": "SP22ARGHL",
+      "legality": 15,
+      "heat": 78
+    },
+    {
+      "brand": "Miken",
+      "model": "Freak Gold Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 219,
+      "price_max": 319,
+      "rating": 4.3,
+      "swing": "contact",
+      "perf": 31,
+      "value": 22,
+      "avail": 10,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Older Freak Gold balanced models still appear in European bags.",
+      "wbsc_legal": true,
+      "wbsc_code": "GLDNXT",
+      "legality": 15,
+      "heat": 78
+    },
+    {
+      "brand": "Miken",
+      "model": "Freak Primo USA Balanced",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 279,
+      "price_max": 389,
+      "rating": 4.5,
+      "swing": "contact",
+      "perf": 34,
+      "value": 19,
+      "avail": 10,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "USA-stamped Primo choice for leagues using ASA/USA compression rules.",
+      "wbsc_legal": true,
+      "wbsc_code": "F75XMA",
+      "legality": 15,
+      "heat": 78
+    },
+    {
+      "brand": "DeMarini",
+      "model": "Steel Singlewall USA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 179,
+      "price_max": 279,
+      "rating": 4.1,
+      "swing": "all-round",
+      "perf": 28,
+      "value": 22,
+      "avail": 12,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Metal singlewall classic for leagues that restrict composite bats.",
+      "wbsc_legal": true,
+      "wbsc_code": "RAW",
+      "legality": 15,
+      "heat": 77
+    },
+    {
+      "brand": "Easton",
+      "model": "Ghostmondo Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 219,
+      "price_max": 329,
+      "rating": 4.3,
+      "swing": "contact",
+      "perf": 32,
+      "value": 21,
+      "avail": 9,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Ghostmondo graphics with a smooth balanced swing weight.",
+      "wbsc_legal": true,
+      "wbsc_code": "SP22GHML",
+      "legality": 15,
+      "heat": 77
+    },
+    {
+      "brand": "Miken",
+      "model": "Psycho Maxload USSSA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 209,
+      "price_max": 319,
+      "rating": 4.2,
+      "swing": "power",
+      "perf": 31,
+      "value": 22,
+      "avail": 9,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Psycho nameplate offers classic Miken pop with Maxload weighting.",
+      "wbsc_legal": true,
+      "wbsc_code": "MP12X",
+      "legality": 15,
+      "heat": 77
+    },
+    {
+      "brand": "Suncoast",
+      "model": "Backlash Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 269,
+      "price_max": 369,
+      "rating": 4.5,
+      "swing": "contact",
+      "perf": 34,
+      "value": 20,
+      "avail": 8,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Balanced Suncoast option with a responsive composite barrel.",
+      "wbsc_legal": true,
+      "wbsc_code": "SBASAE",
+      "legality": 15,
+      "heat": 77
+    },
+    {
+      "brand": "Miken",
+      "model": "Freak 9R Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 199,
+      "price_max": 299,
+      "rating": 4.2,
+      "swing": "all-round",
+      "perf": 30,
+      "value": 22,
+      "avail": 9,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Value Freak line with an easy, balanced swing.",
+      "wbsc_legal": true,
+      "wbsc_code": "F75XMA",
+      "legality": 15,
+      "heat": 76
+    },
+    {
+      "brand": "Louisville Slugger",
+      "model": "Super Z-1000 Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 179,
+      "price_max": 279,
+      "rating": 4.1,
+      "swing": "all-round",
+      "perf": 29,
+      "value": 23,
+      "avail": 8,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Older Super Z line remains a budget-friendly certified option.",
+      "wbsc_legal": true,
+      "wbsc_code": "SBSZ16A-B",
+      "legality": 15,
+      "heat": 75
+    },
+    {
+      "brand": "Worth",
+      "model": "Krecher XL USSSA 240",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 299,
+      "price_max": 399,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 37,
+      "value": 20,
+      "avail": 17,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "European favourite 13.5in barrel with half-ounce XL load.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 74
+    },
+    {
+      "brand": "Monsta",
+      "model": "Fulcrum USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "balanced",
+      "price_min": 309,
+      "price_max": 429,
+      "rating": 4.6,
+      "swing": "all-round",
+      "perf": 36,
+      "value": 17,
+      "avail": 5,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Balanced Monsta option with excellent USA performance but limited legality.",
+      "wbsc_legal": true,
+      "wbsc_code": "24FPFUL",
+      "legality": 15,
+      "heat": 73
+    },
+    {
+      "brand": "Worth",
+      "model": "Krecher Balanced USSSA 240",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 289,
+      "price_max": 389,
+      "rating": 4.7,
+      "swing": "all-round",
+      "perf": 36,
+      "value": 20,
+      "avail": 16,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Same Krecher feel in an easier-to-place balanced swing.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 72
+    },
+    {
+      "brand": "DeMarini",
+      "model": "Nautalai Endload USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 299,
+      "price_max": 399,
+      "rating": 4.7,
+      "swing": "power",
+      "perf": 36,
+      "value": 19,
+      "avail": 15,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Staple DeMarini USSSA gamer with strong barrel feedback.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 70
+    },
+    {
+      "brand": "Easton",
+      "model": "Tantrum 240 Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 299,
+      "price_max": 399,
+      "rating": 4.7,
+      "swing": "all-round",
+      "perf": 36,
+      "value": 19,
+      "avail": 15,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Newer Easton platform with quick break-in and balanced control.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 70
+    },
+    {
+      "brand": "Worth",
+      "model": "Bedlam Phil Matte XL USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 319,
+      "price_max": 419,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 38,
+      "value": 18,
+      "avail": 13,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Signature Bedlam with a stiff handle and pronounced XL finish.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 69
+    },
+    {
+      "brand": "Easton",
+      "model": "Tantrum 240 Loaded USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 309,
+      "price_max": 409,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 37,
+      "value": 18,
+      "avail": 14,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Loaded Tantrum suits players wanting extra carry without a sledge feel.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 69
+    },
+    {
+      "brand": "Worth",
+      "model": "Mach 1 Cobra Jet 428 XL",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 279,
+      "price_max": 379,
+      "rating": 4.6,
+      "swing": "power",
+      "perf": 35,
+      "value": 19,
+      "avail": 14,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Four-piece Tech with a long barrel and XL power weighting.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 68
+    },
+    {
+      "brand": "Worth",
+      "model": "Mach 1 Cobra Jet 428 Balanced",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 269,
+      "price_max": 369,
+      "rating": 4.5,
+      "swing": "contact",
+      "perf": 34,
+      "value": 20,
+      "avail": 14,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Fast-hand option for line-drive hitters and mixed-team play.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 68
+    },
+    {
+      "brand": "Worth",
+      "model": "Bedlam 12.5 Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 309,
+      "price_max": 409,
+      "rating": 4.7,
+      "swing": "all-round",
+      "perf": 37,
+      "value": 18,
+      "avail": 13,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Covee Sports"
+      ],
+      "likely_wbsc": true,
+      "note": "Compact 12.5in barrel, crisp connection, tournament-ready 240 stamp.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 68
+    },
+    {
+      "brand": "DeMarini",
+      "model": "Nautalai Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 289,
+      "price_max": 389,
+      "rating": 4.6,
+      "swing": "all-round",
+      "perf": 35,
+      "value": 19,
+      "avail": 14,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Balanced Nautalai variant for faster hands through the zone.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 68
+    },
+    {
+      "brand": "DeMarini",
+      "model": "The Goods One Piece USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 219,
+      "price_max": 319,
+      "rating": 4.3,
+      "swing": "power",
+      "perf": 31,
+      "value": 22,
+      "avail": 13,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "One-piece alloy-composite style feel with a firm power swing.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 66
+    },
+    {
+      "brand": "Suncoast",
+      "model": "Melee 3 Max Endload USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 319,
+      "price_max": 429,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 38,
+      "value": 17,
+      "avail": 10,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Melee 3 Max delivers premium pop with a noticeable end load.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 65
+    },
+    {
+      "brand": "Suncoast",
+      "model": "Melee 3 Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 309,
+      "price_max": 419,
+      "rating": 4.7,
+      "swing": "all-round",
+      "perf": 37,
+      "value": 18,
+      "avail": 10,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Balanced Melee 3 is smooth through the zone and game-ready fast.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 65
+    },
+    {
+      "brand": "DeMarini",
+      "model": "Twisted Mistress USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 269,
+      "price_max": 369,
+      "rating": 4.5,
+      "swing": "power",
+      "perf": 34,
+      "value": 20,
+      "avail": 10,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Endloaded DeMarini model known for pop and a loud composite response.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 64
+    },
+    {
+      "brand": "Suncoast",
+      "model": "Ruckus Max 12in Endload USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 329,
+      "price_max": 439,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 38,
+      "value": 17,
+      "avail": 9,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Short-barrel Ruckus Max for advanced hitters seeking whip.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 64
+    },
+    {
+      "brand": "Monsta",
+      "model": "Torch M2 USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "balanced",
+      "price_min": 329,
+      "price_max": 449,
+      "rating": 4.9,
+      "swing": "contact",
+      "perf": 39,
+      "value": 16,
+      "avail": 9,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Elite ASA/USA bat; usually not accepted for WBSC-Europe USSSA-style events.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 64
+    },
+    {
+      "brand": "Adidas",
+      "model": "Melee 2 End Load USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 199,
+      "price_max": 299,
+      "rating": 4.4,
+      "swing": "power",
+      "perf": 32,
+      "value": 23,
+      "avail": 8,
+      "retailers": [
+        "Forelle",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Adidas-era Melee remains popular as a used or clearance tournament bat.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 63
+    },
+    {
+      "brand": "DeMarini",
+      "model": "Lady Cartel USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 239,
+      "price_max": 339,
+      "rating": 4.3,
+      "swing": "contact",
+      "perf": 32,
+      "value": 21,
+      "avail": 9,
+      "retailers": [
+        "Covee Sports",
+        "Forelle"
+      ],
+      "likely_wbsc": true,
+      "note": "Fast balanced swing with USSSA certification and lively barrel.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 62
+    },
+    {
+      "brand": "Adidas",
+      "model": "Melee 2 Balanced USSSA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 189,
+      "price_max": 289,
+      "rating": 4.3,
+      "swing": "all-round",
+      "perf": 31,
+      "value": 23,
+      "avail": 8,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Balanced Melee 2 gives excellent value when found in stock.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 62
+    },
+    {
+      "brand": "Adidas",
+      "model": "Ruckus End Load USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 219,
+      "price_max": 319,
+      "rating": 4.5,
+      "swing": "power",
+      "perf": 33,
+      "value": 22,
+      "avail": 7,
+      "retailers": [
+        "Covee Sports",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Ruckus name began in the Adidas/Suncoast performance family.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 62
+    },
+    {
+      "brand": "Monsta",
+      "model": "Black Sheep M2 USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "balanced",
+      "price_min": 339,
+      "price_max": 459,
+      "rating": 4.9,
+      "swing": "all-round",
+      "perf": 39,
+      "value": 15,
+      "avail": 8,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Hot USA-only Monsta; check event rules before packing it.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 62
+    },
+    {
+      "brand": "Anarchy",
+      "model": "Demon USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "end-loaded",
+      "price_min": 249,
+      "price_max": 369,
+      "rating": 4.6,
+      "swing": "power",
+      "perf": 35,
+      "value": 20,
+      "avail": 7,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Anarchy USA model with excellent ASA performance; verify sanction legality.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 62
+    },
+    {
+      "brand": "Suncoast",
+      "model": "Diamond Loaded USSSA",
+      "weights": [
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 289,
+      "price_max": 399,
+      "rating": 4.6,
+      "swing": "power",
+      "perf": 35,
+      "value": 19,
+      "avail": 7,
+      "retailers": [
+        "Baseball & Softball Shop",
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": true,
+      "note": "Diamond line offers a strong loaded swing for USSSA balls.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 61
+    },
+    {
+      "brand": "Monsta",
+      "model": "DNA Legacy USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "end-loaded",
+      "price_min": 329,
+      "price_max": 449,
+      "rating": 4.8,
+      "swing": "power",
+      "perf": 38,
+      "value": 16,
+      "avail": 7,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Endloaded Monsta DNA is built for ASA/USA balls, not typical WBSC lists.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 61
+    },
+    {
+      "brand": "Monsta",
+      "model": "Fallout USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "balanced",
+      "price_min": 299,
+      "price_max": 419,
+      "rating": 4.7,
+      "swing": "contact",
+      "perf": 37,
+      "value": 17,
+      "avail": 7,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Very quick swing and huge ASA following; legality is format-dependent.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 61
+    },
+    {
+      "brand": "Anarchy",
+      "model": "Pitbull USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 239,
+      "price_max": 359,
+      "rating": 4.5,
+      "swing": "all-round",
+      "perf": 34,
+      "value": 20,
+      "avail": 7,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Balanced Anarchy ASA bat, often not suitable for WBSC-Europe events.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 61
+    },
+    {
+      "brand": "Monsta",
+      "model": "Sinister USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "balanced",
+      "price_min": 319,
+      "price_max": 439,
+      "rating": 4.8,
+      "swing": "contact",
+      "perf": 38,
+      "value": 16,
+      "avail": 6,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Short-barrel Monsta control bat; generally a USA/ASA specialist.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 60
+    },
+    {
+      "brand": "Monsta",
+      "model": "King of Diamonds USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "end-loaded",
+      "price_min": 349,
+      "price_max": 459,
+      "rating": 4.9,
+      "swing": "power",
+      "perf": 39,
+      "value": 15,
+      "avail": 6,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Premium Monsta with serious end load; rarely WBSC-Europe legal.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 60
+    },
+    {
+      "brand": "Anarchy",
+      "model": "Odin USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 269,
+      "price_max": 389,
+      "rating": 4.6,
+      "swing": "power",
+      "perf": 35,
+      "value": 19,
+      "avail": 6,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "USSSA Anarchy is popular in the US but rarely stocked or listed in Europe.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 60
+    },
+    {
+      "brand": "Anarchy",
+      "model": "Nimmo USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 249,
+      "price_max": 369,
+      "rating": 4.5,
+      "swing": "contact",
+      "perf": 34,
+      "value": 20,
+      "avail": 6,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "USA-stamped Nimmo suits ASA balls; tournament legality varies.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 60
+    },
+    {
+      "brand": "Anarchy",
+      "model": "Streets USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "end-loaded",
+      "price_min": 259,
+      "price_max": 379,
+      "rating": 4.6,
+      "swing": "power",
+      "perf": 35,
+      "value": 19,
+      "avail": 6,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Endloaded ASA/USA Anarchy with a strong following outside Europe.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 60
+    },
+    {
+      "brand": "Anarchy",
+      "model": "Flip USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "balanced",
+      "price_min": 229,
+      "price_max": 349,
+      "rating": 4.4,
+      "swing": "contact",
+      "perf": 33,
+      "value": 21,
+      "avail": 6,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Balanced Anarchy option; check rules before using in sanctioned play.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 60
+    },
+    {
+      "brand": "Monsta",
+      "model": "Boogeyman USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "end-loaded",
+      "price_min": 329,
+      "price_max": 449,
+      "rating": 4.7,
+      "swing": "power",
+      "perf": 37,
+      "value": 16,
+      "avail": 5,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "ASA/USA Monsta model known for loud pop on low-compression balls.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 58
+    },
+    {
+      "brand": "Monsta",
+      "model": "Hype USA",
+      "weights": [
+        25,
+        26
+      ],
+      "balance": "balanced",
+      "price_min": 299,
+      "price_max": 419,
+      "rating": 4.6,
+      "swing": "contact",
+      "perf": 36,
+      "value": 17,
+      "avail": 5,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "Popular Monsta USA bat; not a default pick for European tournaments.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 58
+    },
+    {
+      "brand": "Anarchy",
+      "model": "Rebellion USSSA",
+      "weights": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "balance": "end-loaded",
+      "price_min": 269,
+      "price_max": 389,
+      "rating": 4.5,
+      "swing": "power",
+      "perf": 34,
+      "value": 19,
+      "avail": 5,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "USSSA Rebellion is real but not commonly WBSC-Europe approved or stocked.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 58
+    },
+    {
+      "brand": "Anarchy",
+      "model": "Amped USA",
+      "weights": [
+        25,
+        26,
+        27
+      ],
+      "balance": "balanced",
+      "price_min": 239,
+      "price_max": 359,
+      "rating": 4.4,
+      "swing": "all-round",
+      "perf": 33,
+      "value": 20,
+      "avail": 5,
+      "retailers": [
+        "Ubuy Ireland"
+      ],
+      "likely_wbsc": false,
+      "note": "USA/ASA Anarchy bat; best treated as non-legal unless event confirms.",
+      "wbsc_legal": false,
+      "wbsc_code": null,
+      "legality": 0,
+      "heat": 58
+    }
+  ]
+}

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boru Bats: Hot Bat Picker</title>
+<meta name="description" content="The ultimate WBSC-Europe slowpitch bat finder. Filter by weight, balance, budget and tournament-legality, then see the hottest, best-value bats ranked by a transparent Heat Score.">
+<meta name="theme-color" content="#0f0e0c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0c'/%3E%3Cpath d='M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z' fill='none' stroke='%23e0992f' stroke-width='2.5'/%3E%3Crect x='30' y='16' width='4.5' height='30' rx='2.2' transform='rotate(34 32 31)' fill='%23ff6a1a'/%3E%3Ccircle cx='24' cy='44' r='3' fill='%23e0992f'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0c'/%3E%3Cpath d='M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z' fill='none' stroke='%23e0992f' stroke-width='2.5'/%3E%3Crect x='30' y='16' width='4.5' height='30' rx='2.2' transform='rotate(34 32 31)' fill='%23ff6a1a'/%3E%3Ccircle cx='24' cy='44' r='3' fill='%23e0992f'/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:title" content="Boru Bats: Hot Bat Picker">
+<meta property="og:description" content="Filter by weight, balance, budget and WBSC-Europe legality. See the hottest slowpitch bats ranked by a transparent Heat Score.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forge:#0f0e0c;--forge-2:#16130f;--steel:#1d1a16;
+  --ember:#ff6a1a;--amber:#e0992f;--amber-soft:rgba(224,153,47,.12);--amber-glow:rgba(224,153,47,.26);
+  --ash:#cfc3b1;--ash-dim:#988e7c;--ash-bright:#f1e7d6;--line:rgba(224,153,47,.18);--line-strong:rgba(224,153,47,.32);
+  --ok:#43b87a;--ok-soft:rgba(67,184,122,.16);--warn:#ff6a4d;--warn-soft:rgba(255,106,77,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ash);background:var(--forge);font-family:"Fraunces",Georgia,serif;font-optical-sizing:auto;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+#forge{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.wrap{position:relative;z-index:2;max-width:1140px;margin:0 auto;padding:0 18px}
+
+.nav{position:sticky;top:0;z-index:100;height:62px;display:flex;align-items:center;gap:12px;padding:0 22px;background:rgba(15,14,12,.78);backdrop-filter:saturate(160%) blur(18px);-webkit-backdrop-filter:saturate(160%) blur(18px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
+.brand__mark{width:36px;height:36px;filter:drop-shadow(0 2px 10px rgba(255,106,26,.28))}
+.brand__name{font-family:"Cinzel",serif;font-weight:800;letter-spacing:.13em;font-size:16px;background:linear-gradient(180deg,#f6ecd9,#e0992f 150%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand__sub{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);opacity:.85;margin-top:3px}
+.spacer{flex:1}
+.nav__tune{font-family:"Cinzel",serif;font-size:11px;letter-spacing:.08em;color:#1a1206;background:linear-gradient(180deg,#ffb24d,#e0992f);border:none;border-radius:999px;padding:9px 16px;cursor:pointer;box-shadow:0 6px 18px -6px var(--amber-glow)}
+.nav__tune:hover{filter:brightness(1.08)}
+
+.hero{text-align:center;padding:34px 0 20px}
+.hero .eyebrow{font-family:"Cinzel",serif;letter-spacing:.34em;text-transform:uppercase;font-size:10px;color:var(--amber);margin-bottom:12px}
+.hero h1{font-weight:340;font-size:clamp(28px,5vw,50px);line-height:1.03;margin:0;color:var(--ash-bright);letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero p{max-width:62ch;margin:13px auto 0;color:var(--ash-dim);font-size:clamp(14px,1.7vw,16.5px)}
+
+/* Filter bar */
+.filters{position:sticky;top:62px;z-index:90;margin:18px 0 6px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;
+  background:rgba(22,19,15,.86);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+  box-shadow:0 20px 50px -28px rgba(0,0,0,.7)}
+.frow{display:flex;flex-wrap:wrap;gap:18px 26px;align-items:flex-end}
+.fgroup{display:flex;flex-direction:column;gap:8px}
+.flabel{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash-dim)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:"JetBrains Mono",monospace;font-size:13px;padding:7px 12px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--ash);cursor:pointer;transition:.14s}
+.chip:hover{border-color:var(--amber);color:#fff}
+.chip.on{background:linear-gradient(180deg,#ffb24d,#e0992f);color:#1a1206;border-color:transparent;font-weight:600}
+.toggle{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.toggle input{display:none}
+.tk{width:42px;height:24px;border-radius:999px;background:var(--steel);border:1px solid var(--line);position:relative;transition:.18s;flex:none}
+.tk::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--ash-dim);transition:.18s}
+.toggle input:checked + .tk{background:var(--ok-soft);border-color:var(--ok)}
+.toggle input:checked + .tk::after{left:21px;background:var(--ok)}
+.tlabel{font-size:13.5px;color:var(--ash)}
+.tlabel b{color:var(--ok)}
+.price{min-width:230px;flex:1}
+.price .pv{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--amber);margin-bottom:6px}
+.range{position:relative;height:26px}
+.range input{position:absolute;width:100%;top:8px;margin:0;-webkit-appearance:none;appearance:none;background:none;pointer-events:none;height:8px}
+.range input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:16px;height:16px;border-radius:50%;background:linear-gradient(180deg,#ffb24d,#e0992f);border:none;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.5)}
+.range input::-moz-range-thumb{pointer-events:auto;width:16px;height:16px;border-radius:50%;background:#e0992f;border:none;cursor:pointer}
+.range .track{position:absolute;top:11px;left:0;right:0;height:4px;border-radius:4px;background:var(--steel)}
+.range .fill{position:absolute;top:11px;height:4px;border-radius:4px;background:linear-gradient(90deg,#e0992f,#ff6a1a)}
+.fmeta{display:flex;align-items:center;gap:14px;margin-left:auto}
+.count{font-family:"Cinzel",serif;font-size:13px;color:var(--ash-bright)}
+.count b{color:var(--amber);font-size:18px}
+.reset{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ash-dim);background:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.reset:hover{border-color:var(--amber);color:var(--amber)}
+
+/* Results */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;margin:18px 0 40px}
+.card{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;padding:16px 16px 14px;
+  background:linear-gradient(180deg,rgba(29,26,22,.6),rgba(15,14,12,.74));backdrop-filter:blur(8px);transition:transform .2s,border-color .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--amber);box-shadow:0 18px 40px -20px rgba(0,0,0,.7),0 0 22px -12px var(--amber-glow)}
+.rank{position:absolute;top:12px;right:14px;font-family:"Cinzel",serif;font-size:11px;color:var(--ash-dim);letter-spacing:.1em}
+.cbrand{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+.cmodel{font-family:"Cinzel",serif;font-weight:700;font-size:17px;color:var(--ash-bright);margin:3px 0 2px;line-height:1.15;padding-right:34px}
+.cstars{font-size:13px;color:var(--amber);letter-spacing:1px}
+.cstars span{color:var(--ash-dim)}
+.heat{display:flex;align-items:baseline;gap:8px;margin:12px 0 4px}
+.heatnum{font-family:"Cinzel",serif;font-weight:800;font-size:30px;line-height:1;background:linear-gradient(180deg,#ffd089,#ff6a1a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.heatlbl{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ash-dim)}
+.bars{display:flex;gap:4px;margin:8px 0 12px}
+.bar{flex:1}
+.bar .bt{font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ash-dim);margin-bottom:3px}
+.bar .bg{height:5px;border-radius:3px;background:var(--steel);overflow:hidden}
+.bar .bf{height:100%;border-radius:3px}
+.bf.perf{background:#ff6a1a}.bf.value{background:#e0992f}.bf.avail{background:#c9a05a}.bf.legality{background:var(--ok)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{font-family:"JetBrains Mono",monospace;font-size:11px;padding:4px 8px;border-radius:7px;background:var(--amber-soft);color:var(--amber);border:1px solid var(--line)}
+.tag.legal{background:var(--ok-soft);color:var(--ok);border-color:rgba(67,184,122,.3)}
+.tag.illegal{background:var(--warn-soft);color:var(--warn);border-color:rgba(255,106,77,.3)}
+.tag.price{color:var(--ash-bright)}
+.cnote{font-size:13.5px;color:var(--ash-dim);line-height:1.45;margin:0 0 12px;min-height:38px}
+.buy{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.buy .bl{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash-dim);margin-right:2px}
+.buy a{font-size:12.5px;color:var(--amber);text-decoration:none;border-bottom:1px solid var(--line)}
+.buy a:hover{color:#fff;border-color:var(--amber)}
+
+.empty{text-align:center;padding:50px 20px;color:var(--ash-dim)}
+.empty b{color:var(--amber)}
+
+footer{text-align:center;padding:14px 16px 26px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ash-dim);position:relative;z-index:2;line-height:1.7}
+footer a{color:var(--amber)}
+
+/* Tune modal */
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(7,6,5,.7);backdrop-filter:blur(6px)}
+.modal.open{display:flex}
+.sheet{width:100%;max-width:560px;max-height:90vh;overflow-y:auto;border:1px solid var(--line-strong);border-radius:18px;padding:22px;
+  background:linear-gradient(180deg,rgba(29,26,22,.96),rgba(15,14,12,.98));box-shadow:0 40px 90px -30px #000}
+.sheet h2{font-family:"Cinzel",serif;font-weight:700;font-size:18px;color:var(--ash-bright);margin:0 0 4px}
+.sheet p.sub{color:var(--ash-dim);font-size:14px;margin:0 0 14px}
+.sheet textarea{width:100%;min-height:84px;resize:vertical;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:12px;color:#f3ece1;font-family:"Fraunces",serif;font-size:15px;padding:12px 14px;outline:none}
+.sheet textarea:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-soft)}
+.sheet .ex{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 14px}
+.sheet .ex button{font-size:12px;color:var(--ash);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 11px;cursor:pointer}
+.sheet .ex button:hover{border-color:var(--amber);color:#fff}
+.sheet .go{font-family:"Cinzel",serif;letter-spacing:.08em;font-weight:700;font-size:13px;color:#1a1206;background:linear-gradient(180deg,#ffb24d,#e0992f);border:none;border-radius:12px;padding:12px 20px;cursor:pointer;width:100%}
+.sheet .go:disabled{opacity:.5;cursor:wait}
+.sheet .close{position:absolute;}
+.tuneout{margin-top:16px;display:none}
+.tuneout.show{display:block}
+.tuneout .sum{font-style:italic;color:var(--ash);margin-bottom:10px}
+.pick{border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:9px;background:var(--amber-soft)}
+.pick .pm{font-family:"Cinzel",serif;font-weight:700;color:var(--ash-bright);font-size:14px}
+.pick .pw{font-size:13px;color:var(--ash-dim);margin-top:3px}
+.xbtn{background:none;border:1px solid var(--line);color:var(--ash-dim);border-radius:8px;padding:5px 10px;cursor:pointer;font-family:"JetBrains Mono",monospace;font-size:12px}
+
+@media (max-width:560px){ .grid{grid-template-columns:1fr} .nav__tune{padding:8px 12px} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="forge" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav">
+  <a class="brand" href="#" aria-label="Boru Bats">
+    <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0f0e0c"/><path d="M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z" fill="none" stroke="#e0992f" stroke-width="2.5"/><rect x="30" y="16" width="4.5" height="30" rx="2.2" transform="rotate(34 32 31)" fill="#ff6a1a"/><circle cx="24" cy="44" r="3" fill="#e0992f"/></svg>
+    <span><span class="brand__name">BORU BATS</span><br><span class="brand__sub">Hot Bat Picker</span></span>
+  </a>
+  <span class="spacer"></span>
+  <button class="nav__tune" id="tuneBtn">⚒ Tune for my swing</button>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">The High King's Armoury</div>
+    <h1>The <em>hottest</em> WBSC-Europe-legal bats, ranked.</h1>
+    <p>Filter by weight, balance, budget and tournament-legality. Every bat is scored by a transparent Heat Score and cross-checked against the official approved-bat list, so what you see is legal, hot, and worth the money.</p>
+  </div>
+
+  <section class="filters" aria-label="Filters">
+    <div class="frow">
+      <div class="fgroup">
+        <span class="flabel">Weight</span>
+        <div class="chips" id="wChips"></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Balance</span>
+        <div class="chips" id="bChips"></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Tournament legality</span>
+        <label class="toggle"><input type="checkbox" id="legalT" checked><span class="tk"></span><span class="tlabel"><b>WBSC Europe legal</b> only</span></label>
+      </div>
+      <div class="fgroup price">
+        <span class="flabel">Price (EUR)</span>
+        <div class="pv" id="priceVal">€0 – €600</div>
+        <div class="range">
+          <div class="track"></div><div class="fill" id="pFill"></div>
+          <input type="range" id="pMin" min="0" max="600" step="10" value="0">
+          <input type="range" id="pMax" min="0" max="600" step="10" value="600">
+        </div>
+      </div>
+      <div class="fmeta">
+        <span class="count"><b id="cnt">0</b> bats</span>
+        <button class="reset" id="reset">Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<footer>
+  Heat Score = performance + value + availability + legality (transparent, capped 100) · catalog curated with gpt-5.5, cross-checked against the official WBSC / USA Softball approved-bat list ·
+  scores are expert estimates, not a live feed · always confirm the exact barrel code against the <a href="https://bats-kluxy.pages.dev/" target="_blank" rel="noopener">official approved-bat checker</a> before buying.
+</footer>
+
+<!-- Tune modal -->
+<div class="modal" id="modal">
+  <div class="sheet">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+      <div><h2>Tune for my swing</h2><p class="sub">Tell the armourer about your swing, weight and budget. gpt-5.5 re-ranks the legal catalog for you.</p></div>
+      <button class="xbtn" id="closeBtn">esc</button>
+    </div>
+    <textarea id="profile" placeholder="e.g. 27oz hitter, decent bat speed, I hit for power but want it legal for Euros, budget up to 350."></textarea>
+    <div class="ex">
+      <button>27oz, power, legal, up to €350</button>
+      <button>25oz contact hitter, best value</button>
+      <button>National-team level, premium, balanced</button>
+    </div>
+    <button class="go" id="goBtn">Find my bats</button>
+    <div class="tuneout" id="tuneout"></div>
+  </div>
+</div>
+
+<!-- Buy modal -->
+<div class="modal" id="buyModal">
+  <div class="sheet">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+      <div><h2 id="buyTitle">Where to buy</h2><p class="sub" id="buySub"></p></div>
+      <button class="xbtn" id="buyClose">esc</button>
+    </div>
+    <div id="buyLinks" style="display:flex;flex-direction:column;gap:8px"></div>
+    <button class="go" id="buyAI" style="margin-top:14px">✨ Find live listings (AI web search)</button>
+    <div class="tuneout" id="buyOut"></div>
+  </div>
+</div>
+
+<script>
+const ENDPOINT="https://boru-bats-bot.victordelrosal.workers.dev";
+let BATS=[];
+const F={weight:"any",balance:"any",legal:true,pmin:0,pmax:600};
+const esc=s=>(s||"").replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+const $=id=>document.getElementById(id);
+
+function stars(r){const f=Math.round(r);return '★'.repeat(f)+'<span>'+'★'.repeat(5-f)+'</span>'+' '+r.toFixed(1);}
+function retailerURL(n){return {
+  "Baseball & Softball Shop":"https://www.thebaseballandsoftballshop.co.uk/",
+  "Covee Sports":"https://www.coveesports.com/",
+  "Forelle":"https://www.forelle.eu/",
+  "Ubuy Ireland":"https://www.ubuy.ie/"
+}[n]||"#";}
+
+function passes(b){
+  if(F.legal && !b.wbsc_legal) return false;
+  if(F.weight!=="any" && !(b.weights||[]).includes(+F.weight)) return false;
+  if(F.balance!=="any" && b.balance!==F.balance) return false;
+  // price overlap
+  if(b.price_max < F.pmin || b.price_min > F.pmax) return false;
+  return true;
+}
+
+function card(b,i){
+  const legal = b.wbsc_legal
+    ? `<span class="tag legal" title="A WBSC-Europe-legal version of this line is on the official list; confirm the exact barrel code before buying">WBSC ✓ legal · e.g. ${esc(b.wbsc_code||'')}</span>`
+    : `<span class="tag illegal">Not on the WBSC-Europe list</span>`;
+  const bar=(lbl,v,max,cls)=>`<div class="bar"><div class="bt">${lbl}</div><div class="bg"><div class="bf ${cls}" style="width:${Math.round(v/max*100)}%"></div></div></div>`;
+  const buy=(b.retailers||[]).map(r=>`<a href="${retailerURL(r)}" target="_blank" rel="noopener">${esc(r)}</a>`).join('');
+  return `<article class="card" data-i="${i}" role="button" tabindex="0" title="See where to buy">
+    <div class="rank">#${i+1}</div>
+    <div class="cbrand">${esc(b.brand)} · ${esc(b.swing)}</div>
+    <div class="cmodel">${esc(b.model)}</div>
+    <div class="cstars">${stars(b.rating||0)}</div>
+    <div class="heat"><span class="heatnum">${b.heat}</span><span class="heatlbl">Heat Score / 100</span></div>
+    <div class="bars">${bar('Pop',b.perf,40,'perf')}${bar('Value',b.value,25,'value')}${bar('Stock',b.avail,20,'avail')}${bar('Legal',b.legality,15,'legality')}</div>
+    <div class="meta">
+      <span class="tag price">€${b.price_min}–${b.price_max}</span>
+      <span class="tag">${(b.weights||[]).join(', ')}oz</span>
+      <span class="tag">${esc(b.balance)}</span>
+      ${legal}
+    </div>
+    <p class="cnote">${esc(b.note||'')}</p>
+    <div class="buy"><span class="bl">Click card for all buy options</span><span style="margin-left:auto;color:var(--amber)">Where to buy →</span></div>
+  </article>`;
+}
+
+let CUR=[];
+function render(){
+  const list=BATS.filter(passes).sort((a,b)=>b.heat-a.heat);
+  CUR=list;
+  $('cnt').textContent=list.length;
+  $('grid').innerHTML = list.length
+    ? list.map(card).join('')
+    : `<div class="empty">No bats match those filters. Try widening the <b>price</b> or turning off a constraint.</div>`;
+}
+
+/* filter chips */
+function chipRow(el,opts,key){
+  el.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='chip'+(String(F[key])===String(o.v)?' on':'');
+    b.textContent=o.l;
+    b.onclick=()=>{F[key]=o.v; chipRow(el,opts,key); render();};
+    el.appendChild(b);
+  });
+}
+function buildFilters(){
+  chipRow($('wChips'),[{l:'Any',v:'any'},{l:'25oz',v:25},{l:'26oz',v:26},{l:'27oz',v:27},{l:'28oz',v:28}],'weight');
+  chipRow($('bChips'),[{l:'Any',v:'any'},{l:'Balanced',v:'balanced'},{l:'End-loaded',v:'end-loaded'}],'balance');
+  $('legalT').checked=F.legal;
+  $('legalT').onchange=e=>{F.legal=e.target.checked;render();};
+  const mn=$('pMin'),mx=$('pMax');
+  function price(){
+    let a=+mn.value,b=+mx.value; if(a>b){[a,b]=[b,a];}
+    F.pmin=a;F.pmax=b;
+    $('priceVal').textContent=`€${a} – €${b}${b>=600?'+':''}`;
+    $('pFill').style.left=(a/600*100)+'%';$('pFill').style.right=(100-b/600*100)+'%';
+    render();
+  }
+  mn.oninput=price;mx.oninput=price;price();
+  $('reset').onclick=()=>{F.weight='any';F.balance='any';F.legal=true;mn.value=0;mx.value=600;buildFilters();render();};
+}
+
+/* tune modal */
+const modal=$('modal');
+function openModal(){modal.classList.add('open');$('profile').focus();}
+function closeModal(){modal.classList.remove('open');}
+$('tuneBtn').onclick=openModal;$('closeBtn').onclick=closeModal;
+modal.onclick=e=>{if(e.target===modal)closeModal();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+document.querySelectorAll('.sheet .ex button').forEach(b=>b.onclick=()=>{$('profile').value=b.textContent;});
+$('goBtn').onclick=async()=>{
+  const profile=$('profile').value.trim(); if(!profile)return;
+  const go=$('goBtn'),out=$('tuneout');
+  go.disabled=true;go.textContent='Conferring with the team…';
+  out.classList.remove('show');
+  try{
+    const legal=BATS.filter(b=>b.wbsc_legal);
+    const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({profile,bats:legal})});
+    const d=await r.json();
+    if(d.picks){
+      out.innerHTML=`<div class="sum">${esc(d.summary||'')}</div>`+d.picks.map(p=>`<div class="pick"><div class="pm">${esc(p.model)}</div><div class="pw">${esc(p.why)}</div></div>`).join('');
+    }else{out.innerHTML=`<div class="sum">Couldn't tune right now (the live model may be busy). Your filtered Heat Score ranking below is still your best guide.</div>`;}
+    out.classList.add('show');
+  }catch(e){
+    out.innerHTML=`<div class="sum">Couldn't reach the live re-ranker. The Heat Score ranking below is still your best guide.</div>`;out.classList.add('show');
+  }finally{go.disabled=false;go.textContent='Find my bats';}
+};
+
+/* ---- where to buy ---- */
+const buyModal=$('buyModal');
+let buyBat=null;
+function buyQuery(b){return `${b.brand} ${(b.model||'').replace(/\bwbsc\b/ig,'').trim()} slowpitch softball bat`;}
+function openBuy(b){
+  buyBat=b;
+  const q=buyQuery(b), e=encodeURIComponent(q);
+  $('buyTitle').textContent=`Where to buy — ${b.brand} ${(b.model||'').replace(/\bwbsc\b/ig,'').trim()}`;
+  $('buySub').innerHTML=`Heat ${b.heat}/100 · ${b.wbsc_legal?'WBSC-Europe legal':'not Euro-legal'} · typical €${b.price_min}–${b.price_max}. Confirm the exact barrel code against the <a href="https://bats-kluxy.pages.dev/" target="_blank" rel="noopener" style="color:var(--amber)">approved-bat checker</a> before buying.`;
+  const site=d=>`https://www.google.com/search?q=${encodeURIComponent('site:'+d+' '+q)}`;
+  const links=[
+    ['🛒 Google Shopping — all sellers & live prices',`https://www.google.com/search?tbm=shop&q=${e}`,true],
+    ['🔎 Google — full web search',`https://www.google.com/search?q=${e}`,false],
+    ['eBay (UK/EU)',`https://www.ebay.co.uk/sch/i.html?_nkw=${e}`,false],
+    ['Covee Sports (NL)',site('coveesports.com'),false],
+    ['Forelle (NL)',site('forelle.eu'),false],
+    ['Baseball & Softball Shop (UK)',site('thebaseballandsoftballshop.co.uk'),false],
+    ['Ubuy Ireland',site('ubuy.ie'),false]
+  ];
+  $('buyLinks').innerHTML=links.map(([t,u,big])=>
+    `<a href="${u}" target="_blank" rel="noopener" class="${big?'go':'xbtn'}" style="${big?'text-align:center;text-decoration:none;display:block':'text-decoration:none;display:block;text-align:left;padding:10px 13px'}">${t}</a>`).join('');
+  $('buyOut').classList.remove('show');$('buyOut').innerHTML='';
+  buyModal.classList.add('open');
+}
+function closeBuy(){buyModal.classList.remove('open');}
+$('buyClose').onclick=closeBuy;
+buyModal.onclick=e=>{if(e.target===buyModal)closeBuy();};
+$('grid').addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  const c=e.target.closest('.card'); if(!c)return;
+  const b=CUR[+c.dataset.i]; if(b)openBuy(b);
+});
+$('grid').addEventListener('keydown',e=>{
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  const c=e.target.closest('.card'); if(!c)return; e.preventDefault();
+  const b=CUR[+c.dataset.i]; if(b)openBuy(b);
+});
+$('buyAI').onclick=async()=>{
+  if(!buyBat)return;
+  const btn=$('buyAI'),out=$('buyOut');
+  btn.disabled=true;btn.textContent='Searching the web with gpt-5.5…';
+  try{
+    const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({buy:buyQuery(buyBat)})});
+    const d=await r.json();
+    if(d.listings&&d.listings.length){
+      out.innerHTML=`<div class="sum">Live listings found by AI web search (verify before paying):</div>`+
+        d.listings.map(l=>`<div class="pick"><div class="pm">${esc(l.retailer||'shop')} ${l.price?'· '+esc(l.price):''}</div>${l.url?`<div class="pw"><a href="${esc(l.url)}" target="_blank" rel="noopener" style="color:var(--amber)">${esc(l.url).slice(0,60)}</a></div>`:''}</div>`).join('');
+    }else{
+      out.innerHTML=`<div class="sum">No direct listings surfaced for this exact model right now — slowpitch stock moves fast. Use Google Shopping and the retailer searches above; they show every current seller.</div>`;
+    }
+    out.classList.add('show');
+  }catch(e){out.innerHTML=`<div class="sum">Live search unavailable. Use the search links above.</div>`;out.classList.add('show');}
+  finally{btn.disabled=false;btn.textContent='✨ Find live listings (AI web search)';}
+};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBuy();});
+
+/* load catalog */
+fetch('picks.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+  BATS=d.bats||[];
+  buildFilters();
+  render();
+}).catch(()=>{$('grid').innerHTML='<div class="empty">Could not load the bat catalog. Refresh to retry.</div>';});
+
+/* forge ember shader bg */
+(function(){
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cv=$('forge'),gl=cv.getContext("webgl");
+  if(!gl){document.body.style.background="radial-gradient(120% 90% at 50% 110%, #2a1606, #0f0e0c 60%)";return;}
+  const vs=`attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
+  const fs=`precision highp float;uniform vec2 R;uniform float T;
+  float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+  float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
+  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.02;a*=.5;}return v;}
+  void main(){vec2 uv=gl_FragCoord.xy/R.xy;vec2 q=uv;q.y-=T*0.04;float n=fbm(q*vec2(3.,2.2)+vec2(0.,-T*0.12));
+  float heat=pow(1.-uv.y,2.6)*(0.5+0.6*n);vec3 col=vec3(0.055,0.05,0.045);
+  col+=vec3(1.,0.38,0.07)*heat*1.05;col+=vec3(0.88,0.55,0.18)*heat*heat*0.45;
+  float sp=smoothstep(0.94,1.,fbm(uv*vec2(22.,30.)+vec2(0.,-T*0.6)));col+=vec3(1.,0.6,0.25)*sp*(1.-uv.y)*0.8;
+  col*=smoothstep(1.3,0.3,length(uv-vec2(0.5,0.4)));gl_FragColor=vec4(col,1.);}`;
+  function sh(t,s){const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);return x;}
+  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
+  const bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  const l=gl.getAttribLocation(pr,"p");gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,2,gl.FLOAT,false,0,0);
+  const uR=gl.getUniformLocation(pr,"R"),uT=gl.getUniformLocation(pr,"T");const DPR=Math.min(devicePixelRatio||1,1.5);
+  function rs(){cv.width=innerWidth*DPR;cv.height=innerHeight*DPR;gl.viewport(0,0,cv.width,cv.height);gl.uniform2f(uR,cv.width,cv.height);}
+  addEventListener("resize",rs);rs();
+  if(reduce){gl.uniform1f(uT,6.);gl.drawArrays(gl.TRIANGLES,0,3);return;}
+  let st=performance.now(),raf;function fr(now){gl.uniform1f(uT,(now-st)/1000);gl.drawArrays(gl.TRIANGLES,0,3);raf=requestAnimationFrame(fr);}raf=requestAnimationFrame(fr);
+  document.addEventListener("visibilitychange",()=>{if(document.hidden)cancelAnimationFrame(raf);else{st=performance.now()-6000;raf=requestAnimationFrame(fr);}});
+})();
+</script>
+</body>
+</html>
