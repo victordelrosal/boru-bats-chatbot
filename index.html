@@ -3,436 +3,758 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Boru Bats: Hot Bat Picker</title>
-<meta name="description" content="The ultimate WBSC-Europe slowpitch bat finder. Filter by weight, balance, budget and tournament-legality, then see the hottest, best-value bats ranked by a transparent Heat Score.">
+<title>Boru Bats: The High King's Armoury</title>
+<meta name="description" content="The ultimate slowpitch softball bat picker for Europe. Five elite consultants find the hottest, best-value, tournament-legal bat for your swing, and source it across Ireland, the UK and mainland Europe.">
 <meta name="theme-color" content="#0f0e0c">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0c'/%3E%3Cpath d='M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z' fill='none' stroke='%23e0992f' stroke-width='2.5'/%3E%3Crect x='30' y='16' width='4.5' height='30' rx='2.2' transform='rotate(34 32 31)' fill='%23ff6a1a'/%3E%3Ccircle cx='24' cy='44' r='3' fill='%23e0992f'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0c'/%3E%3Cpath d='M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z' fill='none' stroke='%23e0992f' stroke-width='2.5'/%3E%3Crect x='30' y='16' width='4.5' height='30' rx='2.2' transform='rotate(34 32 31)' fill='%23ff6a1a'/%3E%3Ccircle cx='24' cy='44' r='3' fill='%23e0992f'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.webmanifest">
-<meta property="og:title" content="Boru Bats: Hot Bat Picker">
-<meta property="og:description" content="Filter by weight, balance, budget and WBSC-Europe legality. See the hottest slowpitch bats ranked by a transparent Heat Score.">
+
+<meta property="og:title" content="Boru Bats: The High King's Armoury">
+<meta property="og:description" content="The ultimate slowpitch bat picker for Europe. Five elite consultants find the hottest, best-value, tournament-legal bat for your swing.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="og.png">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="og.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --forge:#0f0e0c;--forge-2:#16130f;--steel:#1d1a16;
-  --ember:#ff6a1a;--amber:#e0992f;--amber-soft:rgba(224,153,47,.12);--amber-glow:rgba(224,153,47,.26);
-  --ash:#cfc3b1;--ash-dim:#988e7c;--ash-bright:#f1e7d6;--line:rgba(224,153,47,.18);--line-strong:rgba(224,153,47,.32);
-  --ok:#43b87a;--ok-soft:rgba(67,184,122,.16);--warn:#ff6a4d;--warn-soft:rgba(255,106,77,.16);
+  --forge:#0f0e0c; --forge-2:#16130f; --steel:#1d1a16;
+  --ember:#ff6a1a; --amber:#e0992f; --amber-soft:rgba(224,153,47,.12); --amber-glow:rgba(224,153,47,.26);
+  --ash:#cfc3b1; --ash-dim:#988e7c; --ash-bright:#f1e7d6; --line:rgba(224,153,47,.18); --line-strong:rgba(224,153,47,.3);
+  --ok:#43b87a; --ok-soft:rgba(67,184,122,.16);
+  --warn:#ff6a4d; --warn-soft:rgba(255,106,77,.16);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;color:var(--ash);background:var(--forge);font-family:"Fraunces",Georgia,serif;font-optical-sizing:auto;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
-#forge{position:fixed;inset:0;width:100%;height:100%;z-index:0}
-.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body{
+  margin:0; color:var(--ash); background:var(--forge);
+  font-family:"Fraunces",Georgia,serif; font-optical-sizing:auto; font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; height:100vh; display:flex; flex-direction:column; overflow:hidden;
+}
+#forge{position:fixed; inset:0; width:100%; height:100%; z-index:0; display:block}
+.grain{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
-.wrap{position:relative;z-index:2;max-width:1140px;margin:0 auto;padding:0 18px}
 
-.nav{position:sticky;top:0;z-index:100;height:62px;display:flex;align-items:center;gap:12px;padding:0 22px;background:rgba(15,14,12,.78);backdrop-filter:saturate(160%) blur(18px);-webkit-backdrop-filter:saturate(160%) blur(18px);border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
-.brand__mark{width:36px;height:36px;filter:drop-shadow(0 2px 10px rgba(255,106,26,.28))}
-.brand__name{font-family:"Cinzel",serif;font-weight:800;letter-spacing:.13em;font-size:16px;background:linear-gradient(180deg,#f6ecd9,#e0992f 150%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.brand__sub{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);opacity:.85;margin-top:3px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--amber);color:#1a1206;padding:10px 16px;border-radius:0 0 8px 0;z-index:300;font-family:"Cinzel",serif;letter-spacing:.08em}
+.skip:focus{left:0}
+
+/* Navbar */
+.nav{position:sticky; top:0; z-index:100; height:64px; display:flex; align-items:center; gap:14px; padding:0 22px; flex:none;
+  background:rgba(15,14,12,.72); backdrop-filter:saturate(160%) blur(18px); -webkit-backdrop-filter:saturate(160%) blur(18px);
+  border-bottom:1px solid var(--line);}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
+.brand__mark{width:38px;height:38px;flex:none;filter:drop-shadow(0 2px 10px rgba(255,106,26,.28))}
+.brand__txt{display:flex;flex-direction:column;line-height:1.05}
+.brand__name{font-family:"Cinzel",serif;font-weight:800;letter-spacing:.13em;font-size:17px;
+  background:linear-gradient(180deg,#f6ecd9,#e0992f 150%); -webkit-background-clip:text; background-clip:text; color:transparent}
+.brand__sub{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--amber);opacity:.85;margin-top:4px}
 .spacer{flex:1}
-.nav__tune{font-family:"Cinzel",serif;font-size:11px;letter-spacing:.08em;color:#1a1206;background:linear-gradient(180deg,#ffb24d,#e0992f);border:none;border-radius:999px;padding:9px 16px;cursor:pointer;box-shadow:0 6px 18px -6px var(--amber-glow)}
-.nav__tune:hover{filter:brightness(1.08)}
+.nav__ship{font-size:12px;color:var(--ash-dim);text-align:right;letter-spacing:.01em}
+.nav__ship b{color:var(--amber);font-weight:600}
 
-.hero{text-align:center;padding:34px 0 20px}
-.hero .eyebrow{font-family:"Cinzel",serif;letter-spacing:.34em;text-transform:uppercase;font-size:10px;color:var(--amber);margin-bottom:12px}
-.hero h1{font-weight:340;font-size:clamp(28px,5vw,50px);line-height:1.03;margin:0;color:var(--ash-bright);letter-spacing:-.01em}
-.hero h1 em{font-style:italic;color:var(--amber)}
-.hero p{max-width:62ch;margin:13px auto 0;color:var(--ash-dim);font-size:clamp(14px,1.7vw,16.5px)}
+/* Stage wrapper (scrolls for the picker) */
+.wrap{flex:1;min-height:0;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:18px 16px 0}
 
-/* Filter bar */
-.filters{position:sticky;top:62px;z-index:90;margin:18px 0 6px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;
-  background:rgba(22,19,15,.86);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
-  box-shadow:0 20px 50px -28px rgba(0,0,0,.7)}
-.frow{display:flex;flex-wrap:wrap;gap:18px 26px;align-items:flex-end}
-.fgroup{display:flex;flex-direction:column;gap:8px}
-.flabel{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash-dim)}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{font-family:"JetBrains Mono",monospace;font-size:13px;padding:7px 12px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--ash);cursor:pointer;transition:.14s}
-.chip:hover{border-color:var(--amber);color:#fff}
-.chip.on{background:linear-gradient(180deg,#ffb24d,#e0992f);color:#1a1206;border-color:transparent;font-weight:600}
-.toggle{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
-.toggle input{display:none}
-.tk{width:42px;height:24px;border-radius:999px;background:var(--steel);border:1px solid var(--line);position:relative;transition:.18s;flex:none}
-.tk::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--ash-dim);transition:.18s}
-.toggle input:checked + .tk{background:var(--ok-soft);border-color:var(--ok)}
-.toggle input:checked + .tk::after{left:21px;background:var(--ok)}
-.tlabel{font-size:13.5px;color:var(--ash)}
-.tlabel b{color:var(--ok)}
-.price{min-width:230px;flex:1}
-.price .pv{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--amber);margin-bottom:6px}
-.range{position:relative;height:26px}
-.range input{position:absolute;width:100%;top:8px;margin:0;-webkit-appearance:none;appearance:none;background:none;pointer-events:none;height:8px}
-.range input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:16px;height:16px;border-radius:50%;background:linear-gradient(180deg,#ffb24d,#e0992f);border:none;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.5)}
-.range input::-moz-range-thumb{pointer-events:auto;width:16px;height:16px;border-radius:50%;background:#e0992f;border:none;cursor:pointer}
-.range .track{position:absolute;top:11px;left:0;right:0;height:4px;border-radius:4px;background:var(--steel)}
-.range .fill{position:absolute;top:11px;height:4px;border-radius:4px;background:linear-gradient(90deg,#e0992f,#ff6a1a)}
-.fmeta{display:flex;align-items:center;gap:14px;margin-left:auto}
-.count{font-family:"Cinzel",serif;font-size:13px;color:var(--ash-bright)}
-.count b{color:var(--amber);font-size:18px}
-.reset{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ash-dim);background:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
-.reset:hover{border-color:var(--amber);color:var(--amber)}
+/* ---------- Consultant picker ---------- */
+#picker{width:100%;max-width:1000px;margin:0 auto;padding-bottom:24px;animation:fadeUp .5s cubic-bezier(.22,1,.36,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pick-hero{text-align:center;margin:8px 0 22px}
+.pick-eyebrow{font-family:"Cinzel",serif;letter-spacing:.36em;text-transform:uppercase;font-size:10px;color:var(--amber);margin-bottom:12px}
+.pick-hero h1{font-family:"Fraunces",serif;font-weight:340;font-size:clamp(26px,4.6vw,46px);line-height:1.05;margin:0;color:var(--ash-bright);letter-spacing:-.01em}
+.pick-hero h1 em{font-style:italic;color:var(--amber)}
+.pick-hero p{max-width:60ch;margin:14px auto 0;color:var(--ash-dim);font-size:clamp(14px,1.7vw,16.5px)}
+.pick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(176px,1fr));gap:14px}
+.pick-card{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;
+  background:linear-gradient(180deg,rgba(29,26,22,.5),rgba(15,14,12,.7));text-align:left;color:inherit;font:inherit;padding:0;
+  transition:transform .2s,border-color .2s,box-shadow .2s}
+.pick-card:hover,.pick-card:focus-visible{transform:translateY(-4px);border-color:var(--amber);box-shadow:0 18px 40px -18px rgba(0,0,0,.7),0 0 26px -10px var(--amber-glow);outline:none}
+.pick-card .pf{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden}
+.pick-card .pf img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:saturate(1.02)}
+.pick-card .pf::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(15,14,12,.86))}
+.pick-card .pc{position:relative;padding:0 14px 14px;margin-top:-34px;z-index:1}
+.pc-name{font-family:"Cinzel",serif;font-weight:700;font-size:15px;color:var(--ash-bright);letter-spacing:.02em}
+.pc-role{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:5px 0 8px}
+.pc-blurb{font-size:13px;color:var(--ash-dim);line-height:1.45}
+.pc-cta{margin-top:11px;font-family:"Cinzel",serif;font-size:11px;letter-spacing:.1em;color:var(--amber);display:flex;align-items:center;gap:6px;opacity:.9}
+.pick-card:hover .pc-cta{color:#fff}
 
-/* Results */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;margin:18px 0 40px}
-.card{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;padding:16px 16px 14px;
-  background:linear-gradient(180deg,rgba(29,26,22,.6),rgba(15,14,12,.74));backdrop-filter:blur(8px);transition:transform .2s,border-color .2s,box-shadow .2s}
-.card:hover{transform:translateY(-3px);border-color:var(--amber);box-shadow:0 18px 40px -20px rgba(0,0,0,.7),0 0 22px -12px var(--amber-glow)}
-.rank{position:absolute;top:12px;right:14px;font-family:"Cinzel",serif;font-size:11px;color:var(--ash-dim);letter-spacing:.1em}
-.cbrand{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
-.cmodel{font-family:"Cinzel",serif;font-weight:700;font-size:17px;color:var(--ash-bright);margin:3px 0 2px;line-height:1.15;padding-right:34px}
-.cstars{font-size:13px;color:var(--amber);letter-spacing:1px}
-.cstars span{color:var(--ash-dim)}
-.heat{display:flex;align-items:baseline;gap:8px;margin:12px 0 4px}
-.heatnum{font-family:"Cinzel",serif;font-weight:800;font-size:30px;line-height:1;background:linear-gradient(180deg,#ffd089,#ff6a1a);-webkit-background-clip:text;background-clip:text;color:transparent}
-.heatlbl{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ash-dim)}
-.bars{display:flex;gap:4px;margin:8px 0 12px}
-.bar{flex:1}
-.bar .bt{font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ash-dim);margin-bottom:3px}
-.bar .bg{height:5px;border-radius:3px;background:var(--steel);overflow:hidden}
-.bar .bf{height:100%;border-radius:3px}
-.bf.perf{background:#ff6a1a}.bf.value{background:#e0992f}.bf.avail{background:#c9a05a}.bf.legality{background:var(--ok)}
-.meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.tag{font-family:"JetBrains Mono",monospace;font-size:11px;padding:4px 8px;border-radius:7px;background:var(--amber-soft);color:var(--amber);border:1px solid var(--line)}
-.tag.legal{background:var(--ok-soft);color:var(--ok);border-color:rgba(67,184,122,.3)}
-.tag.illegal{background:var(--warn-soft);color:var(--warn);border-color:rgba(255,106,77,.3)}
-.tag.price{color:var(--ash-bright)}
-.cnote{font-size:13.5px;color:var(--ash-dim);line-height:1.45;margin:0 0 12px;min-height:38px}
-.buy{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.buy .bl{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash-dim);margin-right:2px}
-.buy a{font-size:12.5px;color:var(--amber);text-decoration:none;border-bottom:1px solid var(--line)}
-.buy a:hover{color:#fff;border-color:var(--amber)}
+/* ---------- Chat ---------- */
+.chat-card{width:100%;max-width:780px;flex:1;display:none;flex-direction:column;min-height:0;max-height:calc(100vh - 104px);
+  border:1px solid var(--line); border-radius:18px; overflow:hidden; position:relative;
+  background:linear-gradient(180deg,rgba(29,26,22,.6),rgba(15,14,12,.74));
+  backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%);
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.04);}
+.chat-card.active{display:flex}
+.chat-card::before,.chat-card::after{content:"";position:absolute;width:11px;height:11px;border:1.5px solid var(--amber);opacity:.55;z-index:3}
+.chat-card::before{top:10px;left:10px;border-right:0;border-bottom:0;border-radius:3px 0 0 0}
+.chat-card::after{bottom:10px;right:10px;border-left:0;border-top:0;border-radius:0 0 3px 0}
 
-.empty{text-align:center;padding:50px 20px;color:var(--ash-dim)}
-.empty b{color:var(--amber)}
+.chat-head{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.agent-av{width:42px;height:42px;border-radius:50%;flex:none;overflow:hidden;box-shadow:0 0 0 1.5px var(--amber),0 0 16px -4px var(--amber-glow)}
+.agent-av img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.chat-head__txt{display:flex;flex-direction:column;line-height:1.25;flex:1;min-width:0}
+.chat-head__name{font-family:"Cinzel",serif;font-weight:700;font-size:14px;letter-spacing:.03em;color:var(--ash-bright)}
+.chat-head__status{font-size:11.5px;color:var(--ash-dim);display:flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ember);box-shadow:0 0 8px var(--ember);animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.change-btn{flex:none;font-family:"Cinzel",serif;font-size:10.5px;letter-spacing:.08em;color:var(--ash-dim);background:transparent;
+  border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;transition:.16s}
+.change-btn:hover{border-color:var(--amber);color:var(--amber)}
 
-footer{text-align:center;padding:14px 16px 26px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ash-dim);position:relative;z-index:2;line-height:1.7}
+.messages{flex:1;overflow-y:auto;padding:22px 18px 8px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+.messages::-webkit-scrollbar{width:9px}
+.messages::-webkit-scrollbar-thumb{background:rgba(224,153,47,.22);border-radius:9px}
+.msg{display:flex;gap:10px;max-width:88%;animation:rise .4s cubic-bezier(.22,1,.36,1)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.bot{align-self:flex-start}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg__av{width:32px;height:32px;border-radius:50%;flex:none;overflow:hidden;display:grid;place-items:center;background:var(--amber-soft);color:var(--amber);border:1px solid var(--line)}
+.msg__av img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.msg.user .msg__av{background:linear-gradient(180deg,#ffb24d,#e0992f);color:#1a1206;border-color:transparent}
+.msg__av svg{width:16px;height:16px}
+.bubble{padding:12px 15px;border-radius:14px;font-size:15px;line-height:1.55;word-wrap:break-word;
+  background:rgba(224,153,47,.07);border:1px solid var(--line);color:#eaded0;}
+.msg.bot .bubble{border-top-left-radius:4px}
+.msg.user .bubble{background:#241d15;color:#f3ece1;border-color:rgba(255,255,255,.06);border-top-right-radius:4px}
+.bubble strong{font-weight:600;color:var(--ash-bright)}
+.bubble a{color:var(--amber);font-weight:600}
+.msg.user .bubble a{color:#fff;text-decoration:underline}
+.bubble ul{margin:8px 0 2px;padding-left:18px}
+.bubble li{margin:4px 0}
+.bubble .lede{margin:0 0 6px}
+.bubble .tag{display:inline-block;font-family:"Cinzel",serif;font-size:10px;font-weight:700;padding:3px 9px;border-radius:6px;margin-bottom:8px;letter-spacing:.14em;text-transform:uppercase}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.info{background:var(--amber-soft);color:var(--amber)}
+
+.typing .bubble{display:inline-flex;gap:4px;padding:14px}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:blink 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+/* conferring with the team */
+.confer .bubble{display:flex;flex-direction:column;gap:9px}
+.confer-txt{font-style:italic;color:var(--ash-dim);font-size:14px}
+.confer-faces{display:flex;align-items:center}
+.confer-faces img{width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:center 20%;border:1.5px solid var(--forge-2);margin-left:-7px;
+  animation:bob 1.4s infinite ease-in-out}
+.confer-faces img:first-child{margin-left:0}
+.confer-faces img:nth-child(2){animation-delay:.15s}.confer-faces img:nth-child(3){animation-delay:.3s}.confer-faces img:nth-child(4){animation-delay:.45s}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(-3px);opacity:1}}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:4px 18px 14px}
+.chip{font-family:"Fraunces",serif;font-size:13px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);
+  background:transparent;color:var(--ash);cursor:pointer;transition:all .16s}
+.chip:hover{border-color:var(--amber);color:#fff;background:var(--amber-soft);transform:translateY(-1px)}
+
+.composer{display:flex;gap:10px;padding:13px 16px;border-top:1px solid var(--line)}
+.composer input{flex:1;border:1px solid var(--line);background:rgba(0,0,0,.28);color:#f3ece1;
+  border-radius:999px;padding:13px 18px;font-size:15px;font-family:"Fraunces",serif;outline:none;transition:border-color .16s,box-shadow .16s}
+.composer input::placeholder{color:var(--ash-dim)}
+.composer input:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-soft)}
+.send{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;flex:none;display:grid;place-items:center;
+  background:linear-gradient(180deg,#ffb24d,#e0992f);color:#1a1206;transition:transform .14s,filter .14s;box-shadow:0 6px 18px -6px var(--amber-glow)}
+.send:hover{filter:brightness(1.08);transform:scale(1.05)}
+.send:active{transform:scale(.95)}
+.send svg{width:20px;height:20px}
+
+footer{text-align:center;padding:12px 16px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ash-dim);position:relative;z-index:2;line-height:1.7;flex:none}
 footer a{color:var(--amber)}
 
-/* Tune modal */
-.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(7,6,5,.7);backdrop-filter:blur(6px)}
-.modal.open{display:flex}
-.sheet{width:100%;max-width:560px;max-height:90vh;overflow-y:auto;border:1px solid var(--line-strong);border-radius:18px;padding:22px;
-  background:linear-gradient(180deg,rgba(29,26,22,.96),rgba(15,14,12,.98));box-shadow:0 40px 90px -30px #000}
-.sheet h2{font-family:"Cinzel",serif;font-weight:700;font-size:18px;color:var(--ash-bright);margin:0 0 4px}
-.sheet p.sub{color:var(--ash-dim);font-size:14px;margin:0 0 14px}
-.sheet textarea{width:100%;min-height:84px;resize:vertical;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:12px;color:#f3ece1;font-family:"Fraunces",serif;font-size:15px;padding:12px 14px;outline:none}
-.sheet textarea:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-soft)}
-.sheet .ex{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 14px}
-.sheet .ex button{font-size:12px;color:var(--ash);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 11px;cursor:pointer}
-.sheet .ex button:hover{border-color:var(--amber);color:#fff}
-.sheet .go{font-family:"Cinzel",serif;letter-spacing:.08em;font-weight:700;font-size:13px;color:#1a1206;background:linear-gradient(180deg,#ffb24d,#e0992f);border:none;border-radius:12px;padding:12px 20px;cursor:pointer;width:100%}
-.sheet .go:disabled{opacity:.5;cursor:wait}
-.sheet .close{position:absolute;}
-.tuneout{margin-top:16px;display:none}
-.tuneout.show{display:block}
-.tuneout .sum{font-style:italic;color:var(--ash);margin-bottom:10px}
-.pick{border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:9px;background:var(--amber-soft)}
-.pick .pm{font-family:"Cinzel",serif;font-weight:700;color:var(--ash-bright);font-size:14px}
-.pick .pw{font-size:13px;color:var(--ash-dim);margin-top:3px}
-.xbtn{background:none;border:1px solid var(--line);color:var(--ash-dim);border-radius:8px;padding:5px 10px;cursor:pointer;font-family:"JetBrains Mono",monospace;font-size:12px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:6px}
 
-@media (max-width:560px){ .grid{grid-template-columns:1fr} .nav__tune{padding:8px 12px} }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:600px){
+  .chat-card{max-height:calc(100vh - 150px);border-radius:14px}
+  .nav__ship{display:none}
+  .msg{max-width:94%}
+  .pick-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#composer-input">Skip to message box</a>
 <canvas id="forge" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
 
 <nav class="nav">
-  <a class="brand" href="#" aria-label="Boru Bats">
-    <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0f0e0c"/><path d="M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z" fill="none" stroke="#e0992f" stroke-width="2.5"/><rect x="30" y="16" width="4.5" height="30" rx="2.2" transform="rotate(34 32 31)" fill="#ff6a1a"/><circle cx="24" cy="44" r="3" fill="#e0992f"/></svg>
-    <span><span class="brand__name">BORU BATS</span><br><span class="brand__sub">Hot Bat Picker</span></span>
+  <a class="brand" href="#" aria-label="Boru Bats home" onclick="showPicker();return false;">
+    <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+      <rect width="64" height="64" rx="14" fill="#0f0e0c"/>
+      <path d="M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z" fill="none" stroke="#e0992f" stroke-width="2.5"/>
+      <rect x="30" y="16" width="4.5" height="30" rx="2.2" transform="rotate(34 32 31)" fill="#ff6a1a"/>
+      <circle cx="24" cy="44" r="3" fill="#e0992f"/>
+    </svg>
+    <span class="brand__txt">
+      <span class="brand__name">BORU BATS</span>
+      <span class="brand__sub">The High King's Armoury</span>
+    </span>
   </a>
   <span class="spacer"></span>
-  <button class="nav__tune" id="tuneBtn">⚒ Tune for my swing</button>
+  <div class="nav__ship">Bat picker for all of Europe · <b>sourced to your door</b></div>
 </nav>
 
-<div class="wrap">
-  <div class="hero">
-    <div class="eyebrow">The High King's Armoury</div>
-    <h1>The <em>hottest</em> WBSC-Europe-legal bats, ranked.</h1>
-    <p>Filter by weight, balance, budget and tournament-legality. Every bat is scored by a transparent Heat Score and cross-checked against the official approved-bat list, so what you see is legal, hot, and worth the money.</p>
-  </div>
+<main class="wrap" id="main">
 
-  <section class="filters" aria-label="Filters">
-    <div class="frow">
-      <div class="fgroup">
-        <span class="flabel">Weight</span>
-        <div class="chips" id="wChips"></div>
-      </div>
-      <div class="fgroup">
-        <span class="flabel">Balance</span>
-        <div class="chips" id="bChips"></div>
-      </div>
-      <div class="fgroup">
-        <span class="flabel">Tournament legality</span>
-        <label class="toggle"><input type="checkbox" id="legalT" checked><span class="tk"></span><span class="tlabel"><b>WBSC Europe legal</b> only</span></label>
-      </div>
-      <div class="fgroup price">
-        <span class="flabel">Price (EUR)</span>
-        <div class="pv" id="priceVal">€0 – €600</div>
-        <div class="range">
-          <div class="track"></div><div class="fill" id="pFill"></div>
-          <input type="range" id="pMin" min="0" max="600" step="10" value="0">
-          <input type="range" id="pMax" min="0" max="600" step="10" value="600">
-        </div>
-      </div>
-      <div class="fmeta">
-        <span class="count"><b id="cnt">0</b> bats</span>
-        <button class="reset" id="reset">Reset</button>
-      </div>
+  <!-- Consultant picker -->
+  <section id="picker" aria-label="Choose your bat consultant">
+    <div class="pick-hero">
+      <div class="pick-eyebrow">The High King's Armoury</div>
+      <h1>Find the <em>hottest bat for your swing</em>, at the right price, and get it sourced.</h1>
+      <p>Five of Europe's best slowpitch bat consultants. Pick who you'd like to work with, tell them your specs, and they'll confer with the team to find your perfect, tournament-legal bat, then track it down anywhere in Europe.</p>
     </div>
+    <div class="pick-grid" id="pickGrid"></div>
   </section>
 
-  <div class="grid" id="grid"></div>
-</div>
+  <!-- Chat -->
+  <section class="chat-card" id="chatCard" aria-label="Boru Bats consultant chat">
+    <div class="chat-head">
+      <div class="agent-av" id="agentAv" aria-hidden="true"></div>
+      <div class="chat-head__txt">
+        <span class="chat-head__name" id="agentName">Consultant</span>
+        <span class="chat-head__status"><span class="dot"></span> <span id="agentStatus">Online</span></span>
+      </div>
+      <button class="change-btn" type="button" onclick="showPicker()">Change consultant</button>
+    </div>
+
+    <div class="messages" id="messages" aria-live="polite" aria-atomic="false"></div>
+
+    <div class="chips" id="chips"></div>
+
+    <form class="composer" id="composer" autocomplete="off">
+      <input id="composer-input" type="text" placeholder="Tell them your specs, or paste a bat code…" aria-label="Type your message" />
+      <button class="send" type="submit" aria-label="Send message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </form>
+  </section>
+</main>
 
 <footer>
-  Heat Score = performance + value + availability + legality (transparent, capped 100) · catalog curated with gpt-5.5, cross-checked against the official WBSC / USA Softball approved-bat list ·
-  scores are expert estimates, not a live feed · always confirm the exact barrel code against the <a href="https://bats-kluxy.pages.dev/" target="_blank" rel="noopener">official approved-bat checker</a> before buying.
+  Boru Bats · five expert consultants · WBSC Europe-legal slowpitch bats, sourced across Europe ·
+  wired to the live <a href="https://bats-kluxy.pages.dev/" target="_blank" rel="noopener">approved-bat checker</a> · final legality is always set by the official WBSC Europe list
 </footer>
 
-<!-- Tune modal -->
-<div class="modal" id="modal">
-  <div class="sheet">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
-      <div><h2>Tune for my swing</h2><p class="sub">Tell the armourer about your swing, weight and budget. gpt-5.5 re-ranks the legal catalog for you.</p></div>
-      <button class="xbtn" id="closeBtn">esc</button>
-    </div>
-    <textarea id="profile" placeholder="e.g. 27oz hitter, decent bat speed, I hit for power but want it legal for Euros, budget up to 350."></textarea>
-    <div class="ex">
-      <button>27oz, power, legal, up to €350</button>
-      <button>25oz contact hitter, best value</button>
-      <button>National-team level, premium, balanced</button>
-    </div>
-    <button class="go" id="goBtn">Find my bats</button>
-    <div class="tuneout" id="tuneout"></div>
-  </div>
-</div>
-
-<!-- Buy modal -->
-<div class="modal" id="buyModal">
-  <div class="sheet">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
-      <div><h2 id="buyTitle">Where to buy</h2><p class="sub" id="buySub"></p></div>
-      <button class="xbtn" id="buyClose">esc</button>
-    </div>
-    <div id="buyLinks" style="display:flex;flex-direction:column;gap:8px"></div>
-    <button class="go" id="buyAI" style="margin-top:14px">✨ Find live listings (AI web search)</button>
-    <div class="tuneout" id="buyOut"></div>
-  </div>
-</div>
-
 <script>
-const ENDPOINT="https://boru-bats-bot.victordelrosal.workers.dev";
-let BATS=[];
-const F={weight:"any",balance:"any",legal:true,pmin:0,pmax:600};
-const esc=s=>(s||"").replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
-const $=id=>document.getElementById(id);
+/* ---------- Consultants ---------- */
+const CONSULTANTS = [
+  { id:'mateo', name:'Mateo Rivas', first:'Mateo', img:'img/mateo.jpg',
+    role:'Power & end-load',
+    blurb:'Ex-pro power hitter. End-loaded bats, big barrels, maximum pop. If you want to go yard, start here.',
+    status:'Power specialist · end-loaded, big barrels',
+    intro:[`¡Vamos! I'm <strong>Mateo</strong>. If you want to hit it a country mile, you're talking to the right guy: end-load, big barrels, pure pop. ⚒`,
+           `Tell me how heavy you swing and what you're mashing with now, and I'll find you a hammer. What's your weight and your level?`],
+    chips:['I want maximum power','27oz, over the fence','Hottest power bat right now?','Source a sold-out bat','Check my bat (legality)'] },
 
-function stars(r){const f=Math.round(r);return '★'.repeat(f)+'<span>'+'★'.repeat(5-f)+'</span>'+' '+r.toFixed(1);}
-function retailerURL(n){return {
-  "Baseball & Softball Shop":"https://www.thebaseballandsoftballshop.co.uk/",
-  "Covee Sports":"https://www.coveesports.com/",
-  "Forelle":"https://www.forelle.eu/",
-  "Ubuy Ireland":"https://www.ubuy.ie/"
-}[n]||"#";}
+  { id:'saoirse', name:'Saoirse Nolan', first:'Saoirse', img:'img/saoirse.jpg',
+    role:'Fit & balance',
+    blurb:'Team Ireland alumna. Matches balance, weight and swing speed to how you actually hit. Brilliant for contact hitters.',
+    status:'Fit specialist · balance, swing speed, control',
+    intro:[`Hi, I'm <strong>Saoirse</strong>. I match the bat to how you actually swing: balance, weight, bat speed. ⚒`,
+           `Quick start: are you more a control or a power hitter, and what weight feels right in your hands?`],
+    chips:['Help me pick','I\'m a contact hitter','Balanced vs end-loaded?','Best 25oz balanced bat?','Check my bat (legality)'] },
 
-function passes(b){
-  if(F.legal && !b.wbsc_legal) return false;
-  if(F.weight!=="any" && !(b.weights||[]).includes(+F.weight)) return false;
-  if(F.balance!=="any" && b.balance!==F.balance) return false;
-  // price overlap
-  if(b.price_max < F.pmin || b.price_min > F.pmax) return false;
+  { id:'eira', name:'Eira Lindqvist', first:'Eira', img:'img/eira.jpg',
+    role:'Rankings & value',
+    blurb:'Data-driven, hype-proof. The hotness index, performance rankings and best performance per euro. They/them.',
+    status:'The numbers · rankings, hotness index, value',
+    intro:[`Eira here. I deal in numbers, not marketing. I'll tell you what's genuinely hottest and what's best per euro. ⚒`,
+           `Give me your budget and your swing weight, and I'll cut through the hype for you. What are we working with?`],
+    chips:['What\'s hottest right now?','Best value for money','Rank the top bats','Hype vs reality','Check my bat (legality)'] },
+
+  { id:'kwame', name:'Kwame Mensah', first:'Kwame', img:'img/kwame.jpg',
+    role:'Sourcing & stock',
+    blurb:'The connector. Knows which European shops actually have stock and how to get the bat that\'s sold out everywhere.',
+    status:'Sourcing · availability across Europe',
+    intro:[`Kwame here. "Sold out everywhere" is the challenge I enjoy most. ⚒`,
+           `Tell me the bat and the spec you're after, and I'll find where it's actually in stock and what it takes to get it to you. Where are you based?`],
+    chips:['Source a sold-out bat','What\'s in stock now?','Ship to Ireland / UK / EU','Best bat I can get this week','Check my bat (legality)'] },
+
+  { id:'yuki', name:'Yuki Tanaka', first:'Yuki', img:'img/yuki.jpg',
+    role:'Pro & premium tuning',
+    blurb:'Meticulous. Pro and national-team level, premium models, fine end-load and flex tuning, fastpitch crossover.',
+    status:'Pro & premium · fine tuning, top-tier models',
+    intro:[`I'm <strong>Yuki</strong>. At the top level, the details decide it: end-load grams, handle flex, break-in. ⚒`,
+           `What level do you play at, and what are you trying to tune or upgrade?`],
+    chips:['Pro-level recommendation','Fastpitch crossover','Fine-tune my end-load','Premium picks','Check my bat (legality)'] }
+];
+const byId = id => CONSULTANTS.find(c=>c.id===id);
+let agent = null;
+
+/* ---------- Chat engine ---------- */
+const messagesEl = document.getElementById('messages');
+const chipsEl = document.getElementById('chips');
+const form = document.getElementById('composer');
+const input = document.getElementById('composer-input');
+const pickerEl = document.getElementById('picker');
+const chatCard = document.getElementById('chatCard');
+
+const ICON_USER = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+const botAv = () => `<img src="${agent.img}" alt="${esc(agent.name)}" loading="lazy">`;
+
+function el(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstChild; }
+function scrollDown(){ messagesEl.scrollTop = messagesEl.scrollHeight; }
+
+function addUser(text){
+  const m = el(`<div class="msg user"><div class="msg__av">${ICON_USER}</div><div class="bubble"></div></div>`);
+  m.querySelector('.bubble').textContent = text;
+  messagesEl.appendChild(m); scrollDown();
+}
+function addBot(html, delay=600){
+  return new Promise(res=>{
+    const t = el(`<div class="msg bot typing"><div class="msg__av">${botAv()}</div><div class="bubble"><span></span><span></span><span></span></div></div>`);
+    messagesEl.appendChild(t); scrollDown();
+    setTimeout(()=>{
+      t.remove();
+      const m = el(`<div class="msg bot"><div class="msg__av">${botAv()}</div><div class="bubble"></div></div>`);
+      m.querySelector('.bubble').innerHTML = html;
+      messagesEl.appendChild(m); scrollDown();
+      res();
+    }, delay);
+  });
+}
+
+/* ----- Knowledge base: intents (fallback when the LLM is unavailable) ----- */
+const KB = [
+  {
+    id:'legal_check', kw:['is my bat legal','legal','illegal','allowed','tournament','bat check','batcheck','rejected','turned away','approved','compliant','can i use','certify','certified','certification','stamp','mark'],
+    weight:1,
+    reply:`<span class="tag info">CERTIFICATION</span><p class="lede">Good question, here's the rule for Europe:</p>
+    <ul>
+      <li>For tournament play, a bat must be <strong>WBSC Europe certified</strong> and on the <strong>current official approved-bat list</strong>.</li>
+      <li><strong>USA Softball</strong> and <strong>USSSA</strong> stamps (common on US imports) are <strong>not</strong> recognised, so they get refused at bat-check.</li>
+      <li>A mark on the barrel is only valid if that exact model is still on the live list, marks can be revoked.</li>
+    </ul>
+    <p>Want me to check a specific bat? Type <strong>check my bat</strong> and I'll take it step by step.</p>`
+  },
+  {
+    id:'us_import', kw:['usa softball','usssa','imported','import','us site','american','asa','ebay','amazon','bought abroad','from the states','from america'],
+    weight:1.2,
+    reply:`<span class="tag warn">HEADS UP</span><p class="lede">If it carries only a <strong>USA Softball</strong> or <strong>USSSA</strong> stamp, it will almost certainly be <strong>turned away at WBSC Europe bat-check</strong>, even if it's a great bat.</p>
+    <p>It's still fine for casual hitting, but for fixtures you'll need a WBSC Europe approved model. Tell me the weight and whether it was end-loaded or balanced and I'll match you a legal one.</p>`
+  },
+  {
+    id:'fitting', kw:['fit','fitting','weight','balance','end load','end-load','endloaded','balanced','barrel','length','grip','swing','recommend','which bat','heavy','light','oz','ounce'],
+    weight:1,
+    reply:`<span class="tag info">FITTING</span><p class="lede">Happy to help you pick. We match four things to your swing:</p>
+    <ul>
+      <li><strong>Weight:</strong> lighter (26–27oz) for bat speed and control, heavier (28oz+) for power.</li>
+      <li><strong>Balance:</strong> <strong>balanced</strong> = quicker through the zone; <strong>end-loaded</strong> = more mass in the barrel for distance.</li>
+      <li><strong>Barrel length</strong> and <strong>grip</strong> to suit your hands and contact point.</li>
+    </ul>
+    <p>Tell me your weight preference and whether you want <strong>control</strong> or <strong>power</strong>.</p>`
+  },
+  {
+    id:'shipping', kw:['ship','shipping','delivery','deliver','post','postage','how long','when will','arrive','dublin','cork','galway','ireland','uk','europe','courier','track'],
+    weight:1,
+    reply:`<span class="tag ok">SHIPPING & SOURCING</span><p class="lede">We source and ship <strong>across Europe</strong>, Ireland, the UK and mainland.</p>
+    <ul>
+      <li>Tracked courier; lead times depend on where the bat is in stock.</li>
+      <li>Got a fixture coming up? Tell me the date and I'll flag the fastest legal option.</li>
+    </ul>`
+  },
+  {
+    id:'price', kw:['price','cost','how much','expensive','cheap','budget','euro','€','pay','range','value'],
+    weight:1,
+    reply:`<span class="tag info">PRICING</span><p class="lede">Top slowpitch bats typically run <strong>€150–€400</strong> depending on the model and barrel tech.</p>
+    <p>Tell me your budget and I'll show you the best-value legal option in range, the real performance per euro.</p>`
+  },
+  {
+    id:'human', kw:['human','agent','person','staff','talk to','call','phone','email','contact','speak to someone','help me'],
+    weight:1.4,
+    reply:`<span class="tag info">TALK TO A HUMAN</span><p class="lede">Of course, our team is happy to help, especially to verify a specific bat or confirm stock:</p>
+    <ul>
+      <li>Email: <a href="mailto:help@borubats.ie">help@borubats.ie</a></li>
+      <li>We reply same day, Monday to Saturday.</li>
+    </ul>`
+  },
+  {
+    id:'greeting', kw:['hi','hello','hey','howya','good morning','good afternoon','hiya','yo'],
+    weight:.6,
+    reply:`Hello! 👋 Tell me about your swing, your specs, or your budget and I'll find your perfect bat. What are you after?`
+  },
+  {
+    id:'thanks', kw:['thanks','thank you','cheers','grand','appreciate','nice one','class'],
+    weight:.6,
+    reply:`You're very welcome, best of luck at the next fixture! ⚾ Anything else I can find for you?`
+  }
+];
+
+/* ----- real approved-bat lookup (official WBSC + USA Softball lists) ----- */
+let BATS=[], BAT_BY_MODEL=new Map(), BAT_BY_KEY=new Map(), batsReady=false, batsTotal=0;
+function normCode(s){ return (s||'').toUpperCase().replace(/[^A-Z0-9]/g,''); }
+function esc(s){ return (s||'').replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])); }
+fetch('bats.json').then(r=>r.json()).then(d=>{
+  BATS=d.bats||[]; batsTotal=(d.meta&&d.meta.total)||BATS.length;
+  BATS.forEach(b=>{ BAT_BY_MODEL.set(normCode(b.m),b); BAT_BY_KEY.set(normCode(b.k),b); });
+  batsReady=true;
+}).catch(()=>{ batsReady=false; });
+
+function lookupBat(text){
+  if(!batsReady) return null;
+  const raw = text.toUpperCase().split(/[^A-Z0-9]+/).filter(Boolean);
+  const cands = new Set();
+  raw.forEach((t,i)=>{ if(t.length>=3) cands.add(t); if(i<raw.length-1) cands.add(t+raw[i+1]); });
+  cands.add(normCode(text));
+  const isCode = s => s.length>=5 && /[A-Z]/.test(s) && /\d/.test(s);
+  for(const t of cands){
+    if(t.length>=4 && (BAT_BY_MODEL.has(t)||BAT_BY_KEY.has(t)))
+      return {status:'match', bat:BAT_BY_MODEL.get(t)||BAT_BY_KEY.get(t)};
+  }
+  const codeToks = raw.filter(isCode);
+  if(!codeToks.length) return null;
+  for(const t of codeToks){
+    const subs = BATS.filter(b=>normCode(b.m).includes(t)||normCode(b.k).includes(t)).slice(0,6);
+    if(subs.length) return {status:'partial', token:t, subs};
+  }
+  return {status:'nomatch'};
+}
+function batName(b){ return (b.mf+' '+b.m).trim() + (b.d? ' “'+b.d+'”':''); }
+function batVerdict(b){
+  const both = b.w && b.u;
+  if(b.w){
+    return `<span class="tag ok">LEGAL ✓</span><p class="lede"><strong>${esc(batName(b))}</strong> is on the <strong>WBSC Europe approved-bat list</strong>${b.wd?` (added ${esc(b.wd)})`:''}, so it's good for tournament play here.${both?` It's also on the USA Softball list.`:''}</p>
+    <ul>
+      <li>Just confirm the physical bat matches this model and the barrel isn't altered or damaged.</li>
+      <li>The <strong>tournament umpire always has the final say</strong> at bat-check.</li>
+    </ul>
+    <p>Want me to find you something with this profile, or a hotter alternative? Just say the word.</p>`;
+  }
+  return `<span class="tag warn">NOT LEGAL HERE ✕</span><p class="lede"><strong>${esc(batName(b))}</strong> is on the <strong>USA Softball</strong> list only${b.ud?` (added ${esc(b.ud)})`:''}. That mark is <strong>not recognised under WBSC Europe</strong> rules, so it would be <strong>refused at bat-check</strong> in Europe.</p>
+  <p>It's still grand for casual hitting. For fixtures I can match you a WBSC-legal bat with the same feel, tell me your weight and whether you want <strong>control</strong> or <strong>power</strong>.</p>`;
+}
+function partialMsg(look){
+  const items = look.subs.map(b=>{
+    const tag = b.w? '<span class="tag ok" style="margin:0">WBSC legal</span>' : '<span class="tag warn" style="margin:0">USA only</span>';
+    return `<li><strong>${esc(b.m)}</strong> &middot; ${esc(b.mf)}${b.d?' '+esc(b.d):''} &middot; ${tag}</li>`;
+  }).join('');
+  return `<span class="tag info">CLOSE MATCHES</span><p class="lede">I didn't find an exact match for "<strong>${esc(look.token)}</strong>", did you mean one of these?</p>
+  <ul>${items}</ul>
+  <p>Type the <strong>exact code</strong> and I'll give you the verdict.</p>`;
+}
+function nomatchMsg(){
+  return `<span class="tag warn">NOT ON THE LIST</span><p class="lede">I checked all ${batsTotal.toLocaleString()} approved bats and couldn't find that code. Two possibilities:</p>
+  <ul>
+    <li>The code is slightly off, worth double-checking the barrel.</li>
+    <li>It simply isn't on the WBSC Europe or USA Softball approved lists.</li>
+  </ul>
+  <p>Send a clear photo of the barrel to <a href="mailto:help@borubats.ie">help@borubats.ie</a>, browse the full searchable list on the <a href="https://bats-kluxy.pages.dev/" target="_blank" rel="noopener">approved-bat checker</a>, or type <strong>talk to a human</strong>.</p>`;
+}
+
+/* ----- live approved-list auto-check (wires the consultant to the real bat data) ----- */
+const KNOWN_BRANDS = ['louisville slugger','soldier sports','demarini','monsta','anarchy','worth','easton','miken','louisville','marucci','mizuno','rawlings','combat','suncoast','victus','boombah','stringking','pure','axe'];
+const BRAND_DISPLAY = {demarini:'DeMarini',miken:'Miken',monsta:'Monsta',anarchy:'Anarchy',worth:'Worth',easton:'Easton','louisville slugger':'Louisville Slugger',louisville:'Louisville Slugger',marucci:'Marucci',mizuno:'Mizuno',rawlings:'Rawlings',combat:'Combat',suncoast:'Suncoast',victus:'Victus',boombah:'Boombah',stringking:'StringKing',pure:'Pure',axe:'Axe','soldier sports':'Soldier Sports'};
+const STOP = new Set(['series','barrel','balanced','endloaded','end','loaded','load','the','and','with','oz','version','model','bat','bats','m5','m2','1pc','2pc','one','two','piece','usa','usssa','wbsc','asa','max','maxload','pro','for']);
+function titleCase(s){ return s.replace(/\b([a-z])/g,(_,c)=>c.toUpperCase()); }
+function searchByName(brand, phrase){
+  const cands = BATS.filter(b=>{ const mf=(b.mf||'').toLowerCase(); return mf.includes(brand)||brand.includes(mf); });
+  if(!cands.length) return {brandKnown:false};
+  const toks = phrase.toLowerCase().split(/[^a-z0-9]+/).filter(t=>t && !STOP.has(t) && !brand.includes(t) && t.length>1 && !/^\d+$/.test(t));
+  let best=null, bestScore=0;
+  for(const b of cands){ const hay=((b.m||'')+' '+(b.d||'')).toLowerCase(); let s=0; toks.forEach(t=>{ if(hay.includes(t)) s++; }); if(s>bestScore){bestScore=s;best=b;} }
+  const anyLegal = cands.some(b=>b.w);
+  let legalVariant = null;
+  if(toks.length) legalVariant = cands.find(b=>b.w && toks.every(t=>((b.m||'')+' '+(b.d||'')).toLowerCase().includes(t)));
+  return {brandKnown:true, found:bestScore>0, best, legal:best&&best.w, legalVariant, anyLegal};
+}
+const PHRASE_STOP = new Set(['the','a','an','or','are','is','also','both','for','with','to','that','which','my','your','top','best','of','in','on','series','version','model','i','d','you','it','they','them','can','could','would']);
+function extractMentions(text){
+  const t=' '+text.toLowerCase()+' '; const out=[]; const used=[];
+  for(const brand of KNOWN_BRANDS){
+    let idx=0;
+    while((idx=t.indexOf(brand, idx))!==-1){
+      // skip if this position already consumed by a longer brand (e.g. 'louisville slugger' vs 'louisville')
+      if(used.some(([a,b])=>idx>=a&&idx<b)){ idx+=brand.length; continue; }
+      used.push([idx, idx+brand.length]);
+      const after=t.slice(idx+brand.length).split(/[^a-z0-9]+/).filter(Boolean);
+      const words=[];
+      for(const w of after){ if(words.length>=3) break; if(KNOWN_BRANDS.includes(w)||PHRASE_STOP.has(w)) break; words.push(w); }
+      const phrase=words.join(' ');
+      out.push({brand, phrase, label:(BRAND_DISPLAY[brand]||titleCase(brand))+(phrase?' '+titleCase(phrase):'')});
+      idx+=brand.length;
+    }
+  }
+  return out;
+}
+function showCode(b){ return esc(b.m || b.k); }
+function checkMention(m){
+  const r=searchByName(m.brand, m.phrase);
+  if(!r.brandKnown) return null;
+  if(r.found && r.legal) return `<li><span class="tag ok" style="margin:0 6px 0 0">WBSC ✓</span><strong>${esc(m.label)}</strong> &middot; code <span class="mono">${showCode(r.best)}</span></li>`;
+  if(r.found && r.legalVariant) return `<li><span class="tag ok" style="margin:0 6px 0 0">WBSC ✓</span><strong>${esc(m.label)}</strong> &middot; legal version on the list: <span class="mono">${showCode(r.legalVariant)}</span> (avoid the USSSA version)</li>`;
+  if(r.found) return `<li><span class="tag warn" style="margin:0 6px 0 0">NOT LEGAL ✕</span><strong>${esc(m.label)}</strong> &middot; only USA/USSSA versions are on the list (e.g. <span class="mono">${showCode(r.best)}</span>), not WBSC Europe legal</li>`;
+  return `<li><span class="tag info" style="margin:0 6px 0 0">CHECK</span><strong>${esc(m.label)}</strong> &middot; ${r.anyLegal?`couldn't pin the exact model, but ${BRAND_DISPLAY[m.brand]||m.brand} has WBSC-legal options, paste the barrel code to confirm`:`${BRAND_DISPLAY[m.brand]||m.brand} has no WBSC-legal models on the approved list`}</li>`;
+}
+function autoCheck(text){
+  if(!batsReady) return false;
+  const mentions=extractMentions(text);
+  if(!mentions.length) return false;
+  const seen=new Set(); const items=[];
+  for(const m of mentions){ const key=m.brand+'|'+m.phrase; if(seen.has(key)) continue; seen.add(key); const li=checkMention(m); if(li) items.push(li); if(items.length>=6) break; }
+  if(!items.length) return false;
+  addBotNow(`<span class="tag info">LIVE CHECK · official approved-bat list</span><p class="lede">I ran those through our live approved-list. Here's where they stand for WBSC Europe play:</p><ul>${items.join('')}</ul><p>Paste any exact barrel code for a precise single check and I'll source the WBSC-legal version for you.</p>`);
   return true;
 }
 
-function card(b,i){
-  const legal = b.wbsc_legal
-    ? `<span class="tag legal" title="A WBSC-Europe-legal version of this line is on the official list; confirm the exact barrel code before buying">WBSC ✓ legal · e.g. ${esc(b.wbsc_code||'')}</span>`
-    : `<span class="tag illegal">Not on the WBSC-Europe list</span>`;
-  const bar=(lbl,v,max,cls)=>`<div class="bar"><div class="bt">${lbl}</div><div class="bg"><div class="bf ${cls}" style="width:${Math.round(v/max*100)}%"></div></div></div>`;
-  const buy=(b.retailers||[]).map(r=>`<a href="${retailerURL(r)}" target="_blank" rel="noopener">${esc(r)}</a>`).join('');
-  return `<article class="card" data-i="${i}" role="button" tabindex="0" title="See where to buy">
-    <div class="rank">#${i+1}</div>
-    <div class="cbrand">${esc(b.brand)} · ${esc(b.swing)}</div>
-    <div class="cmodel">${esc(b.model)}</div>
-    <div class="cstars">${stars(b.rating||0)}</div>
-    <div class="heat"><span class="heatnum">${b.heat}</span><span class="heatlbl">Heat Score / 100</span></div>
-    <div class="bars">${bar('Pop',b.perf,40,'perf')}${bar('Value',b.value,25,'value')}${bar('Stock',b.avail,20,'avail')}${bar('Legal',b.legality,15,'legality')}</div>
-    <div class="meta">
-      <span class="tag price">€${b.price_min}–${b.price_max}</span>
-      <span class="tag">${(b.weights||[]).join(', ')}oz</span>
-      <span class="tag">${esc(b.balance)}</span>
-      ${legal}
-    </div>
-    <p class="cnote">${esc(b.note||'')}</p>
-    <div class="buy"><span class="bl">Click card for all buy options</span><span style="margin-left:auto;color:var(--amber)">Where to buy →</span></div>
-  </article>`;
+/* ----- guided "check my bat" flow ----- */
+let flow = null;
+const flowDef = {
+  start(){
+    flow = {step:'mark'};
+    return `<span class="tag info">BAT LEGALITY CHECK</span><p class="lede">Happy to. Quickest way: if you can read the <strong>model code</strong> on the barrel, paste it and I'll check it against the official list right now.</p>
+    <p>Otherwise, what <strong>certification mark</strong> is on the barrel? Type <strong>WBSC</strong>, <strong>USA</strong>, <strong>USSSA</strong>, or <strong>none</strong>.</p>`;
+  },
+  handle(text){
+    const look = lookupBat(text);
+    if(look && look.status==='match'){ flow=null; return batVerdict(look.bat); }
+    if(look && look.status==='partial'){ flow=null; return partialMsg(look); }
+    const t = text.toLowerCase();
+    if(flow.step==='mark'){
+      if(t.includes('wbsc')){
+        flow.step='model';
+        return `Good start, a WBSC mark is the right family. The mark alone isn't the full story (models can be revoked), so let's confirm against the list. <strong>What's the exact model code on the barrel?</strong> (e.g. <em>ASPDAW25A</em>)`;
+      }
+      if(t.includes('usa')||t.includes('usssa')||t.includes('asa')){
+        flow.step='model';
+        return `<span class="tag warn">HEADS UP</span><p class="lede">A USA Softball or USSSA stamp is <strong>not recognised under WBSC Europe</strong>, so it'll likely be refused. Let me confirm the exact bat, <strong>what's the model code on the barrel?</strong> If you can't read it, type <strong>unknown</strong>.</p>`;
+      }
+      if(t.includes('none')||t==='no'||t.includes('no mark')||t.includes('can\'t')||t.includes('cant')){
+        flow.step='model';
+        return `No readable mark makes it harder, but if we can identify the <strong>model code</strong> we can still check. <strong>What's the model code on the barrel?</strong> If nothing's legible, type <strong>unknown</strong>.`;
+      }
+      return `No bother. If you can read the bat's <strong>model code</strong>, paste it. Otherwise type <strong>WBSC</strong>, <strong>USA</strong>, <strong>USSSA</strong>, or <strong>none</strong>.`;
+    }
+    if(flow.step==='model'){
+      if(t.includes('unknown')||t.includes('no idea')||t.includes('can\'t')||t.includes('cant')||t.includes('cannot')){
+        flow=null;
+        return `<span class="tag warn">CANNOT VERIFY</span><p class="lede">If the model can't be identified, an umpire can't pass it, so treat it as <strong>not tournament-legal</strong>.</p>
+        <p>Email a photo of the barrel to <a href="mailto:help@borubats.ie">help@borubats.ie</a> and we'll try to ID it, or I'll suggest a guaranteed-legal bat, just say the word.</p>`;
+      }
+      if(look && look.status==='nomatch'){ flow=null; return nomatchMsg(); }
+      return `<span class="tag info">ONE MORE GO</span><p class="lede">I couldn't spot a model code in that. It's the run of letters and numbers on the barrel, like <em>ASPDAW25A</em>. Paste it exactly and I'll check the list.</p>`;
+    }
+  }
+};
+
+/* ----- matcher ----- */
+function findReply(text){
+  const t = ' ' + text.toLowerCase().replace(/[^\w\s'’]/g,' ') + ' ';
+  if(/\bcheck my bat\b|\bbat legality\b|\bcheck a bat\b|\bcheck the bat\b/.test(t)) return {flow:true};
+  let best=null, bestScore=0;
+  for(const intent of KB){
+    let score=0;
+    for(const k of intent.kw){ if(t.includes(' '+k+' ')||t.includes(k)) score += k.split(' ').length; }
+    score *= (intent.weight||1);
+    if(score>bestScore){ bestScore=score; best=intent; }
+  }
+  if(best && bestScore>=1) return {reply:best.reply, id:best.id};
+  return {reply:null, id:null};
 }
 
-let CUR=[];
-function render(){
-  const list=BATS.filter(passes).sort((a,b)=>b.heat-a.heat);
-  CUR=list;
-  $('cnt').textContent=list.length;
-  $('grid').innerHTML = list.length
-    ? list.map(card).join('')
-    : `<div class="empty">No bats match those filters. Try widening the <b>price</b> or turning off a constraint.</div>`;
-}
+const FALLBACK = `<p class="lede">I want to get this right rather than guess. I can help you with:</p>
+<ul>
+  <li>Finding your <strong>perfect bat</strong> by spec (weight, balance, budget)</li>
+  <li>What's <strong>hottest</strong> and best <strong>value</strong> right now</li>
+  <li><strong>Sourcing</strong> a sold-out bat across Europe</li>
+  <li>Whether a bat is <strong>WBSC Europe legal</strong> (type <strong>check my bat</strong>)</li>
+</ul>
+<p>Or type <strong>talk to a human</strong> and our team will take it from here.</p>`;
 
-/* filter chips */
-function chipRow(el,opts,key){
-  el.innerHTML='';
-  opts.forEach(o=>{
-    const b=document.createElement('button');
-    b.className='chip'+(String(F[key])===String(o.v)?' on':'');
-    b.textContent=o.l;
-    b.onclick=()=>{F[key]=o.v; chipRow(el,opts,key); render();};
-    el.appendChild(b);
+function renderChips(){
+  chipsEl.innerHTML='';
+  (agent.chips||[]).forEach(c=>{
+    const b=el(`<button class="chip" type="button"></button>`);
+    b.textContent=c;
+    b.addEventListener('click',()=>handleInput(c));
+    chipsEl.appendChild(b);
   });
 }
-function buildFilters(){
-  chipRow($('wChips'),[{l:'Any',v:'any'},{l:'25oz',v:25},{l:'26oz',v:26},{l:'27oz',v:27},{l:'28oz',v:28}],'weight');
-  chipRow($('bChips'),[{l:'Any',v:'any'},{l:'Balanced',v:'balanced'},{l:'End-loaded',v:'end-loaded'}],'balance');
-  $('legalT').checked=F.legal;
-  $('legalT').onchange=e=>{F.legal=e.target.checked;render();};
-  const mn=$('pMin'),mx=$('pMax');
-  function price(){
-    let a=+mn.value,b=+mx.value; if(a>b){[a,b]=[b,a];}
-    F.pmin=a;F.pmax=b;
-    $('priceVal').textContent=`€${a} – €${b}${b>=600?'+':''}`;
-    $('pFill').style.left=(a/600*100)+'%';$('pFill').style.right=(100-b/600*100)+'%';
-    render();
+
+/* ----- LLM (the chosen consultant talks; the list decides legality) ----- */
+const LLM_ENDPOINT = "https://boru-bats-bot.victordelrosal.workers.dev";
+const convo = [];
+let lastBatText = '';   // text of the consultant's last reply, for "check those bats" requests
+function showConferring(){
+  const others = CONSULTANTS.filter(c=>c.id!==agent.id).slice(0,4)
+    .map(c=>`<img src="${c.img}" alt="${esc(c.name)}">`).join('');
+  const t = el(`<div class="msg bot confer"><div class="msg__av">${botAv()}</div>
+    <div class="bubble"><span class="confer-txt">${esc(agent.first)} is checking with the team…</span>
+    <div class="confer-faces">${others}</div></div></div>`);
+  messagesEl.appendChild(t); scrollDown(); return t;
+}
+function addBotNow(html){
+  const m = el(`<div class="msg bot"><div class="msg__av">${botAv()}</div><div class="bubble"></div></div>`);
+  m.querySelector('.bubble').innerHTML = html; messagesEl.appendChild(m); scrollDown();
+}
+function formatLLM(s){ return esc(s).replace(/\n{2,}/g,'<br><br>').replace(/\n/g,'<br>'); }
+async function callLLM(){
+  try{
+    const r = await fetch(LLM_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({consultant:agent.id, messages:convo.slice(-10)})});
+    if(!r.ok) return null;
+    const d = await r.json();
+    return d.reply || null;
+  }catch(e){ return null; }
+}
+
+let busy=false;
+async function handleInput(text){
+  text=text.trim(); if(!text||busy||!agent) return;
+  busy=true;
+  addUser(text);
+  input.value='';
+  convo.push({role:'user', content:text});
+
+  if(flow){
+    const r = flowDef.handle(text);
+    await addBot(r, 500);
+    busy=false; return;
   }
-  mn.oninput=price;mx.oninput=price;price();
-  $('reset').onclick=()=>{F.weight='any';F.balance='any';F.legal=true;mn.value=0;mx.value=600;buildFilters();render();};
+
+  // 1) deterministic bat-code lookup, the real list decides
+  const look = lookupBat(text);
+  if(look){
+    const r = look.status==='match' ? batVerdict(look.bat)
+            : look.status==='partial' ? partialMsg(look)
+            : nomatchMsg();
+    convo.push({role:'assistant', content:'(checked the official approved-bat list)'});
+    await addBot(r, 500);
+    busy=false; return;
+  }
+
+  // 2) start the guided flow
+  if(/(^|\s)(check my bat|bat legality|check a bat|check the bat|check my code)(\s|$)/.test(text.toLowerCase())){
+    await addBot(flowDef.start(), 500);
+    busy=false; return;
+  }
+
+  // 3) deterministic human handoff
+  const res = findReply(text);
+  if(res.id==='human'){ await addBot(res.reply, 500); busy=false; return; }
+
+  // 3b) "look up / check those bats" -> verify the last recommendation against the live list
+  if(lastBatText &&
+     /\b(look ?up|check|verify|legal|are (they|those|these)|which ones)\b/.test(text.toLowerCase()) &&
+     /\b(code|codes|those|these|them|all|five|5|recommend|recommended|bats|list|top|each)\b/.test(text.toLowerCase())){
+    if(autoCheck(lastBatText)){ busy=false; return; }
+  }
+
+  // 4) the consultant confers with the team, then answers (LLM); graceful fallback to scripted KB
+  const conf = showConferring();
+  const llm = await callLLM();
+  conf.remove();
+  if(llm){
+    convo.push({role:'assistant', content:llm});
+    addBotNow(formatLLM(llm));
+    lastBatText = llm;
+    autoCheck(llm);          // wired to the live list: verify every bat the consultant names
+  } else if(res.reply){
+    await addBot(res.reply, 150);
+  } else {
+    await addBot(FALLBACK, 150);
+  }
+  busy=false;
 }
 
-/* tune modal */
-const modal=$('modal');
-function openModal(){modal.classList.add('open');$('profile').focus();}
-function closeModal(){modal.classList.remove('open');}
-$('tuneBtn').onclick=openModal;$('closeBtn').onclick=closeModal;
-modal.onclick=e=>{if(e.target===modal)closeModal();};
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-document.querySelectorAll('.sheet .ex button').forEach(b=>b.onclick=()=>{$('profile').value=b.textContent;});
-$('goBtn').onclick=async()=>{
-  const profile=$('profile').value.trim(); if(!profile)return;
-  const go=$('goBtn'),out=$('tuneout');
-  go.disabled=true;go.textContent='Conferring with the team…';
-  out.classList.remove('show');
-  try{
-    const legal=BATS.filter(b=>b.wbsc_legal);
-    const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({profile,bats:legal})});
-    const d=await r.json();
-    if(d.picks){
-      out.innerHTML=`<div class="sum">${esc(d.summary||'')}</div>`+d.picks.map(p=>`<div class="pick"><div class="pm">${esc(p.model)}</div><div class="pw">${esc(p.why)}</div></div>`).join('');
-    }else{out.innerHTML=`<div class="sum">Couldn't tune right now (the live model may be busy). Your filtered Heat Score ranking below is still your best guide.</div>`;}
-    out.classList.add('show');
-  }catch(e){
-    out.innerHTML=`<div class="sum">Couldn't reach the live re-ranker. The Heat Score ranking below is still your best guide.</div>`;out.classList.add('show');
-  }finally{go.disabled=false;go.textContent='Find my bats';}
-};
+form.addEventListener('submit', e=>{ e.preventDefault(); handleInput(input.value); });
 
-/* ---- where to buy ---- */
-const buyModal=$('buyModal');
-let buyBat=null;
-function buyQuery(b){return `${b.brand} ${(b.model||'').replace(/\bwbsc\b/ig,'').trim()} slowpitch softball bat`;}
-function openBuy(b){
-  buyBat=b;
-  const q=buyQuery(b), e=encodeURIComponent(q);
-  $('buyTitle').textContent=`Where to buy — ${b.brand} ${(b.model||'').replace(/\bwbsc\b/ig,'').trim()}`;
-  $('buySub').innerHTML=`Heat ${b.heat}/100 · ${b.wbsc_legal?'WBSC-Europe legal':'not Euro-legal'} · typical €${b.price_min}–${b.price_max}. Confirm the exact barrel code against the <a href="https://bats-kluxy.pages.dev/" target="_blank" rel="noopener" style="color:var(--amber)">approved-bat checker</a> before buying.`;
-  const site=d=>`https://www.google.com/search?q=${encodeURIComponent('site:'+d+' '+q)}`;
-  const links=[
-    ['🛒 Google Shopping — all sellers & live prices',`https://www.google.com/search?tbm=shop&q=${e}`,true],
-    ['🔎 Google — full web search',`https://www.google.com/search?q=${e}`,false],
-    ['eBay (UK/EU)',`https://www.ebay.co.uk/sch/i.html?_nkw=${e}`,false],
-    ['Covee Sports (NL)',site('coveesports.com'),false],
-    ['Forelle (NL)',site('forelle.eu'),false],
-    ['Baseball & Softball Shop (UK)',site('thebaseballandsoftballshop.co.uk'),false],
-    ['Ubuy Ireland',site('ubuy.ie'),false]
-  ];
-  $('buyLinks').innerHTML=links.map(([t,u,big])=>
-    `<a href="${u}" target="_blank" rel="noopener" class="${big?'go':'xbtn'}" style="${big?'text-align:center;text-decoration:none;display:block':'text-decoration:none;display:block;text-align:left;padding:10px 13px'}">${t}</a>`).join('');
-  $('buyOut').classList.remove('show');$('buyOut').innerHTML='';
-  buyModal.classList.add('open');
+/* ---------- Picker + selection ---------- */
+function renderPicker(){
+  const grid = document.getElementById('pickGrid');
+  grid.innerHTML='';
+  CONSULTANTS.forEach(c=>{
+    const card = el(`<button class="pick-card" type="button" aria-label="Talk to ${esc(c.name)}, ${esc(c.role)}">
+      <div class="pf"><img src="${c.img}" alt="${esc(c.name)}" loading="lazy"></div>
+      <div class="pc">
+        <div class="pc-name">${esc(c.name)}</div>
+        <div class="pc-role">${esc(c.role)}</div>
+        <div class="pc-blurb">${esc(c.blurb)}</div>
+        <div class="pc-cta">Talk to ${esc(c.first)} →</div>
+      </div>
+    </button>`);
+    card.addEventListener('click',()=>selectConsultant(c.id));
+    grid.appendChild(card);
+  });
 }
-function closeBuy(){buyModal.classList.remove('open');}
-$('buyClose').onclick=closeBuy;
-buyModal.onclick=e=>{if(e.target===buyModal)closeBuy();};
-$('grid').addEventListener('click',e=>{
-  if(e.target.closest('a'))return;
-  const c=e.target.closest('.card'); if(!c)return;
-  const b=CUR[+c.dataset.i]; if(b)openBuy(b);
-});
-$('grid').addEventListener('keydown',e=>{
-  if(e.key!=='Enter'&&e.key!==' ')return;
-  const c=e.target.closest('.card'); if(!c)return; e.preventDefault();
-  const b=CUR[+c.dataset.i]; if(b)openBuy(b);
-});
-$('buyAI').onclick=async()=>{
-  if(!buyBat)return;
-  const btn=$('buyAI'),out=$('buyOut');
-  btn.disabled=true;btn.textContent='Searching the web with gpt-5.5…';
-  try{
-    const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({buy:buyQuery(buyBat)})});
-    const d=await r.json();
-    if(d.listings&&d.listings.length){
-      out.innerHTML=`<div class="sum">Live listings found by AI web search (verify before paying):</div>`+
-        d.listings.map(l=>`<div class="pick"><div class="pm">${esc(l.retailer||'shop')} ${l.price?'· '+esc(l.price):''}</div>${l.url?`<div class="pw"><a href="${esc(l.url)}" target="_blank" rel="noopener" style="color:var(--amber)">${esc(l.url).slice(0,60)}</a></div>`:''}</div>`).join('');
-    }else{
-      out.innerHTML=`<div class="sum">No direct listings surfaced for this exact model right now — slowpitch stock moves fast. Use Google Shopping and the retailer searches above; they show every current seller.</div>`;
-    }
-    out.classList.add('show');
-  }catch(e){out.innerHTML=`<div class="sum">Live search unavailable. Use the search links above.</div>`;out.classList.add('show');}
-  finally{btn.disabled=false;btn.textContent='✨ Find live listings (AI web search)';}
-};
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBuy();});
+function showPicker(){
+  chatCard.classList.remove('active');
+  pickerEl.style.display='';
+  document.getElementById('main').scrollTop = 0;
+}
+async function selectConsultant(id){
+  agent = byId(id); if(!agent) return;
+  flow=null; convo.length=0; busy=false;
+  document.getElementById('agentAv').innerHTML = `<img src="${agent.img}" alt="${esc(agent.name)}">`;
+  document.getElementById('agentName').textContent = agent.name;
+  document.getElementById('agentStatus').textContent = agent.status;
+  input.placeholder = `Tell ${agent.first} your specs, or paste a bat code…`;
+  messagesEl.innerHTML='';
+  renderChips();
+  pickerEl.style.display='none';
+  chatCard.classList.add('active');
+  for(const line of agent.intro){ await addBot(line, 420); }
+  input.focus();
+}
 
-/* load catalog */
-fetch('picks.json?v='+Date.now()).then(r=>r.json()).then(d=>{
-  BATS=d.bats||[];
-  buildFilters();
-  render();
-}).catch(()=>{$('grid').innerHTML='<div class="empty">Could not load the bat catalog. Refresh to retry.</div>';});
-
-/* forge ember shader bg */
+/* ---------- Forge ember shader background (raw WebGL) ---------- */
 (function(){
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const cv=$('forge'),gl=cv.getContext("webgl");
-  if(!gl){document.body.style.background="radial-gradient(120% 90% at 50% 110%, #2a1606, #0f0e0c 60%)";return;}
-  const vs=`attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
-  const fs=`precision highp float;uniform vec2 R;uniform float T;
-  float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-  float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
-  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.02;a*=.5;}return v;}
-  void main(){vec2 uv=gl_FragCoord.xy/R.xy;vec2 q=uv;q.y-=T*0.04;float n=fbm(q*vec2(3.,2.2)+vec2(0.,-T*0.12));
-  float heat=pow(1.-uv.y,2.6)*(0.5+0.6*n);vec3 col=vec3(0.055,0.05,0.045);
-  col+=vec3(1.,0.38,0.07)*heat*1.05;col+=vec3(0.88,0.55,0.18)*heat*heat*0.45;
-  float sp=smoothstep(0.94,1.,fbm(uv*vec2(22.,30.)+vec2(0.,-T*0.6)));col+=vec3(1.,0.6,0.25)*sp*(1.-uv.y)*0.8;
-  col*=smoothstep(1.3,0.3,length(uv-vec2(0.5,0.4)));gl_FragColor=vec4(col,1.);}`;
-  function sh(t,s){const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);return x;}
-  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
-  const bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-  const l=gl.getAttribLocation(pr,"p");gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,2,gl.FLOAT,false,0,0);
-  const uR=gl.getUniformLocation(pr,"R"),uT=gl.getUniformLocation(pr,"T");const DPR=Math.min(devicePixelRatio||1,1.5);
-  function rs(){cv.width=innerWidth*DPR;cv.height=innerHeight*DPR;gl.viewport(0,0,cv.width,cv.height);gl.uniform2f(uR,cv.width,cv.height);}
-  addEventListener("resize",rs);rs();
-  if(reduce){gl.uniform1f(uT,6.);gl.drawArrays(gl.TRIANGLES,0,3);return;}
-  let st=performance.now(),raf;function fr(now){gl.uniform1f(uT,(now-st)/1000);gl.drawArrays(gl.TRIANGLES,0,3);raf=requestAnimationFrame(fr);}raf=requestAnimationFrame(fr);
-  document.addEventListener("visibilitychange",()=>{if(document.hidden)cancelAnimationFrame(raf);else{st=performance.now()-6000;raf=requestAnimationFrame(fr);}});
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cv = document.getElementById("forge");
+  const gl = cv.getContext("webgl");
+  if(!gl){ document.body.style.background = "radial-gradient(120% 90% at 50% 110%, #2a1606, #0f0e0c 60%)"; return; }
+  const vs = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
+  const fs = `
+  precision highp float;
+  uniform vec2 R; uniform float T;
+  float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
+  float noise(vec2 p){ vec2 i=floor(p),f=fract(p); f=f*f*(3.-2.*f);
+    return mix(mix(hash(i),hash(i+vec2(1,0)),f.x), mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x), f.y); }
+  float fbm(vec2 p){ float v=0.,a=.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.02; a*=.5;} return v; }
+  void main(){
+    vec2 uv = gl_FragCoord.xy / R.xy;
+    vec2 q = uv; q.y -= T*0.04;
+    float n = fbm(q*vec2(3.0,2.2) + vec2(0.0, -T*0.12));
+    float heat = pow(1.0 - uv.y, 2.6) * (0.55 + 0.6*n);
+    vec3 col = vec3(0.06,0.055,0.05);
+    col += vec3(1.0,0.38,0.07) * heat * 1.15;
+    col += vec3(0.88,0.55,0.18) * heat*heat * 0.5;
+    float sp = smoothstep(0.93,1.0, fbm(uv*vec2(22.0,30.0)+vec2(0.0,-T*0.6)));
+    col += vec3(1.0,0.6,0.25) * sp * (1.0-uv.y) * 0.9;
+    col *= smoothstep(1.25,0.25, length(uv-vec2(0.5,0.42)));
+    gl_FragColor = vec4(col,1.0);
+  }`;
+  function sh(type,src){ const s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s); return s; }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog); gl.useProgram(prog);
+  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog,"p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  const uR = gl.getUniformLocation(prog,"R"), uT = gl.getUniformLocation(prog,"T");
+  const DPR = Math.min(window.devicePixelRatio||1, 1.6);
+  function resize(){ cv.width = innerWidth*DPR; cv.height = innerHeight*DPR; gl.viewport(0,0,cv.width,cv.height); gl.uniform2f(uR, cv.width, cv.height); }
+  addEventListener("resize", resize); resize();
+  if(reduce){ gl.uniform1f(uT, 6.0); gl.drawArrays(gl.TRIANGLES,0,3); return; }
+  let start = performance.now(), raf;
+  function frame(now){ gl.uniform1f(uT, (now-start)/1000); gl.drawArrays(gl.TRIANGLES,0,3); raf=requestAnimationFrame(frame); }
+  raf = requestAnimationFrame(frame);
+  document.addEventListener("visibilitychange", ()=>{ if(document.hidden){ cancelAnimationFrame(raf);} else { start=performance.now()-6000; raf=requestAnimationFrame(frame);} });
 })();
+
+/* ---------- boot ---------- */
+renderPicker();
 </script>
 </body>
 </html>
