@@ -1,0 +1,10 @@
+name = "boru-bats-site"
+compatibility_date = "2026-06-01"
+account_id = "3f1349a077487b7c56001fbb16d15bb2"
+
+[assets]
+directory = "./public"
+
+[[routes]]
+pattern = "bats.kluxy.app"
+custom_domain = true

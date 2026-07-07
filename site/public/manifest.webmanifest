@@ -1,0 +1,16 @@
+{
+  "name": "Boru Bats: The High King's Armoury",
+  "short_name": "Boru Bats",
+  "description": "WBSC Europe-legal slowpitch softball bats, shipped across Ireland.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0f0e0c",
+  "theme_color": "#0f0e0c",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0e0c'/%3E%3Cpath d='M32 6 54 14V32C54 46 44 55 32 59 20 55 10 46 10 32V14Z' fill='none' stroke='%23e0992f' stroke-width='2.5'/%3E%3Crect x='30' y='16' width='4.5' height='30' rx='2.2' transform='rotate(34 32 31)' fill='%23ff6a1a'/%3E%3Ccircle cx='24' cy='44' r='3' fill='%23e0992f'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
